@@ -1,0 +1,2449 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BERNSTONE | Kolekcja Patio w Warszawie</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Unbounded (Benzin style) & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Unbounded:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandYellow: '#F1EF9E',
+            brandBg: '#F7F7F7',
+            brandDark: '#303332',
+            brandSlate: '#6D6C84',
+            brandSlateLight: '#E8E8EE',
+          },
+          fontFamily: {
+            display: ['Unbounded', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    [id] {
+      scroll-margin-top: 90px;
+    }
+
+    body {
+      background-color: #F7F7F7;
+      color: #303332;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    .font-benzin {
+      font-family: 'Unbounded', sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #2A2D2C;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #6D6C84;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #F1EF9E;
+    }
+
+    /* Pulse dot animation */
+    .pulse-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #22C55E;
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+      animation: pulse-ring 1.8s infinite;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    }
+
+    /* Tab active state */
+    .tab-btn.active {
+      background-color: #F1EF9E;
+      color: #303332;
+      font-weight: 700;
+    }
+
+    /* Filter active state */
+    .gallery-filter-btn.active {
+      background-color: #303332;
+      color: #F1EF9E;
+      border-color: #303332;
+    }
+
+    /* Viewport Simulator */
+    .viewport-desktop {
+      max-width: 1200px;
+      transition: max-width 0.3s ease;
+    }
+    .viewport-mobile {
+      max-width: 410px;
+      transition: max-width 0.3s ease;
+    }
+
+    /* Final landing view: desktop presentation with readable 16px copy. */
+    #viewArchitecture,
+    #viewSpecs,
+    #viewportControls,
+    #tabArchitecture,
+    #tabDevSpecs {
+      display: none !important;
+    }
+    #viewWireframe {
+      display: flex !important;
+    }
+    #landingFrame {
+      width: 100%;
+      max-width: none;
+      border-radius: 0;
+      border-left: 0;
+      border-right: 0;
+      box-shadow: none;
+    }
+    #landingFrame > nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 100;
+      background-color: rgba(255, 255, 255, 0.8) !important;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    #landingFrame > nav + section {
+      margin-top: 74px;
+    }
+    #lightboxModal {
+      padding-top: 90px !important;
+    }
+    #landingFrame .text-\[9px\],
+    #landingFrame .text-\[10px\],
+    #landingFrame .text-\[11px\],
+    #landingFrame .text-xs,
+    #landingFrame .text-sm {
+      font-size: 16px !important;
+      line-height: 1.45 !important;
+    }
+    #landingFrame h1 { font-size: 46px !important; }
+    #landingFrame h2 { font-size: 32px !important; }
+    #landingFrame h3,
+    #landingFrame h4 { font-size: 22px !important; }
+    .hero-layout {
+      position: relative;
+      display: block;
+      min-height: 700px;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+    .hero-layout .hero-photo {
+      min-height: 700px;
+      background: #303332 url('https://images.unsplash.com/photo-1598902108854-10e335adac99?auto=format&fit=crop&w=1400&q=85') center / cover;
+    }
+    .hero-layout .hero-copy {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 42%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 42px 38px 42px 90px;
+      background: linear-gradient(90deg, rgba(247, 247, 247, 0) 0%, rgba(247, 247, 247, 0.78) 34%, rgba(247, 247, 247, 0.97) 72%, #f7f7f7 100%);
+    }
+    .hero-layout .hero-copy h1 {
+      font-size: 42px !important;
+      line-height: 1.02 !important;
+    }
+    #dostawa .delivery-card {
+      min-height: 300px;
+      padding: 15px !important;
+    }
+    #dostawa .delivery-card > div:first-child {
+      flex: 1;
+    }
+    .footer-social-button {
+      min-height: 58px;
+      padding: 14px 18px !important;
+      border: 0;
+      border-radius: 10px;
+      font-size: 16px !important;
+      font-weight: 700;
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .footer-social-button > span:first-child {
+      width: 24px;
+      text-align: center;
+      flex: 0 0 24px;
+      font-size: 18px;
+    }
+    .mobile-menu-toggle,
+    .mobile-menu {
+      display: none;
+    }
+
+    @media (max-width: 639px) {
+      body {
+        overflow-x: hidden;
+      }
+      #landingFrame > nav {
+        min-height: 68px;
+        padding: 10px 14px !important;
+        gap: 10px;
+      }
+      #landingFrame > nav .brand-mark {
+        width: 32px;
+        height: 32px;
+      }
+      #landingFrame > nav .text-base {
+        font-size: 16px !important;
+      }
+      #landingFrame > nav .button,
+      #landingFrame > nav > div:last-child button {
+        padding: 9px 12px !important;
+        font-size: 16px !important;
+      }
+      #landingFrame > nav > div:last-of-type {
+        display: none;
+      }
+      #landingFrame > nav > div:nth-child(2) {
+        display: none !important;
+      }
+      .mobile-menu-toggle {
+        display: flex;
+        width: 42px;
+        height: 42px;
+        flex: 0 0 42px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        border: 1px solid #303332;
+        border-radius: 8px;
+        background: #f1ef9e;
+        color: #303332;
+        cursor: pointer;
+      }
+      .mobile-menu-toggle span {
+        width: 21px;
+        height: 2px;
+        background: currentColor;
+        border-radius: 2px;
+      }
+      .mobile-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 12px 14px 16px;
+        background: rgba(255, 255, 255, 0.96);
+        border-top: 1px solid rgba(48, 51, 50, 0.12);
+        box-shadow: 0 12px 24px rgba(48, 51, 50, 0.14);
+      }
+      .mobile-menu.is-open {
+        display: flex !important;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .mobile-menu a {
+        display: block;
+        padding: 12px 10px;
+        border-bottom: 1px solid rgba(48, 51, 50, 0.1);
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .mobile-menu a:last-child {
+        border-bottom: 0;
+      }
+      #landingFrame > nav + section {
+        margin-top: 68px;
+      }
+      #landingFrame > nav + section,
+      #landingFrame section,
+      #landingFrame footer {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+      }
+      .hero-layout,
+      .hero-layout .hero-photo {
+        min-height: 820px;
+      }
+      .hero-layout .hero-copy {
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        min-height: 100%;
+        padding: 36px 22px 26px;
+        background: linear-gradient(180deg, rgba(247, 247, 247, 0) 0%, rgba(247, 247, 247, 0.82) 32%, rgba(247, 247, 247, 0.98) 68%, #f7f7f7 100%);
+      }
+      #landingFrame .hero-layout .hero-copy h1 {
+        font-size: 36px !important;
+        line-height: 1.04 !important;
+      }
+      .hero-layout .hero-copy p {
+        margin-bottom: 18px;
+      }
+      .hero-layout .hero-copy .flex-wrap {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .hero-layout .hero-copy .flex-wrap > * {
+        width: 100%;
+      }
+      #kolekcja .max-w-5xl > .grid,
+      #projekty .max-w-5xl > .grid,
+      #dostawa .max-w-5xl > .grid {
+        grid-template-columns: 1fr !important;
+      }
+      #kolory .grid {
+        grid-template-columns: 1fr 1fr !important;
+      }
+      #landingFrame .gallery-item,
+      #landingFrame .bg-white.rounded-xl {
+        min-width: 0;
+      }
+      #dostawa .delivery-card {
+        min-height: 300px;
+      }
+      #lightboxModal {
+        padding: 78px 10px 10px !important;
+      }
+      #lightboxModal > div:first-child {
+        gap: 8px;
+      }
+      #lightboxModal #lightboxProductPrice {
+        white-space: normal;
+      }
+      #leadModal > div,
+      #videoModal > div {
+        max-width: calc(100vw - 24px);
+        max-height: calc(100vh - 24px);
+        overflow-y: auto;
+      }
+      .footer-social-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body class="flex flex-col">
+
+  <!-- Main Content Stage Area -->
+  <main class="flex-1 w-full flex justify-center items-start">
+
+    <!-- ================================================================= -->
+    <!-- VIEW 1: INTERACTIVE WIREFRAME (LIVE PROTOTYPE IN UKRAINIAN)       -->
+    <!-- ================================================================= -->
+    <div id="viewWireframe" class="w-full flex flex-col items-center">
+      
+      <!-- The Landing Page -->
+      <div id="landingFrame" class="viewport-desktop w-full bg-brandBg shadow-2xl overflow-hidden text-brandDark relative transition-all duration-300">
+        <!-- SECTION 1: LANDING TOP NAVBAR -->
+        <nav class="bg-white px-6 py-4 border-b border-brandSlate/15 flex items-center justify-between sticky top-0 z-30 shadow-sm">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-brandDark rounded-md flex items-center justify-center font-benzin font-bold text-brandYellow text-base">B</div>
+            <div>
+              <span class="font-benzin font-extrabold text-base tracking-wider text-brandDark block leading-tight">BERNSTONE</span>
+              <span class="text-[9px] font-bold uppercase tracking-widest text-brandSlate block">Kolekcja Patio</span>
+            </div>
+          </div>
+
+          <!-- Nav Anchors -->
+          <div class="hidden lg:flex items-center gap-6 text-xs font-bold text-brandDark">
+            <a href="#kolekcja" class="hover:text-brandSlate transition">Katalog rozwiązań</a>
+            <a href="#kolory" class="hover:text-brandSlate transition">Paleta kolorów</a>
+            <a href="#projekty" class="hover:text-brandSlate transition text-emerald-700 font-extrabold">Zrealizowane obiekty</a>
+            <a href="#ekspozycja" class="hover:text-brandSlate transition">Wystawa w Warszawie</a>
+            <a href="#dostawa" class="hover:text-brandSlate transition">Dostawa</a>
+          </div>
+
+          <!-- Header CTA -->
+          <div class="flex items-center gap-2.5">
+            <a href="#ekspozycja" class="hidden sm:inline-flex text-[11px] font-bold text-brandDark bg-brandBg px-3 py-1.5 rounded-lg border border-brandSlate/20 hover:bg-brandSlate/10 transition">
+              📍 Adres wystawy
+            </a>
+            <button onclick="window.open('https://www.facebook.com/', '_blank')" class="text-[11px] font-benzin font-bold bg-brandYellow text-brandDark px-3.5 py-1.5 rounded-lg border border-brandDark shadow-sm hover:brightness-95 transition">
+              Facebook
+            </button>
+          </div>
+          <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Otwórz menu" aria-expanded="false" onclick="toggleMobileMenu()">
+            <span></span><span></span><span></span>
+          </button>
+          <div class="mobile-menu" id="mobileMenu">
+            <a href="#kolekcja">Katalog rozwiązań</a>
+            <a href="#kolory">Paleta kolorów</a>
+            <a href="#projekty">Zrealizowane obiekty</a>
+            <a href="#ekspozycja">Wystawa w Warszawie</a>
+            <a href="#dostawa">Dostawa</a>
+            <a href="#ekspozycja">📍 Adres wystawy</a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">Facebook</a>
+          </div>
+        </nav>
+
+        <!-- SECTION 2: HERO SECTION (FIRST SCREEN) -->
+        <section class="p-6 sm:p-10 lg:p-12 bg-gradient-to-b from-white to-brandBg border-b border-brandSlate/15">
+          <div class="max-w-5xl mx-auto mb-8">
+            <div class="hero-layout">
+              <div class="hero-photo" role="img" aria-label="Kamienne patio z paleniskiem"></div>
+              <div class="hero-copy">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandDark text-brandYellow font-benzin text-[10px] uppercase tracking-wider mb-4">
+              <span>★</span> Kolekcja Patio Bernstone • Warszawa
+            </div>
+            
+            <!-- Exact Agreed H1 -->
+            <h1 class="font-benzin text-2xl sm:text-4xl lg:text-5xl font-black text-brandDark leading-tight mb-4">
+              Twórzcie Państwo rodzinne tradycje przy żywym ogniu na Państwa patio
+            </h1>
+            
+            <!-- Exact Agreed H2 -->
+            <p class="text-sm sm:text-base text-brandSlate font-medium max-w-2xl mx-auto leading-relaxed mb-6">
+              Czysty montaż na klej w jeden weekend. Wybierzcie Państwo gotowy zestaw albo odwiedźcie naszą wystawę w Warszawie i zobaczcie jakość kamienia na żywo.
+            </p>
+
+            <!-- Agreed Hero CTA Buttons -->
+            <div class="flex flex-wrap justify-center items-center gap-3">
+              <button onclick="triggerLeadChat('Консультація з першого екрана')" class="text-xs sm:text-sm font-benzin font-bold bg-brandYellow text-brandDark px-6 py-3 rounded-xl border border-brandDark shadow-md hover:brightness-95 transition flex items-center gap-2">
+                <span>💬</span> Skorzystajcie Państwo z konsultacji
+              </button>
+              <a href="#ekspozycja" class="text-xs sm:text-sm font-benzin font-bold bg-white text-brandDark px-6 py-3 rounded-xl border border-brandSlate/30 shadow-sm hover:bg-brandBg transition flex items-center gap-2">
+                <span>📍</span> Adres wystawy w Warszawie
+              </a>
+            </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Badges -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-5xl mx-auto mt-10 text-left">
+            <div class="bg-white p-4 rounded-xl border border-brandSlate/15 shadow-sm flex flex-col justify-between">
+              <div>
+                <span class="text-lg mb-1 block">✨</span>
+                <strong class="font-benzin text-xs font-bold text-brandDark block mb-1">Czysty montaż</strong>
+                <p class="text-[11px] text-brandSlate leading-relaxed">System modułowy montuje się na mrozoodporny klej w 1–2 dni, bez cementowego bałaganu na trawniku.</p>
+              </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl border border-brandSlate/15 shadow-sm flex flex-col justify-between">
+              <div>
+                <span class="text-lg mb-1 block">🏛️</span>
+                <strong class="font-benzin text-xs font-bold text-brandDark block mb-1">Trwałość na lata</strong>
+                <p class="text-[11px] text-brandSlate leading-relaxed">Beton wysokiej wytrzymałości znosi mróz, wilgoć i bezpośredni ogień bez corocznej konserwacji ani malowania.</p>
+              </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl border border-brandSlate/15 shadow-sm flex flex-col justify-between">
+              <div>
+                <span class="text-lg mb-1 block">🎨</span>
+                <strong class="font-benzin text-xs font-bold text-brandDark block mb-1">Autorski design</strong>
+                <p class="text-[11px] text-brandSlate leading-relaxed">Reliefowa faktura łupanego kamienia i paleta szlachetnych odcieni tworzą przytulny ogród.</p>
+              </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl border border-brandSlate/15 shadow-sm flex flex-col justify-between">
+              <div>
+                <span class="text-lg mb-1 block">🇺🇦</span>
+                <strong class="font-benzin text-xs font-bold text-brandDark block mb-1">Ukraiński producent</strong>
+                <p class="text-[11px] text-brandSlate leading-relaxed">Własna produkcja Bernstone i precyzyjna kontrola geometrii każdego elementu.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: CATALOG SHOWCASE (5 AGREED PRODUCTS) -->
+        <section id="kolekcja" class="p-6 sm:p-10 bg-brandBg border-b border-brandSlate/15">
+          <div class="max-w-5xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-8">
+              <span class="text-xs font-benzin font-bold text-brandSlate uppercase tracking-wider block mb-1">Kolekcja Patio Bernstone</span>
+              <h2 class="font-benzin text-xl sm:text-3xl font-extrabold text-brandDark">
+                GOTOWE ROZWIĄZANIA ARCHITEKTONICZNE DO PAŃSTWA OGRODU
+              </h2>
+              <p class="text-xs sm:text-sm text-brandSlate mt-2">
+                Wybierzcie Państwo podstawowy format dla Państwa działki. Do każdego produktu dołączamy instrukcję montażu krok po kroku, a nasi specjaliści chętnie odpowiedzą na wszystkie pytania dotyczące instalacji.
+              </p>
+            </div>
+
+            <!-- 5 Product Cards Grid with 5-Photo Interactive Carousels and Fullscreen Zoom -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left">
+              
+              <!-- 1. Вогнище кругле ROCCA -->
+              <div class="bg-white rounded-xl p-4 border border-brandSlate/20 shadow-sm flex flex-col justify-between hover:border-brandDark transition group">
+                <div>
+                  <!-- Product 5-Photo Carousel Gallery Component -->
+                  <div class="relative rounded-lg overflow-hidden mb-3 border border-brandSlate/15 bg-neutral-900 select-none">
+                    <!-- Active Photo Viewport with Click to Zoom -->
+                    <div class="relative aspect-[4/3] cursor-pointer group/photo overflow-hidden" onclick="openLightbox('rocca', currentPhoto['rocca'] || 0)">
+                      <div id="rocca-photo-display" class="w-full h-full flex items-center justify-center">
+                        <!-- Rendered by JS -->
+                      </div>
+                      
+                      <!-- Hover Overlay Zoom Indicator -->
+                      <div class="absolute inset-0 bg-black/40 opacity-0 group-hover/photo:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                        <span class="bg-brandDark/90 text-brandYellow text-[11px] font-benzin font-bold px-3 py-1.5 rounded-lg border border-brandYellow/40 shadow-xl flex items-center gap-1.5">
+                          <span>🔍</span> Rozwiń do pełnego ekranu
+                        </span>
+                      </div>
+                      
+                      <!-- Prev / Next Inline Arrows -->
+                      <button type="button" onclick="event.stopPropagation(); changeCardPhoto('rocca', -1)" class="absolute left-1.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-black/65 hover:bg-brandYellow hover:text-brandDark text-white flex items-center justify-center text-xs transition z-10">‹</button>
+                      <button type="button" onclick="event.stopPropagation(); changeCardPhoto('rocca', 1)" class="absolute right-1.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-black/65 hover:bg-brandYellow hover:text-brandDark text-white flex items-center justify-center text-xs transition z-10">›</button>
+                      
+                      <!-- Counter & Hit Badge -->
+                      <div class="absolute top-2 left-2 bg-black/70 backdrop-blur-sm text-white font-mono text-[9px] px-2 py-0.5 rounded flex items-center gap-1 z-10">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        <span id="rocca-counter">1 / 5</span>
+                      </div>
+                      <span class="absolute top-2 right-2 bg-brandYellow text-brandDark text-[9px] font-bold px-1.5 py-0.5 rounded font-benzin z-10 shadow-sm">Хіт</span>
+                      
+                      <!-- Caption Bar -->
+                      <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-2 text-[10px] text-white font-medium truncate" id="rocca-caption">
+                        Rozwiń do pełnego ekranu
+                      </div>
+                    </div>
+                    
+                    <!-- 5 Mini Thumbnail Selectors -->
+                    <div class="grid grid-cols-5 gap-1 p-1.5 bg-[#171918] border-t border-white/10">
+                      <button type="button" onclick="setCardPhoto('rocca', 0)" id="thumb-rocca-0" class="aspect-square rounded border-2 border-brandYellow text-[9px] font-bold text-white flex items-center justify-center transition">1</button>
+                      <button type="button" onclick="setCardPhoto('rocca', 1)" id="thumb-rocca-1" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">2</button>
+                      <button type="button" onclick="setCardPhoto('rocca', 2)" id="thumb-rocca-2" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">3</button>
+                      <button type="button" onclick="setCardPhoto('rocca', 3)" id="thumb-rocca-3" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">4</button>
+                      <button type="button" onclick="setCardPhoto('rocca', 4)" id="thumb-rocca-4" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">5</button>
+                    </div>
+                  </div>
+
+                  <div class="flex items-baseline justify-between mb-1.5">
+                    <span class="font-benzin text-base font-extrabold text-brandDark">2 450 PLN</span>
+                    <span class="text-[10px] text-emerald-600 font-bold">Misa + ruszt w zestawie</span>
+                  </div>
+                  <p class="text-[11px] text-brandSlate leading-relaxed mb-2.5">
+                    Serce Państwa ogrodu, idealne na przytulne wieczory spędzane z rodziną przy otwartym ogniu. Bezpieczna i solidna alternatywa dla konstrukcji z cienkiego metalu.
+                  </p>
+                  
+                  <div class="p-2 bg-brandBg rounded-lg text-[10px] text-brandDark mb-3 border border-brandSlate/10 space-y-0.5">
+                    <strong>Dołączony:</strong> radiousne bloki Patio, termo-stalowa czasha-wstawka, siatka-gril z nierdzewnej stali, pokrokowa instrukcja.
+                  </div>
+                </div>
+                <div class="pt-2.5 border-t border-brandSlate/10 flex items-center justify-between">
+                  <span class="text-[10px] text-brandSlate">Cena stała dla kolorów</span>
+                  <button onclick="triggerLeadChat('Wogniście okrągłe ROCCA')" class="text-[11px] font-bold bg-brandDark text-brandYellow px-3 py-1.5 rounded-md hover:bg-black transition">
+                    Połącz się do zamówienia →
+                  </button>
+                </div>
+              </div>
+
+              <!-- 2. Барбекю-комплекс Pasion -->
+              <div class="bg-white rounded-xl p-4 border border-brandSlate/20 shadow-sm flex flex-col justify-between hover:border-brandDark transition group">
+                <div>
+                  <!-- Product 5-Photo Carousel Gallery Component -->
+                  <div class="relative rounded-lg overflow-hidden mb-3 border border-brandSlate/15 bg-neutral-900 select-none">
+                    <div class="relative aspect-[4/3] cursor-pointer group/photo overflow-hidden" onclick="openLightbox('pasion', currentPhoto['pasion'] || 0)">
+                      <div id="pasion-photo-display" class="w-full h-full flex items-center justify-center"></div>
+                      <div class="absolute inset-0 bg-black/40 opacity-0 group-hover/photo:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                        <span class="bg-brandDark/90 text-brandYellow text-[11px] font-benzin font-bold px-3 py-1.5 rounded-lg border border-brandYellow/40 shadow-xl flex items-center gap-1.5">
+                          <span>🔍</span> Rozwiń do pełnego ekranu
+                        </span>
+                      </div>
+                      <button type="button" onclick="event.stopPropagation(); changeCardPhoto('pasion', -1)" class="absolute left-1.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-black/65 hover:bg-brandYellow hover:text-brandDark text-white flex items-center justify-center text-xs transition z-10">‹</button>
+                      <button type="button" onclick="event.stopPropagation(); changeCardPhoto('pasion', 1)" class="absolute right-1.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-black/65 hover:bg-brandYellow hover:text-brandDark text-white flex items-center justify-center text-xs transition z-10">›</button>
+                      <div class="absolute top-2 left-2 bg-black/70 backdrop-blur-sm text-white font-mono text-[9px] px-2 py-0.5 rounded flex items-center gap-1 z-10">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        <span id="pasion-counter">1 / 5</span>
+                      </div>
+                      <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-2 text-[10px] text-white font-medium truncate" id="pasion-caption">
+                        Barbecue Pasion
+                      </div>
+                    </div>
+                    <div class="grid grid-cols-5 gap-1 p-1.5 bg-[#171918] border-t border-white/10">
+                      <button type="button" onclick="setCardPhoto('pasion', 0)" id="thumb-pasion-0" class="aspect-square rounded border-2 border-brandYellow text-[9px] font-bold text-white flex items-center justify-center transition">1</button>
+                      <button type="button" onclick="setCardPhoto('pasion', 1)" id="thumb-pasion-1" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">2</button>
+                      <button type="button" onclick="setCardPhoto('pasion', 2)" id="thumb-pasion-2" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">3</button>
+                      <button type="button" onclick="setCardPhoto('pasion', 3)" id="thumb-pasion-3" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">4</button>
+                      <button type="button" onclick="setCardPhoto('pasion', 4)" id="thumb-pasion-4" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">5</button>
+                    </div>
+                  </div>
+
+                  <div class="flex items-baseline justify-between mb-1.5">
+                    <span class="font-benzin text-base font-extrabold text-brandDark">5 800 PLN</span>
+                    <span class="text-[10px] text-brandDark font-semibold">Pełny zestaw z dymarką</span>
+                  </div>
+                  <p class="text-[11px] text-brandSlate leading-relaxed mb-2.5">
+                    Popularne i ergonomiczne sadowne barbque z optymalnymi wymiarami. Wygodne i wyposażone we wszystko potrzebne do gotowania, nie przeciąża ogrodu.
+                  </p>
+
+                  <div class="p-2 bg-brandBg rounded-lg text-[10px] text-brandDark mb-3 border border-brandSlate/10 space-y-0.5">
+                    <strong>W zestawie:</strong> podstawa kamieniowa 4 szt, stół 8 szt, drzwiczki 2 szt, wstawki z drewna 2 szt, rura, klapka, odbijacz, zestaw kamieniowy, instrukcja.
+                  </div>
+                </div>
+                <div class="pt-2.5 border-t border-brandSlate/10 flex items-center justify-between">
+                  <span class="text-[10px] text-brandSlate">Cena stała dla kolorów</span>
+                  <button onclick="triggerLeadChat('Barbecue-komplex Pasion')" class="text-[11px] font-bold bg-brandDark text-brandYellow px-3 py-1.5 rounded-md hover:bg-black transition">
+                    Połącz się do zamówienia →
+                  </button>
+                </div>
+              </div>
+
+              <!-- 3. Мангал Familiya -->
+              <div class="bg-white rounded-xl p-4 border border-brandSlate/20 shadow-sm flex flex-col justify-between hover:border-brandDark transition group">
+                <div>
+                  <!-- Product 5-Photo Carousel Gallery Component -->
+                  <div class="relative rounded-lg overflow-hidden mb-3 border border-brandSlate/15 bg-neutral-900 select-none">
+                    <div class="relative aspect-[4/3] cursor-pointer group/photo overflow-hidden" onclick="openLightbox('familiya', currentPhoto['familiya'] || 0)">
+                      <div id="familiya-photo-display" class="w-full h-full flex items-center justify-center"></div>
+                      <div class="absolute inset-0 bg-black/40 opacity-0 group-hover/photo:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                        <span class="bg-brandDark/90 text-brandYellow text-[11px] font-benzin font-bold px-3 py-1.5 rounded-lg border border-brandYellow/40 shadow-xl flex items-center gap-1.5">
+                          <span>🔍</span> Rozwiń do pełnego ekranu
+                        </span>
+                      </div>
+                      <button type="button" onclick="event.stopPropagation(); changeCardPhoto('familiya', -1)" class="absolute left-1.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-black/65 hover:bg-brandYellow hover:text-brandDark text-white flex items-center justify-center text-xs transition z-10">‹</button>
+                      <button type="button" onclick="event.stopPropagation(); changeCardPhoto('familiya', 1)" class="absolute right-1.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-black/65 hover:bg-brandYellow hover:text-brandDark text-white flex items-center justify-center text-xs transition z-10">›</button>
+                      <div class="absolute top-2 left-2 bg-black/70 backdrop-blur-sm text-white font-mono text-[9px] px-2 py-0.5 rounded flex items-center gap-1 z-10">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        <span id="familiya-counter">1 / 5</span>
+                      </div>
+                      <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-2 text-[10px] text-white font-medium truncate" id="familiya-caption">
+                        Мангал Familiya
+                      </div>
+                    </div>
+                    <div class="grid grid-cols-5 gap-1 p-1.5 bg-[#171918] border-t border-white/10">
+                      <button type="button" onclick="setCardPhoto('familiya', 0)" id="thumb-familiya-0" class="aspect-square rounded border-2 border-brandYellow text-[9px] font-bold text-white flex items-center justify-center transition">1</button>
+                      <button type="button" onclick="setCardPhoto('familiya', 1)" id="thumb-familiya-1" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">2</button>
+                      <button type="button" onclick="setCardPhoto('familiya', 2)" id="thumb-familiya-2" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">3</button>
+                      <button type="button" onclick="setCardPhoto('familiya', 3)" id="thumb-familiya-3" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">4</button>
+                      <button type="button" onclick="setCardPhoto('familiya', 4)" id="thumb-familiya-4" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">5</button>
+                    </div>
+                  </div>
+
+                  <div class="flex items-baseline justify-between mb-1.5">
+                    <span class="font-benzin text-base font-extrabold text-brandDark">4 200 PLN</span>
+                    <span class="text-[10px] text-brandSlate font-semibold">Z blatami i szafkami</span>
+                  </div>
+                  <p class="text-[11px] text-brandSlate leading-relaxed mb-2.5">
+                    Niewielki, solidny zestaw grillowy. Obejmuje wysokiej jakości grill opalany drewnem, wygodne pokrywy-blaty, zamykane schowki oraz półkę na drewno.
+                  </p>
+
+                  <div class="p-2 bg-brandBg rounded-lg text-[10px] text-brandDark mb-3 border border-brandSlate/10 space-y-0.5">
+                    <strong>W zestawie:</strong> 2 palety kamienne, 4 pokrywy-blaty, 2 komplety drzwiczek, 2 drewniane wkładki, grill, instrukcja.
+                  </div>
+                </div>
+                <div class="pt-2.5 border-t border-brandSlate/10 flex items-center justify-between">
+                  <span class="text-[10px] text-brandSlate">Stała cena niezależnie od koloru</span>
+                  <button onclick="triggerLeadChat('Мангал Familiya')" class="text-[11px] font-bold bg-brandDark text-brandYellow px-3 py-1.5 rounded-md hover:bg-black transition">
+                    Skontaktujcie się Państwo i zamówcie →
+                  </button>
+                </div>
+              </div>
+
+              <!-- 4. Zestaw lounge Circle -->
+              <div class="bg-white rounded-xl p-4 border border-brandSlate/20 shadow-sm flex flex-col justify-between hover:border-brandDark transition group">
+                <div>
+                  <!-- Product 5-Photo Carousel Gallery Component -->
+                  <div class="relative rounded-lg overflow-hidden mb-3 border border-brandSlate/15 bg-neutral-900 select-none">
+                    <div class="relative aspect-[4/3] cursor-pointer group/photo overflow-hidden" onclick="openLightbox('circle', currentPhoto['circle'] || 0)">
+                      <div id="circle-photo-display" class="w-full h-full flex items-center justify-center"></div>
+                      <div class="absolute inset-0 bg-black/40 opacity-0 group-hover/photo:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                        <span class="bg-brandDark/90 text-brandYellow text-[11px] font-benzin font-bold px-3 py-1.5 rounded-lg border border-brandYellow/40 shadow-xl flex items-center gap-1.5">
+                          <span>🔍</span> Rozwiń do pełnego ekranu
+                        </span>
+                      </div>
+                      <button type="button" onclick="event.stopPropagation(); changeCardPhoto('circle', -1)" class="absolute left-1.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-black/65 hover:bg-brandYellow hover:text-brandDark text-white flex items-center justify-center text-xs transition z-10">‹</button>
+                      <button type="button" onclick="event.stopPropagation(); changeCardPhoto('circle', 1)" class="absolute right-1.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-black/65 hover:bg-brandYellow hover:text-brandDark text-white flex items-center justify-center text-xs transition z-10">›</button>
+                      <div class="absolute top-2 left-2 bg-black/70 backdrop-blur-sm text-white font-mono text-[9px] px-2 py-0.5 rounded flex items-center gap-1 z-10">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        <span id="circle-counter">1 / 5</span>
+                      </div>
+                      <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-2 text-[10px] text-white font-medium truncate" id="circle-caption">
+                        Zestaw lounge Circle
+                      </div>
+                    </div>
+                    <div class="grid grid-cols-5 gap-1 p-1.5 bg-[#171918] border-t border-white/10">
+                      <button type="button" onclick="setCardPhoto('circle', 0)" id="thumb-circle-0" class="aspect-square rounded border-2 border-brandYellow text-[9px] font-bold text-white flex items-center justify-center transition">1</button>
+                      <button type="button" onclick="setCardPhoto('circle', 1)" id="thumb-circle-1" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">2</button>
+                      <button type="button" onclick="setCardPhoto('circle', 2)" id="thumb-circle-2" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">3</button>
+                      <button type="button" onclick="setCardPhoto('circle', 3)" id="thumb-circle-3" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">4</button>
+                      <button type="button" onclick="setCardPhoto('circle', 4)" id="thumb-circle-4" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">5</button>
+                    </div>
+                  </div>
+
+                  <div class="flex items-baseline justify-between mb-1.5">
+                    <span class="font-benzin text-base font-extrabold text-brandDark">8 900 PLN</span>
+                    <span class="text-[10px] text-brandYellow bg-brandDark px-1 rounded font-bold">Palenisko + meble</span>
+                  </div>
+                  <p class="text-[11px] text-brandSlate leading-relaxed mb-2.5">
+                    Przestronna strefa lounge z masywnego kamienia dla większej grupy. Centralne palenisko otaczają monumentalne, łukowe kamienne siedziska.
+                  </p>
+
+                  <div class="p-2 bg-brandBg rounded-lg text-[10px] text-brandDark mb-3 border border-brandSlate/10 space-y-0.5">
+                    <strong>W zestawie:</strong> 5 palet betonowych bloków, 3 metalowe elementy (misa i akcesoria), szczegółowa instrukcja montażu.
+                  </div>
+                </div>
+                <div class="pt-2.5 border-t border-brandSlate/10 flex items-center justify-between">
+                  <span class="text-[10px] text-brandSlate">Stała cena niezależnie od koloru</span>
+                  <button onclick="triggerLeadChat('Zestaw lounge Circle')" class="text-[11px] font-bold bg-brandDark text-brandYellow px-3 py-1.5 rounded-md hover:bg-black transition">
+                    Skontaktujcie się Państwo i zamówcie →
+                  </button>
+                </div>
+              </div>
+
+              <!-- 5. Огорожа та парапети Патіо -->
+              <div class="bg-white rounded-xl p-4 border border-brandSlate/20 shadow-sm flex flex-col justify-between hover:border-brandDark transition group">
+                <div>
+                  <!-- Product 5-Photo Carousel Gallery Component -->
+                  <div class="relative rounded-lg overflow-hidden mb-3 border border-brandSlate/15 bg-neutral-900 select-none">
+                    <div class="relative aspect-[4/3] cursor-pointer group/photo overflow-hidden" onclick="openLightbox('fence', currentPhoto['fence'] || 0)">
+                      <div id="fence-photo-display" class="w-full h-full flex items-center justify-center"></div>
+                      <div class="absolute inset-0 bg-black/40 opacity-0 group-hover/photo:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                        <span class="bg-brandDark/90 text-brandYellow text-[11px] font-benzin font-bold px-3 py-1.5 rounded-lg border border-brandYellow/40 shadow-xl flex items-center gap-1.5">
+                          <span>🔍</span> Rozwiń do pełnego ekranu
+                        </span>
+                      </div>
+                      <button type="button" onclick="event.stopPropagation(); changeCardPhoto('fence', -1)" class="absolute left-1.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-black/65 hover:bg-brandYellow hover:text-brandDark text-white flex items-center justify-center text-xs transition z-10">‹</button>
+                      <button type="button" onclick="event.stopPropagation(); changeCardPhoto('fence', 1)" class="absolute right-1.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-black/65 hover:bg-brandYellow hover:text-brandDark text-white flex items-center justify-center text-xs transition z-10">›</button>
+                      <div class="absolute top-2 left-2 bg-black/70 backdrop-blur-sm text-white font-mono text-[9px] px-2 py-0.5 rounded flex items-center gap-1 z-10">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        <span id="fence-counter">1 / 5</span>
+                      </div>
+                      <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-2 text-[10px] text-white font-medium truncate" id="fence-caption">
+                        Ogrodzenia i parapety Patio
+                      </div>
+                    </div>
+                    <div class="grid grid-cols-5 gap-1 p-1.5 bg-[#171918] border-t border-white/10">
+                      <button type="button" onclick="setCardPhoto('fence', 0)" id="thumb-fence-0" class="aspect-square rounded border-2 border-brandYellow text-[9px] font-bold text-white flex items-center justify-center transition">1</button>
+                      <button type="button" onclick="setCardPhoto('fence', 1)" id="thumb-fence-1" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">2</button>
+                      <button type="button" onclick="setCardPhoto('fence', 2)" id="thumb-fence-2" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">3</button>
+                      <button type="button" onclick="setCardPhoto('fence', 3)" id="thumb-fence-3" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">4</button>
+                      <button type="button" onclick="setCardPhoto('fence', 4)" id="thumb-fence-4" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">5</button>
+                    </div>
+                  </div>
+
+                  <div class="flex items-baseline justify-between mb-1.5">
+                    <span class="font-benzin text-base font-extrabold text-brandDark">від 580 PLN / м.п.</span>
+                    <span class="text-[10px] text-brandSlate font-semibold">Розрахунок за висотою</span>
+                  </div>
+                  <p class="text-[11px] text-brandSlate leading-relaxed mb-2.5">
+                    
+Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia. Rozwiązania dostępne w różnych wysokościach i stylach dekoracyjnych.
+                  </p>
+
+                  <div class="p-2 bg-brandBg rounded-lg text-[10px] text-brandDark mb-3 border border-brandSlate/10 space-y-0.5">
+                    <strong>Dołączony:</strong> szeregowy, kątowe i promieniowe bloki Patio, końcowe pokrywające płyty, schemat rozmieszczenia pod wasz metraż.
+                  </div>
+                </div>
+                <div class="pt-2.5 border-t border-brandSlate/10 flex items-center justify-between">
+                  <span class="text-[10px] text-brandSlate">Individualny metraz</span>
+                  <button onclick="triggerLeadChat('Ogrodzenia i parapety Patio')" class="text-[11px] font-bold bg-brandDark text-brandYellow px-3 py-1.5 rounded-md hover:bg-black transition">
+                    Połącz się do zamówienia →
+                  </button>
+                </div>
+              </div>
+
+              <!-- Extra Feature Block: Custom Orders from Manufacturer -->
+              <div class="bg-gradient-to-br from-brandDark to-[#232524] text-white rounded-xl p-5 flex flex-col justify-between shadow-md">
+                <div>
+                  <span class="text-brandYellow font-benzin text-[10px] uppercase font-bold tracking-widest block mb-2">Bezpośredni producent</span>
+                  <h4 class="font-benzin text-base font-bold text-white mb-2 leading-snug">Czy chcesz niestandardową konfigurację lub nietypowy rozmiar?</h4>
+                  <p class="text-xs text-brandBg/80 leading-relaxed mb-4">
+                    Na stronie prezentujemy modele standardowe. Jako producent tworzymy również rozwiązania niestandardowe: możemy dostosować długość blatów do grilla, dodać szafki lub zaprojektować ogrodzenie dopasowane do planu zagospodarowania terenu.
+                  </p>
+                </div>
+                <div class="space-y-2">
+                  <button onclick="triggerLeadChat('Індивідуальне замовлення під розміри')" class="w-full text-xs font-benzin font-bold bg-brandYellow text-brandDark py-2.5 rounded-lg text-center hover:brightness-95 transition">
+                    📁 Plik PDF
+                  </button>
+                  <span class="text-[10px] text-center text-white/50 block">Інформація ПДФ.</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 4: COLOR PALETTE (5 EXACT COLORS: Сірий, Ріо, Сільвер, Терра, Бланко) -->
+        <section id="kolory" class="p-6 sm:p-8 bg-white border-b border-brandSlate/15">
+          <div class="max-w-5xl mx-auto">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+              <div>
+                <span class="text-xs font-benzin font-bold text-brandSlate uppercase tracking-wider block">Paleta faktur kolekcji Patio</span>
+                <h3 class="font-benzin text-lg sm:text-xl font-extrabold text-brandDark">Jednolita kolorystyka palenisk, grilli i ogrodzeń.</h3>
+              </div>
+              <div class="bg-brandYellow/50 text-brandDark border border-brandYellow px-3 py-1 rounded-lg text-xs font-bold font-benzin">
+                ✓ Obierany kolor nie zmienia kosztu kompletów
+              </div>
+            </div>
+
+            <!-- Static Color Sample Cards Grid (5 Colors) -->
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3.5">
+              
+              <!-- Color 1: Сірий -->
+              <div class="p-3 rounded-xl bg-brandBg border border-brandSlate/20 text-center flex flex-col items-center">
+                <div class="w-14 h-14 rounded-full bg-[#6C6D6F] border-2 border-white shadow-inner mb-2 relative">
+                  <span class="absolute inset-0 rounded-full bg-gradient-to-tr from-black/40 to-transparent"></span>
+                </div>
+                <strong class="font-benzin text-xs font-bold text-brandDark block">Szary</strong>
+                <span class="text-[10px] text-brandSlate mt-0.5">Klasyczny kamień w stonowanym wydaniu</span>
+              </div>
+
+              <!-- Color 2: Ріо -->
+              <div class="p-3 rounded-xl bg-brandBg border border-brandSlate/20 text-center flex flex-col items-center">
+                <div class="w-14 h-14 rounded-full bg-[#98684A] border-2 border-white shadow-inner mb-2 relative">
+                  <span class="absolute inset-0 rounded-full bg-gradient-to-tr from-black/30 to-transparent"></span>
+                </div>
+                <strong class="font-benzin text-xs font-bold text-brandDark block">Rio</strong>
+                <span class="text-[10px] text-brandSlate mt-0.5">Mieszanka kolorów wypalanych w ciepłym odcieniu</span>
+              </div>
+
+              <!-- Color 3: Сільвер -->
+              <div class="p-3 rounded-xl bg-brandBg border border-brandSlate/20 text-center flex flex-col items-center">
+                <div class="w-14 h-14 rounded-full bg-[#B8BABE] border-2 border-white shadow-inner mb-2 relative">
+                  <span class="absolute inset-0 rounded-full bg-gradient-to-tr from-black/20 to-transparent"></span>
+                </div>
+                <strong class="font-benzin text-xs font-bold text-brandDark block">Srebrny</strong>
+                <span class="text-[10px] text-brandSlate mt-0.5">Szlachetny ton z srebrnym akcentem</span>
+              </div>
+
+              <!-- Color 4: Терра -->
+              <div class="p-3 rounded-xl bg-brandBg border border-brandSlate/20 text-center flex flex-col items-center">
+                <div class="w-14 h-14 rounded-full bg-[#8E533E] border-2 border-white shadow-inner mb-2 relative">
+                  <span class="absolute inset-0 rounded-full bg-gradient-to-tr from-black/25 to-transparent"></span>
+                </div>
+                <strong class="font-benzin text-xs font-bold text-brandDark block">Tera</strong>
+                <span class="text-[10px] text-brandSlate mt-0.5">Głęboki odcień terakoty ceramiki</span>
+              </div>
+
+              <!-- Color 5: Бланко -->
+              <div class="p-3 rounded-xl bg-brandBg border border-brandSlate/20 text-center flex flex-col items-center col-span-2 sm:col-span-1">
+                <div class="w-14 h-14 rounded-full bg-[#E5E2D9] border-2 border-white shadow-inner mb-2 relative">
+                  <span class="absolute inset-0 rounded-full bg-gradient-to-tr from-black/10 to-transparent"></span>
+                </div>
+                <strong class="font-benzin text-xs font-bold text-brandDark block">Blanco</strong>
+                <span class="text-[10px] text-brandSlate mt-0.5">Jasny kremowy piaskowy</span>
+              </div>
+
+            </div>
+
+            <div class="mt-4 p-3 bg-brandBg rounded-xl border border-dashed border-brandSlate/30 text-xs text-brandSlate flex flex-col sm:flex-row items-center justify-between gap-2">
+              <span>💡 Wszystkie produkty kolekcji Patio są wytwarzane w jednej gamie dla harmonijnego połączenia na działce.</span>
+              <a href="#ekspozycja" class="font-bold text-brandDark hover:underline whitespace-nowrap">Przeglądanie próbek na wystawie w Warszawie →</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 5: NEW REPLACED SECTION: PHOTO & VIDEO GALLERY OF COMPLETED PROJECTS -->
+        <section id="projekty" class="p-6 sm:p-10 bg-brandBg border-b border-brandSlate/15">
+          <div class="max-w-5xl mx-auto">
+            
+            <div class="text-center max-w-3xl mx-auto mb-7">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandDark text-brandYellow font-benzin text-[10px] uppercase tracking-wider mb-2">
+                <span>📸</span> Prawdziwe gospodarstwa i dziedzińce
+              </div>
+              <h2 class="font-benzin text-xl sm:text-3xl font-extrabold text-brandDark">
+                ZDJĘCIA I FILMY Z UKOŃCZONYCH PROJEKTÓW
+              </h2>
+              <p class="text-xs sm:text-sm text-brandSlate mt-2">
+                Zobaczcie Państwo, jak paleniska, modułowe grille i strefy ogrodowe marki Bernstone prezentują się w rzeczywistym wiejskim otoczeniu. Żadnych wizualizacji studyjnych – tylko prawdziwe, zrealizowane projekty.
+              </p>
+            </div>
+
+            <!-- Gallery Filter Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-8">
+              <button onclick="filterGallery('all')" class="gallery-filter-btn active px-3.5 py-1.5 rounded-lg border border-brandSlate/30 text-xs font-bold transition">
+                Wszystkie prace (6)
+              </button>
+              <button onclick="filterGallery('video')" class="gallery-filter-btn px-3.5 py-1.5 rounded-lg border border-brandSlate/30 text-xs font-bold bg-white text-brandDark transition hover:border-brandDark">
+                ▶ Recenzja wideo (2)
+              </button>
+              <button onclick="filterGallery('bbq')" class="gallery-filter-btn px-3.5 py-1.5 rounded-lg border border-brandSlate/30 text-xs font-bold bg-white text-brandDark transition hover:border-brandDark">
+                🥩 Grille
+              </button>
+              <button onclick="filterGallery('firepit')" class="gallery-filter-btn px-3.5 py-1.5 rounded-lg border border-brandSlate/30 text-xs font-bold bg-white text-brandDark transition hover:border-brandDark">
+                🔥 Kominki i strefa wypoczynkowa
+              </button>
+              <button onclick="filterGallery('fence')" class="gallery-filter-btn px-3.5 py-1.5 rounded-lg border border-brandSlate/30 text-xs font-bold bg-white text-brandDark transition hover:border-brandDark">
+                🧱 Ogrodzenia Patio
+              </button>
+            </div>
+
+            <!-- Gallery Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left">
+
+              <!-- Project 1: Video BBQ Complex Pasion in Modern Gazebo -->
+              <div class="gallery-item video bbq bg-white rounded-xl border border-brandSlate/20 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition group">
+                <div>
+                  <div class="relative aspect-video bg-neutral-800 flex items-center justify-center overflow-hidden cursor-pointer" onclick="openVideoModal('Duża altana z kompleksem grillowym Pasion', 'Przegląd YouTube 4K', 'https://www.youtube.com')">
+                    <!-- Stylized video thumbnail background -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10"></div>
+                    <div class="absolute top-2.5 left-2.5 bg-red-600 text-white font-benzin font-bold text-[9px] px-2 py-0.5 rounded shadow">
+                      ▶ RECENZJA WIDEO 4K
+                    </div>
+                    <div class="absolute top-2.5 right-2.5 bg-black/60 backdrop-blur-sm text-white font-mono text-[10px] px-2 py-0.5 rounded">
+                      02:40 min
+                    </div>
+                    <!-- Play Button Icon -->
+                    <div class="relative z-10 w-13 h-13 rounded-full bg-brandYellow text-brandDark flex items-center justify-center text-xl font-bold shadow-2xl group-hover:scale-110 transition">
+                      ▶
+                    </div>
+                    <div class="absolute bottom-2.5 left-3 right-3 text-white text-[11px] font-semibold leading-tight drop-shadow">
+                      Altana z kompletną kuchnią i barem
+                    </div>
+                  </div>
+                  <div class="p-4">
+                    <div class="flex items-center justify-between text-[10px] text-brandSlate font-semibold mb-1">
+                      <span>Posiadłość pod miastem • Kolor Latte + Terra</span>
+                      <span class="text-emerald-700 font-bold">Zrealizowane</span>
+                    </div>
+                    <h4 class="font-benzin text-xs font-bold text-brandDark mb-1.5 leading-snug">
+                      Solidna altana z grillem Pasion
+                    </h4>
+                    <p class="text-[11px] text-brandSlate leading-relaxed">
+                      Duży projekt z modułową kuchnią, zlewem, barem i kominem. Montaż na klej, bez cementowego bałaganu.
+                    </p>
+                  </div>
+                </div>
+                <div class="px-4 pb-3.5 pt-1 border-t border-brandSlate/10 flex items-center justify-between">
+                  <span class="text-[10px] text-brandSlate">Kompleks Pasion</span>
+                  <button onclick="triggerLeadChat('Chcę taką altanę z grillem Pasion')" class="text-[11px] font-bold text-brandDark hover:text-black flex items-center gap-1">
+                    Wyceńcie Państwo podobny zestaw →
+                  </button>
+                </div>
+              </div>
+
+              <!-- Project 2: Firepit ROCCA in Evening Garden -->
+              <div class="gallery-item firepit bg-white rounded-xl border border-brandSlate/20 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition group">
+                <div>
+                  <div class="relative aspect-video bg-[#3D3A37] flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    <div class="text-center relative z-10 p-4">
+                      <span class="text-3xl block mb-1">🔥</span>
+                      <span class="font-benzin text-xs text-white font-bold block">Palenisko ROCCA • Wieczorny ogród</span>
+                      <span class="text-[10px] text-brandYellow block mt-0.5">Otwarty ogień i ruszt grillowy</span>
+                    </div>
+                    <span class="absolute top-2.5 left-2.5 bg-brandDark text-brandYellow text-[9px] font-bold px-2 py-0.5 rounded font-benzin">
+                      ZDJĘCIE Z REALIZACJI
+                    </span>
+                    <span class="absolute bottom-2.5 right-2.5 bg-black/60 text-white text-[9px] px-2 py-0.5 rounded font-mono">
+                      Kolor: Rio
+                    </span>
+                  </div>
+                  <div class="p-4">
+                    <div class="flex items-center justify-between text-[10px] text-brandSlate font-semibold mb-1">
+                      <span>Prywatna działka • Kolor Rio</span>
+                      <span class="text-emerald-700 font-bold">Montaż w 2 godziny</span>
+                    </div>
+                    <h4 class="font-benzin text-xs font-bold text-brandDark mb-1.5 leading-snug">
+                      Okrągłe palenisko ROCCA w aranżacji ogrodu
+                    </h4>
+                    <p class="text-[11px] text-brandSlate leading-relaxed">
+                      Precyzyjny montaż paleniska na gotowych płytach tarasowych. Żaroodporna misa wytrzymuje bezpośredni ogień bez odkształcania bloków.
+                    </p>
+                  </div>
+                </div>
+                <div class="px-4 pb-3.5 pt-1 border-t border-brandSlate/10 flex items-center justify-between">
+                  <span class="text-[10px] text-brandSlate">Średnica 120 cm</span>
+                  <button onclick="triggerLeadChat('Zamówienie paleniska ROCCA ze zdjęcia')" class="text-[11px] font-bold text-brandDark hover:text-black flex items-center gap-1">
+                    Zamówcie Państwo takie palenisko →
+                  </button>
+                </div>
+              </div>
+
+              <!-- Project 3: Lounge Circle on Landscape Slope -->
+              <div class="gallery-item firepit bg-white rounded-xl border border-brandSlate/20 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition group">
+                <div>
+                  <div class="relative aspect-video bg-[#4E504F] flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    <div class="text-center relative z-10 p-4">
+                      <span class="text-3xl block mb-1">🛋️</span>
+                      <span class="font-benzin text-xs text-white font-bold block">Zestaw lounge Circle</span>
+                      <span class="text-[10px] text-brandYellow block mt-0.5">Średnica 5,7 m dla ponad 10 gości</span>
+                    </div>
+                    <span class="absolute top-2.5 left-2.5 bg-brandDark text-brandYellow text-[9px] font-bold px-2 py-0.5 rounded font-benzin">
+                      ZDJĘCIE Z REALIZACJI
+                    </span>
+                    <span class="absolute bottom-2.5 right-2.5 bg-black/60 text-white text-[9px] px-2 py-0.5 rounded font-mono">
+                      Kolor: Silver
+                    </span>
+                  </div>
+                  <div class="p-4">
+                    <div class="flex items-center justify-between text-[10px] text-brandSlate font-semibold mb-1">
+                      <span>Osiedle domów • Kolor Silver</span>
+                      <span class="text-emerald-700 font-bold">Premiumowa skala</span>
+                    </div>
+                    <h4 class="font-benzin text-xs font-bold text-brandDark mb-1.5 leading-snug">
+                      Okrągła strefa wypoczynku z kamiennymi siedziskami
+                    </h4>
+                    <p class="text-[11px] text-brandSlate leading-relaxed">
+                      Centralne palenisko otoczone monolitycznymi, łukowymi siedziskami. Obiekt zbudowano bez fugowania na gotowym ogrodowym podłożu.
+                    </p>
+                  </div>
+                </div>
+                <div class="px-4 pb-3.5 pt-1 border-t border-brandSlate/10 flex items-center justify-between">
+                  <span class="text-[10px] text-brandSlate">5 palet kamienia</span>
+                  <button onclick="triggerLeadChat('Zestaw lounge Circle ze zdjęcia')" class="text-[11px] font-bold text-brandDark hover:text-black flex items-center gap-1">
+                    Wyceńcie Państwo zestaw →
+                  </button>
+                </div>
+              </div>
+
+              <!-- Project 4: Video Shorts / Reels Mangal Familiya -->
+              <div class="gallery-item video bbq bg-white rounded-xl border border-brandSlate/20 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition group">
+                <div>
+                  <div class="relative aspect-video bg-neutral-900 flex items-center justify-center overflow-hidden cursor-pointer" onclick="openVideoModal('Kompleks grillowy Familiya: przegląd blatów i półek', 'Instagram Reels / Shorts', 'https://instagram.com')">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+                    <div class="absolute top-2.5 left-2.5 bg-purple-600 text-white font-benzin font-bold text-[9px] px-2 py-0.5 rounded shadow">
+                      ▶ INSTAGRAM REELS
+                    </div>
+                    <div class="absolute top-2.5 right-2.5 bg-black/60 backdrop-blur-sm text-white font-mono text-[10px] px-2 py-0.5 rounded">
+                      00:58 min
+                    </div>
+                    <div class="relative z-10 w-13 h-13 rounded-full bg-brandYellow text-brandDark flex items-center justify-center text-xl font-bold shadow-2xl group-hover:scale-110 transition">
+                      ▶
+                    </div>
+                    <div class="absolute bottom-2.5 left-3 right-3 text-white text-[11px] font-semibold leading-tight drop-shadow">
+                      Szybki przegląd: grill Familiya z blatami i szafkami
+                    </div>
+                  </div>
+                  <div class="p-4">
+                    <div class="flex items-center justify-between text-[10px] text-brandSlate font-semibold mb-1">
+                      <span>Prywatne podwórko • Kolor Szary</span>
+                      <span class="text-emerald-700 font-bold">Kompaktowy bestseller</span>
+                    </div>
+                    <h4 class="font-benzin text-xs font-bold text-brandDark mb-1.5 leading-snug">
+                      Grill Familiya z pokrywami-blatami
+                    </h4>
+                    <p class="text-[11px] text-brandSlate leading-relaxed">
+                      Pokaz wygodnego gotowania: stalowy grill z grubymi ściankami, zamykane schowki na akcesoria kuchenne i półka na drewno.
+                    </p>
+                  </div>
+                </div>
+                <div class="px-4 pb-3.5 pt-1 border-t border-brandSlate/10 flex items-center justify-between">
+                  <span class="text-[10px] text-brandSlate">Długość 280 cm</span>
+                  <button onclick="triggerLeadChat('Grill Familiya z przeglądu wideo')" class="text-[11px] font-bold text-brandDark hover:text-black flex items-center gap-1">
+                    Zapytaj o cenę →
+                  </button>
+                </div>
+              </div>
+
+              <!-- Project 5: Patio Fence & Parapets -->
+              <div class="gallery-item fence bg-white rounded-xl border border-brandSlate/20 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition group">
+                <div>
+                  <div class="relative aspect-video bg-[#575654] flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    <div class="text-center relative z-10 p-4">
+                      <span class="text-3xl block mb-1">🧱</span>
+                      <span class="font-benzin text-xs text-white font-bold block">Ogrodzenie Patio z dekoracją</span>
+                      <span class="text-[10px] text-brandYellow block mt-0.5">Grubość 20 cm • Łupany kamień</span>
+                    </div>
+                    <span class="absolute top-2.5 left-2.5 bg-brandDark text-brandYellow text-[9px] font-bold px-2 py-0.5 rounded font-benzin">
+                      ZDJĘCIE Z REALIZACJI
+                    </span>
+                    <span class="absolute bottom-2.5 right-2.5 bg-black/60 text-white text-[9px] px-2 py-0.5 rounded font-mono">
+                      Kolor: Blanco
+                    </span>
+                  </div>
+                  <div class="p-4">
+                    <div class="flex items-center justify-between text-[10px] text-brandSlate font-semibold mb-1">
+                      <span>Dom pod miastem • Kolor Blanco</span>
+                      <span class="text-emerald-700 font-bold">Obwód + parapety</span>
+                    </div>
+                    <h4 class="font-benzin text-xs font-bold text-brandDark mb-1.5 leading-snug">
+                      Ogrodzenie i parapety ochronne kolekcji Patio
+                    </h4>
+                    <p class="text-[11px] text-brandSlate leading-relaxed">
+                      Harmonijne połączenie jasnej faktury łupanego kamienia Blanco z płytami nakrywającymi i metalowymi wstawkami sekcji.
+                    </p>
+                  </div>
+                </div>
+                <div class="px-4 pb-3.5 pt-1 border-t border-brandSlate/10 flex items-center justify-between">
+                  <span class="text-[10px] text-brandSlate">od 580 PLN / mb</span>
+                  <button onclick="triggerLeadChat('Ogrodzenie Patio - wycena metrażu')" class="text-[11px] font-bold text-brandDark hover:text-black flex items-center gap-1">
+                    Wyceńcie Państwo metraż →
+                  </button>
+                </div>
+              </div>
+
+              <!-- Project 6: Total Patio Space Synergy -->
+              <div class="gallery-item firepit bbq bg-white rounded-xl border border-brandSlate/20 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition group">
+                <div>
+                  <div class="relative aspect-video bg-[#383A39] flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    <div class="text-center relative z-10 p-4">
+                      <span class="text-3xl block mb-1">🏡</span>
+                      <span class="font-benzin text-xs text-white font-bold block">Kompleksowa rezydencja Patio</span>
+                      <span class="text-[10px] text-brandYellow block mt-0.5">Spójna paleta całej działki</span>
+                    </div>
+                    <span class="absolute top-2.5 left-2.5 bg-brandDark text-brandYellow text-[9px] font-bold px-2 py-0.5 rounded font-benzin">
+                      ZDJĘCIE Z REALIZACJI
+                    </span>
+                    <span class="absolute bottom-2.5 right-2.5 bg-black/60 text-white text-[9px] px-2 py-0.5 rounded font-mono">
+                      Kolor: Terra
+                    </span>
+                  </div>
+                  <div class="p-4">
+                    <div class="flex items-center justify-between text-[10px] text-brandSlate font-semibold mb-1">
+                      <span>Prywatna rezydencja • Kolor Terra</span>
+                      <span class="text-emerald-700 font-bold">Total Look</span>
+                    </div>
+                    <h4 class="font-benzin text-xs font-bold text-brandDark mb-1.5 leading-snug">
+                      Spójny zestaw: grill, palenisko i ogrodzenie
+                    </h4>
+                    <p class="text-[11px] text-brandSlate leading-relaxed">
+                      Przykład pełnej harmonii w ogrodzie: strefa grillowa, okrągłe palenisko i ogrodzenie wykonane z tych samych bloków w terakotowych odcieniach.
+                    </p>
+                  </div>
+                </div>
+                <div class="px-4 pb-3.5 pt-1 border-t border-brandSlate/10 flex items-center justify-between">
+                  <span class="text-[10px] text-brandSlate">Kolekcja Patio</span>
+                  <button onclick="triggerLeadChat('Kompleksowe rozwiązanie Total Look')" class="text-[11px] font-bold text-brandDark hover:text-black flex items-center gap-1">
+                    Stwórzcie Państwo projekt działki →
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Social proof & Instagram Link Banner -->
+            <div class="mt-8 p-5 bg-white rounded-2xl border border-brandSlate/20 flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
+              <div class="flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-purple-600 via-pink-600 to-amber-400 text-white text-2xl flex items-center justify-center shrink-0 shadow-md">
+                  📸
+                </div>
+                <div>
+                  <strong class="font-benzin text-xs font-bold text-brandDark block">Więcej cotygodniowych zdjęć i filmów na Instagramie</strong>
+                  <span class="text-[11px] text-brandSlate">Publikujemy procesy montażu, najnowsze realizacje i pomysły na aranżację ogrodu: <strong class="text-brandDark">@bernstone_polska</strong></span>
+                </div>
+              </div>
+              <div class="flex items-center gap-2.5 w-full md:w-auto">
+                <button onclick="window.open('https://instagram.com/bernstone_polska', '_blank')" class="flex-1 md:flex-none text-xs font-benzin font-bold bg-brandDark text-brandYellow px-4 py-2.5 rounded-xl hover:bg-black transition text-center whitespace-nowrap">
+                  Otwórzcie Państwo Instagram →
+                </button>
+              </div>
+            </div>
+
+            <!-- Facebook follow-up block next to the Instagram invitation -->
+            <div class="mt-4 p-5 bg-brandDark rounded-2xl border border-brandDark flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm text-white">
+              <div class="flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-xl bg-[#1877F2] text-white text-2xl font-bold flex items-center justify-center shrink-0 shadow-md">f</div>
+                <div>
+                  <strong class="font-benzin text-xs font-bold block">Bernstone na Facebooku</strong>
+                  <span class="text-[11px] text-white/70">Aktualności, wydarzenia i nowe realizacje prosto z Warszawy.</span>
+                </div>
+              </div>
+              <button onclick="window.open('https://www.facebook.com/', '_blank')" class="text-xs font-benzin font-bold bg-[#1877F2] text-white px-4 py-2.5 rounded-xl hover:brightness-110 transition text-center whitespace-nowrap">
+                Otwórzcie Państwo Facebook →
+              </button>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- SECTION 6: PHYSICAL SHOWROOM IN WARSAW -->
+        <section id="ekspozycja" class="p-6 sm:p-10 bg-white border-b border-brandSlate/15">
+          <div class="max-w-5xl mx-auto">
+            <div class="flex flex-col md:flex-row gap-8 items-stretch">
+              
+              <!-- Left: Location Details -->
+              <div class="md:w-1/2 flex flex-col justify-between">
+                <div>
+                  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandYellow/60 text-brandDark font-benzin text-[10px] uppercase tracking-wider mb-3">
+                    📍 Wystawa partnera • Warszawa
+                  </div>
+                  <h2 class="font-benzin text-xl sm:text-2xl font-extrabold text-brandDark mb-3">
+                    OCEŃ FAKTURĘ I JAKOŚĆ KAMIENIA NA ŻYWO W WARSZAWIE
+                  </h2>
+                  <p class="text-xs text-brandSlate leading-relaxed mb-5">
+                    Odwiedźcie Państwo wystawę naszego oficjalnego partnera, aby osobiście przekonać się o trwałości materiału, obejrzeć gotowe produkty i wybrać idealny kolor do Państwa ogrodu.
+                  </p>
+
+                  <!-- Showroom Meta Info Cards -->
+                  <div class="space-y-3 text-xs bg-brandBg p-4 rounded-xl border border-brandSlate/15 mb-6">
+                    <div class="flex items-start gap-2.5">
+                      <span class="text-base mt-0.5">🏢</span>
+                      <div>
+                        <strong class="text-brandDark block">Co zobaczysz na miejscu:</strong>
+                        <span class="text-brandSlate">Zamontowane palenisko ROCCA, grille, meble ogrodowe oraz wzornik kolorów Patio na terenie wystawy ogrodzeń naszego oficjalnego partnera.</span>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                      <span class="text-base mt-0.5">📍</span>
+                      <div>
+                        <strong class="text-brandDark block">Adres wystawy:</strong>
+                        <span class="text-brandSlate">Warszawa / Piaseczno, ul. [uzupełnij adres partnera]</span>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                      <span class="text-base mt-0.5">🕒</span>
+                      <div>
+                        <strong class="text-brandDark block">Godziny otwarcia:</strong>
+                        <span class="text-brandSlate">Pon.–Pt.: 08:00–17:00 | Sob.: 08:00–14:00 | Niedz.: nieczynne</span>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                      <span class="text-base mt-0.5">📞</span>
+                      <div>
+                        <strong class="text-brandDark block">Telefon dojazdowy partnera:</strong>
+                        <span class="text-brandDark font-bold font-mono">+48 [numer partnera]</span>
+                        <span class="text-[10px] text-brandSlate block mt-0.5">(Konsultacje dotyczące parametrów, cen i wyboru modeli prowadzimy online na czacie)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Navigation Map Buttons -->
+                <div class="flex flex-wrap gap-2.5">
+                  <button onclick="window.open('https://maps.google.com', '_blank')" class="flex-1 text-xs font-benzin font-bold bg-brandDark text-brandYellow py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 hover:bg-black transition">
+                    🗺️ Wyznacz trasę w Google Maps
+                  </button>
+                  <button onclick="triggerLeadChat('Poinformować o wizycie na wystawie')" class="text-xs font-bold bg-brandYellow text-brandDark py-2.5 px-4 rounded-lg border border-brandDark hover:brightness-95 transition">
+                    Poinformujcie Państwo o wizycie na czacie
+                  </button>
+                </div>
+              </div>
+
+              <!-- Right: Map Mockup -->
+              <div class="md:w-1/2 bg-brandBg rounded-2xl p-4 border border-brandSlate/20 flex flex-col justify-between relative overflow-hidden">
+                <div class="relative w-full aspect-[4/3] bg-white rounded-xl border border-brandSlate/20 p-3 flex flex-col items-center justify-center text-center overflow-hidden">
+                  <div class="absolute inset-0 bg-[#E8EAE8] opacity-70"></div>
+                  <!-- Schematic Lines -->
+                  <div class="absolute w-full h-3 bg-white top-1/2 -translate-y-1/2 -rotate-12 shadow-sm"></div>
+                  <div class="absolute w-3 h-full bg-white left-1/3 -translate-x-1/2 shadow-sm"></div>
+                  
+                  <!-- Map Pin Marker -->
+                  <div class="relative z-10 bg-brandDark text-brandYellow px-3.5 py-2.5 rounded-xl shadow-2xl border border-brandYellow flex items-center gap-2.5">
+                    <span class="text-xl">📍</span>
+                    <div class="text-left">
+                      <strong class="font-benzin text-[11px] block text-white leading-tight">ВИСТАВКА BERNSTONE ПАТІО</strong>
+                      <span class="text-[9px] text-brandYellow font-semibold">Варшава / Пясечно (територія партнера)</span>
+                    </div>
+                  </div>
+                  <div class="absolute bottom-2 left-2 bg-white/90 px-2 py-1 rounded text-[9px] text-brandSlate font-mono shadow-sm">
+                    Карта Google Maps
+                  </div>
+                </div>
+
+                <div class="mt-3 bg-white p-3 rounded-xl border border-brandSlate/15 text-[11px] text-brandDark flex items-center justify-between">
+                  <span>🚗 Зручний під'їзд трасою S7 • Безкоштовний паркінг</span>
+                  <span class="font-bold text-emerald-600">Вхід вільний</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 7: DELIVERY & FULFILLMENT (3 EXACT OPTIONS) -->
+        <section id="dostawa" class="p-6 sm:p-10 bg-brandBg border-b border-brandSlate/15">
+          <div class="max-w-5xl mx-auto">
+            <div class="text-center max-w-xl mx-auto mb-8">
+              <span class="text-xs font-benzin font-bold text-brandSlate uppercase tracking-wider block mb-1">Odbiór produktu</span>
+              <h3 class="font-benzin text-xl sm:text-2xl font-extrabold text-brandDark">WYGODNE SPOSOBY ODBIORU ZAMÓWIENIA</h3>
+              <p class="text-xs text-brandSlate mt-1">Organizujemy przekazanie zamówienia szybko i przejrzyście, w uzgodnieniu z lokalnym przedstawicielem.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              
+              <!-- Option 1: Self Pickup -->
+              <div class="delivery-card bg-white p-4.5 rounded-xl border border-brandSlate/15 shadow-sm flex flex-col justify-between">
+                <div>
+                  <div class="w-9 h-9 rounded-lg bg-brandDark text-brandYellow flex items-center justify-center font-bold text-base mb-3">
+                    🏭
+                  </div>
+                  <h4 class="font-benzin text-xs font-bold text-brandDark mb-1">Odbiór własny z placu</h4>
+                  <span class="text-xs font-bold text-emerald-600 mb-2 block">0 PLN (Bezpłatnie)</span>
+                  <p class="text-xs text-brandSlate leading-relaxed">
+                    Odbierz gotowy zestaw własnym samochodem z magazynu naszego przedstawiciela w Warszawie, jeśli produkt jest dostępny.
+                  </p>
+                </div>
+                <div class="mt-3 pt-2.5 border-t border-brandSlate/10 text-[11px] text-brandDark font-medium">
+                  Załadunek w magazynie partnera.
+                </div>
+              </div>
+
+              <!-- Option 2: Local Delivery -->
+              <div class="delivery-card bg-white p-4.5 rounded-xl border border-brandSlate/15 shadow-sm flex flex-col justify-between">
+                <div>
+                  <div class="w-9 h-9 rounded-lg bg-brandYellow text-brandDark flex items-center justify-center font-bold text-base mb-3">
+                    🚛
+                  </div>
+                  <h4 class="font-benzin text-xs font-bold text-brandDark mb-1">Dostawa w Warszawie i województwie</h4>
+                  <span class="text-xs font-bold text-brandDark mb-2 block">Termin: 1–3 dni</span>
+                  <p class="text-xs text-brandSlate leading-relaxed">
+                    Jeśli produkt jest dostępny u dealera, nasz przedstawiciel organizuje dostawę lokalnym transportem (HDS lub transport paletowy) według jego stawek.
+                  </p>
+                </div>
+                <div class="mt-3 pt-2.5 border-t border-brandSlate/10 text-[11px] text-brandDark font-medium">
+                  Rozładunek HDS na działce.
+                </div>
+              </div>
+
+              <!-- Option 3: Factory Order -->
+              <div class="delivery-card bg-white p-4.5 rounded-xl border border-brandSlate/15 shadow-sm flex flex-col justify-between">
+                <div>
+                  <div class="w-9 h-9 rounded-lg bg-brandDark text-brandYellow flex items-center justify-center font-bold text-base mb-3">
+                    📦
+                  </div>
+                  <h4 class="font-benzin text-xs font-bold text-brandDark mb-1">Dostawa na zamówienie z fabryki</h4>
+                  <span class="text-xs font-bold text-brandDark mb-2 block">Transport bezpośredni</span>
+                  <p class="text-xs text-brandSlate leading-relaxed">
+                    Jeśli wybranego produktu lub koloru nie ma w magazynie w Warszawie, przygotujemy zamówienie w fabryce i dostarczymy je uzgodnionym transportem.
+                  </p>
+                </div>
+                <div class="mt-3 pt-2.5 border-t border-brandSlate/10 text-[11px] text-brandDark font-medium">
+                  Indywidualna logistyka zestawu.
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Fast Calculation Box -->
+            <div class="bg-white p-4 rounded-xl border border-dashed border-brandSlate/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p class="text-xs text-brandDark">
+                💡 <strong>Kalkulacja kosztu transportu:</strong> Koszt dostawy ustalamy indywidualnie na podstawie wagi zestawu i adresu. Napiszcie Państwo do nas na czacie, a w ciągu 15 minut podamy dokładną wycenę według stawek lokalnych przewoźników.
+              </p>
+              <button onclick="triggerLeadChat('Розрахунок вартості доставки')" class="text-xs font-benzin font-bold bg-brandDark text-brandYellow px-4 py-2.5 rounded-lg hover:bg-black transition whitespace-nowrap">
+                Sprawdźcie Państwo koszt dostawy na czacie →
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 8: TEXT-FIRST FOOTER -->
+        <footer id="kontakt" class="p-6 sm:p-10 bg-brandDark text-white">
+          <div class="max-w-5xl mx-auto">
+            
+            <div class="bg-white/5 border border-white/10 p-6 sm:p-8 rounded-2xl mb-8">
+              <div class="text-center max-w-xl mx-auto mb-6">
+                <span class="text-brandYellow font-benzin text-[10px] uppercase font-bold tracking-widest block mb-1">Kontakt online</span>
+                <h3 class="font-benzin text-xl sm:text-2xl font-bold text-white">ZADAJCIE PAŃSTWO PYTANIE I ZAMÓWCIE ZESTAW</h3>
+                <p class="text-xs text-white/70 mt-1.5">
+                  Doradzamy online w formie pisemnej. Odpowiadamy w ciągu 15 minut w wybranym komunikatorze lub na czacie na stronie.
+                </p>
+              </div>
+
+              <!-- Quick Contact Gateways -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <button onclick="window.open('https://www.facebook.com/', '_blank')" class="footer-social-button bg-[#1877F2] text-white hover:brightness-110 transition">
+                  <span>f</span> Facebook Bernstone
+                </button>
+                <button onclick="window.open('https://wa.me/380990070774', '_blank')" class="footer-social-button bg-[#25D366] text-white hover:brightness-110 transition">
+                  <span>📱</span> Napiszcie Państwo na WhatsApp
+                </button>
+                <button onclick="window.open('https://instagram.com/bernstone_polska', '_blank')" class="footer-social-button bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:brightness-110 transition">
+                  <span>📸</span> Instagram (@bernstone_polska)
+                </button>
+              </div>
+            </div>
+
+            <!-- Footer Bottom Row -->
+            <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-white/50 gap-4">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-brandYellow text-brandDark rounded font-benzin font-bold text-xs flex items-center justify-center">B</div>
+                <div class="flex flex-col">
+                  <strong class="font-benzin text-white leading-tight">BERNSTONE</strong>
+                  <span>© 2026 Bernstone. Wszelkie prawa zastrzeżone.</span>
+                  <a href="https://www.instagram.com/bog.fastovets?stkn=N3BvZGk4ZnJ2eTN3&utm_source=qr" target="_blank" rel="noreferrer" class="text-white/50 hover:text-white hover:underline leading-tight">Bohdan Fastovets</a>
+                </div>
+              </div>
+              <div class="flex items-center gap-4 text-[11px]">
+                <button onclick="triggerLeadChat('Pobierz katalog PDF')" class="hover:underline text-brandYellow">Pobierz katalog PDF Patio</button>
+                <span>•</span>
+                <a href="#" class="hover:underline">Polityka prywatności (RODO)</a>
+                <span>•</span>
+                <a href="https://www.instagram.com/bernstone_polska" target="_blank" rel="noreferrer" class="hover:underline">bernstone.pl</a>
+              </div>
+            </div>
+
+          </div>
+        </footer>
+
+        <!-- FLOATING TEXT-FIRST CHAT LAUNCHER WIDGET -->
+        <div class="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2.5">
+          <div class="bg-brandDark text-white text-[11px] font-semibold py-1.5 px-3 rounded-xl shadow-2xl border border-brandYellow/40 flex items-center gap-2 animate-bounce">
+            <span class="pulse-dot"></span>
+            <span>Konsultujemy online na czacie</span>
+          </div>
+          <button onclick="window.open('https://wa.me/380990070774', '_blank')" aria-label="Otwórz WhatsApp" class="w-14 h-14 rounded-2xl bg-brandYellow text-brandDark border-2 border-brandDark shadow-2xl flex items-center justify-center text-2xl hover:scale-105 active:scale-95 transition-all">
+            💬
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- VIEW 2: ARCHITECTURE & SITEMAP FLOWCHART                         -->
+    <!-- ================================================================= -->
+    <div id="viewArchitecture" class="w-full max-w-5xl hidden flex-col items-center">
+      
+      <div class="w-full bg-brandDark rounded-2xl p-6 sm:p-8 border border-white/10 text-white shadow-2xl mb-6">
+        <div class="border-b border-white/10 pb-4 mb-6 flex justify-between items-start">
+          <div>
+            <span class="text-brandYellow font-benzin text-xs uppercase font-bold tracking-wider block">Архітектура даних та воронка</span>
+            <h2 class="font-benzin text-2xl font-extrabold mt-1">СТРУКТУРНА КАРТА ТА ВОРОНКА BERNSTONE.PL</h2>
+          </div>
+          <span class="bg-brandYellow/20 text-brandYellow text-xs font-mono px-2.5 py-1 rounded border border-brandYellow/40">Оновлено 2026</span>
+        </div>
+
+        <div class="space-y-6 text-xs">
+          
+          <!-- Layer 1: Traffic Sources -->
+          <div class="bg-black/40 p-4 rounded-xl border border-white/10">
+            <span class="font-benzin text-[11px] text-brandYellow font-bold uppercase tracking-wider block mb-2">Рівень 01 // Джерела трафіку (Варшава + 35 км)</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="p-3 bg-white/5 rounded-lg border border-white/10">
+                <strong class="text-white block font-benzin text-[11px]">Google Ads (Пошук)</strong>
+                <span class="text-white/60 text-[10px]">Гарячі комерційні ключі: palenisko ogrodowe, grill murowany z bloczków, ogrodzenia patio</span>
+              </div>
+              <div class="p-3 bg-white/5 rounded-lg border border-white/10">
+                <strong class="text-white block font-benzin text-[11px]">Meta Ads (Instagram Reels)</strong>
+                <span class="text-white/60 text-[10px]">Візуальні креативи: вечірній затишок біля вогнища, відео готових завершених альтанок та садів</span>
+              </div>
+              <div class="p-3 bg-white/5 rounded-lg border border-white/10">
+                <strong class="text-white block font-benzin text-[11px]">База клієнтів партнера</strong>
+                <span class="text-white/60 text-[10px]">Upsell покупцям парканів із сітки: «Доповніть садибу зоною відпочинку Патіо»</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flow Arrow -->
+          <div class="flex justify-center text-brandYellow font-bold text-sm">▼ Перехід на цільовий домен bernstone.pl (з мітками gclid / fbclid / UTM)</div>
+
+          <!-- Layer 2: Landing Page Sections -->
+          <div class="bg-black/40 p-4 rounded-xl border border-white/10">
+            <span class="font-benzin text-[11px] text-brandYellow font-bold uppercase tracking-wider block mb-3">Рівень 02 // Блоки лендінгу (Single Page Layout)</span>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-5 gap-2.5 text-center">
+              <div class="p-3 bg-white/10 rounded-lg border border-white/10">
+                <span class="text-brandYellow font-bold block mb-1">01. HERO</span>
+                <span class="text-[10px] text-white/70">Емоційний H1 + 4 переваги (без ваги)</span>
+              </div>
+              <div class="p-3 bg-white/10 rounded-lg border border-white/10">
+                <span class="text-brandYellow font-bold block mb-1">02. КАТАЛОГ</span>
+                <span class="text-[10px] text-white/70">5 виробів із точною комплектацією</span>
+              </div>
+              <div class="p-3 bg-white/10 rounded-lg border border-white/10">
+                <span class="text-brandYellow font-bold block mb-1">03. ПАЛІТРА</span>
+                <span class="text-[10px] text-white/70">5 кольорів (Сірий, Ріо, Сільвер, Терра, Бланко)</span>
+              </div>
+              <div class="p-3 bg-brandYellow/20 border border-brandYellow/50 rounded-lg">
+                <span class="text-brandYellow font-bold block mb-1">04. ГАЛЕРЕЯ</span>
+                <span class="text-[10px] text-white/90">Фото та відео реальних садів і комплексів</span>
+              </div>
+              <div class="p-3 bg-white/10 rounded-lg border border-white/10">
+                <span class="text-brandYellow font-bold block mb-1">05. ШОУРУМ</span>
+                <span class="text-[10px] text-white/70">Карта Google + графік + адреса</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flow Arrow -->
+          <div class="flex justify-center text-brandYellow font-bold text-sm">▼ Конверсія у письмовий діалог (Text-First LeadGen)</div>
+
+          <!-- Layer 3: Conversion Gateways & Integrations -->
+          <div class="bg-black/40 p-4 rounded-xl border border-brandYellow/40">
+            <span class="font-benzin text-[11px] text-brandYellow font-bold uppercase tracking-wider block mb-3">Рівень 03 // Шлюзи комунікації та передача в NetHunt CRM</span>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="p-3 bg-white/5 rounded-lg border border-white/10">
+                <strong class="text-white block font-benzin text-[11px]">💬 Smartsupp / Live-chat</strong>
+                <span class="text-white/60 text-[10px] block mt-0.5">Письмова консультація польською через вбудований перекладач у режимі реального часу.</span>
+              </div>
+              <div class="p-3 bg-white/5 rounded-lg border border-white/10">
+                <strong class="text-white block font-benzin text-[11px]">📱 WhatsApp & Instagram Direct</strong>
+                <span class="text-white/60 text-[10px] block mt-0.5">Відправка детальних схем, креслень та фотографій з реалізованих об'єктів.</span>
+              </div>
+              <div class="p-3 bg-white/5 rounded-lg border border-white/10">
+                <strong class="text-white block font-benzin text-[11px]">⚙️ NetHunt CRM Webhook</strong>
+                <span class="text-white/60 text-[10px] block mt-0.5">Запис ліда з обов'язковою фіксацією gclid, fbclid та UTM-міток у польську воронку.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- VIEW 3: DEVELOPER & DESIGNER SPECIFICATIONS (ТЗ)                  -->
+    <!-- ================================================================= -->
+    <div id="viewSpecs" class="w-full max-w-5xl hidden flex-col items-center">
+      
+      <div class="w-full bg-white rounded-2xl p-6 sm:p-8 border border-brandSlate/20 text-brandDark shadow-2xl mb-6">
+        <div class="border-b border-brandSlate/15 pb-4 mb-6 flex justify-between items-start">
+          <div>
+            <span class="text-xs font-benzin font-bold text-brandSlate uppercase tracking-wider block">Технічне завдання</span>
+            <h2 class="font-benzin text-2xl font-extrabold mt-1">ТЗ ДЛЯ ВЕБ-РОЗРОБНИКА ТА ДИЗАЙНЕРА</h2>
+          </div>
+          <button onclick="copySpecsSummary()" class="text-xs font-benzin font-bold bg-brandDark text-brandYellow px-3 py-1.5 rounded-lg hover:bg-black transition">
+            📋 Скопіювати резюме ТЗ
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+          
+          <!-- Column 1: UI/UX Guidelines -->
+          <div class="space-y-4">
+            <h3 class="font-benzin text-sm font-bold text-brandDark border-b border-brandSlate/15 pb-2">
+              🎨 Стилістика та контентні вимоги
+            </h3>
+
+            <div class="p-3.5 bg-brandBg rounded-xl border border-brandSlate/15 space-y-2">
+              <strong class="font-benzin text-[11px] block">Колірна палітра:</strong>
+              <div class="grid grid-cols-2 gap-2 text-[11px]">
+                <div class="flex items-center gap-2"><span class="w-4 h-4 rounded bg-[#F7F7F7] border border-gray-300"></span> <code>#F7F7F7</code> (Фон)</div>
+                <div class="flex items-center gap-2"><span class="w-4 h-4 rounded bg-[#303332]"></span> <code>#303332</code> (Графіт)</div>
+                <div class="flex items-center gap-2"><span class="w-4 h-4 rounded bg-[#F1EF9E] border border-gray-300"></span> <code>#F1EF9E</code> (Акцент)</div>
+                <div class="flex items-center gap-2"><span class="w-4 h-4 rounded bg-[#6D6C84]"></span> <code>#6D6C84</code> (Slate)</div>
+              </div>
+            </div>
+
+            <div class="p-3.5 bg-brandBg rounded-xl border border-brandSlate/15 space-y-2">
+              <strong class="font-benzin text-[11px] block">Типографіка:</strong>
+              <p>• Заголовки (H1–H3): <strong>Unbounded</strong> або <strong>Benzin</strong> (жирне геометричне накреслення 800/900).</p>
+              <p>• Основний текст: <strong>Plus Jakarta Sans</strong> або <strong>Inter</strong> (400, 500, 600).</p>
+            </div>
+
+            <div class="p-3.5 bg-brandBg rounded-xl border border-brandSlate/15 space-y-1.5">
+              <strong class="font-benzin text-[11px] block">Вимоги до розділу портфоліо (Реалізовані об'єкти):</strong>
+              <p>• Замінено абстрактну «інженерну систему» на реальні фотографії та відео готових робіт.</p>
+              <p>• Фільтрація карток за тегами: <em>Всі, Відео, BBQ, Вогнища, Паркани</em>.</p>
+              <p>• Клік на відео відкриває модальний переглядач або посилання на YouTube/Reels.</p>
+              <p>• Інтеграція блоку прямого переходу на профіль Instagram <code>@bernstone_polska</code>.</p>
+            </div>
+          </div>
+
+          <!-- Column 2: Web Dev & NetHunt CRM -->
+          <div class="space-y-4">
+            <h3 class="font-benzin text-sm font-bold text-brandDark border-b border-brandSlate/15 pb-2">
+              ⚙️ Бекенд, NetHunt CRM & Реклама
+            </h3>
+
+            <div class="p-3.5 bg-brandBg rounded-xl border border-brandSlate/15 space-y-2">
+              <strong class="font-benzin text-[11px] block">Формат Webhook в NetHunt CRM:</strong>
+              <code class="block bg-brandDark text-brandYellow p-2.5 rounded-lg text-[10px] font-mono leading-relaxed overflow-x-auto">
+{<br>
+&nbsp;&nbsp;"name": "Ім'я клієнта",<br>
+&nbsp;&nbsp;"contact": "+48500112233",<br>
+&nbsp;&nbsp;"product": "Барбекю-комплекс Pasion (з галереї робіт)",<br>
+&nbsp;&nbsp;"source_chat": "Smartsupp Webchat",<br>
+&nbsp;&nbsp;"gclid": "Cj0KCQj...",<br>
+&nbsp;&nbsp;"fbclid": "IwAR3...",<br>
+&nbsp;&nbsp;"utm_source": "meta",<br>
+&nbsp;&nbsp;"utm_campaign": "warszawa_reels_portfolio"<br>
+}
+              </code>
+            </div>
+
+            <div class="p-3.5 bg-brandBg rounded-xl border border-brandSlate/15 space-y-1.5">
+              <strong class="font-benzin text-[11px] block">Захоплення gclid та fbclid:</strong>
+              <p>Скрипт зберігає URL-параметри <code>gclid</code> та <code>fbclid</code> у Cookie відвідувача на 30 днів та передає їх у CRM при будь-якій заявці чи відкритті чату.</p>
+            </div>
+
+            <div class="p-3.5 bg-brandBg rounded-xl border border-brandSlate/15 space-y-1.5">
+              <strong class="font-benzin text-[11px] block">Оптимізація реклами:</strong>
+              <p>• Виключення Audience Network та мобільних ігор у Meta Ads.</p>
+              <p>• Мінус-слова для Google: <em>zrób to sam, tani, używany, castorama, allegro</em>.</p>
+              <p>• Мікроконверсії в GA4: <code>open_chat</code>, <code>click_whatsapp</code>, <code>open_map</code>, <code>watch_project_video</code>.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Interactive Modal for Lead & Chat Simulation -->
+  <div id="leadModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-brandSlate/20 text-brandDark relative">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-brandSlate hover:text-black font-bold text-lg">✕</button>
+      
+      <div class="flex items-center gap-2.5 mb-3">
+        <div class="w-8 h-8 rounded-lg bg-brandDark text-brandYellow font-benzin font-bold flex items-center justify-center text-sm">B</div>
+        <div>
+          <strong class="font-benzin text-xs block text-brandDark">BERNSTONE ОНЛАЙН-КОНСУЛЬТАЦІЯ</strong>
+          <span class="text-[10px] text-emerald-600 font-bold flex items-center gap-1"><span class="pulse-dot"></span> Менеджер на зв'язку онлайн</span>
+        </div>
+      </div>
+
+      <h3 id="modalTitle" class="font-benzin text-base font-bold text-brandDark mb-2">Зв'язатися для замовлення</h3>
+      <p class="text-xs text-brandSlate mb-4 leading-relaxed">
+        Залиште ваші контакти або перейдіть у зручний месенджер для швидкої консультації. Відповідаємо письмово протягом 15 хвилин.
+      </p>
+
+      <div class="space-y-3">
+        <input type="text" placeholder="Ваше ім'я" class="w-full text-xs p-2.5 rounded-lg bg-brandBg border border-brandSlate/20 focus:outline-none focus:border-brandDark">
+        <input type="text" placeholder="Телефон або E-mail (для прорахунку)" class="w-full text-xs p-2.5 rounded-lg bg-brandBg border border-brandSlate/20 focus:outline-none focus:border-brandDark">
+        <button onclick="submitMockLead()" class="w-full text-xs font-benzin font-bold bg-brandYellow text-brandDark py-2.5 rounded-lg border border-brandDark hover:brightness-95 transition">
+          Надіслати запит менеджеру →
+        </button>
+      </div>
+
+      <div class="mt-4 pt-3 border-t border-brandSlate/10 flex items-center justify-between text-[11px] text-brandSlate">
+        <span>Бажаєте написати напряму?</span>
+        <button onclick="window.open('https://wa.me/380990070774', '_blank')" class="font-bold text-emerald-600 hover:underline">
+          Відкрити WhatsApp 📱
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Video Demonstration Modal -->
+  <div id="videoModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-brandDark rounded-2xl max-w-xl w-full p-6 shadow-2xl border border-white/10 text-white relative">
+      <button onclick="closeVideoModal()" class="absolute top-4 right-4 text-white/60 hover:text-white font-bold text-xl">✕</button>
+      
+      <div class="flex items-center gap-2 mb-3">
+        <span id="videoBadge" class="bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded font-benzin">ВІДЕО</span>
+        <span class="text-xs text-brandYellow font-mono">Bernstone Polska Portfolio</span>
+      </div>
+
+      <h3 id="videoModalTitle" class="font-benzin text-base font-bold text-white mb-3">Огляд об'єкта</h3>
+
+      <!-- Video Player Frame Simulation -->
+      <div class="aspect-video bg-black rounded-xl border border-white/20 flex flex-col items-center justify-center relative overflow-hidden mb-4">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20"></div>
+        <div class="relative z-10 w-16 h-16 rounded-full bg-brandYellow text-brandDark flex items-center justify-center text-2xl font-bold shadow-2xl animate-pulse cursor-pointer">
+          ▶
+        </div>
+        <span class="relative z-10 text-xs text-white/80 font-mono mt-3">Демонстрація реалізованого проєкту Bernstone</span>
+      </div>
+
+      <div class="flex items-center justify-between gap-3 pt-2 border-t border-white/10">
+        <p class="text-[11px] text-white/70">Хочете дізнатися вартість такої зони для власного двору?</p>
+        <button onclick="closeVideoModal(); triggerLeadChat('Консультація після перегляду відео')" class="text-xs font-benzin font-bold bg-brandYellow text-brandDark px-4 py-2 rounded-lg hover:brightness-95 transition whitespace-nowrap">
+          Запитати в чаті 💬
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fullscreen Interactive Photo Lightbox Modal (5 Photos per Product with Zoom & Lightbox Gallery) -->
+  <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md hidden flex-col justify-between p-3 sm:p-6 text-white select-none transition-all">
+    <!-- Lightbox Top Navigation Bar -->
+    <div class="flex items-center justify-between border-b border-white/15 pb-3">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-brandYellow text-brandDark font-benzin font-black text-sm flex items-center justify-center">B</div>
+        <div>
+          <h3 id="lightboxProductTitle" class="font-benzin text-sm sm:text-base font-bold text-white">Вогнище кругле ROCCA</h3>
+          <p id="lightboxProductPrice" class="text-xs text-brandYellow font-mono font-bold">2 450 PLN • Фіксована ціна</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 sm:gap-3">
+        <span id="lightboxCounter" class="bg-white/10 text-white text-xs px-3 py-1 rounded-full font-mono">1 / 5</span>
+        <button onclick="toggleLightboxZoom()" id="btnZoomToggle" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition">
+          <span id="zoomIcon">🔍</span> <span id="zoomText" class="hidden sm:inline">Збільшити 150%</span>
+        </button>
+        <button onclick="closeLightbox()" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 text-white/80 hover:text-white flex items-center justify-center text-xl font-bold transition">
+          ✕
+        </button>
+      </div>
+    </div>
+
+    <!-- Lightbox Central Stage Viewport with Large Nav Buttons -->
+    <div class="relative flex-1 flex items-center justify-center overflow-hidden my-3">
+      <button onclick="lightboxPrev()" class="absolute left-2 sm:left-4 z-30 w-11 h-11 rounded-full bg-black/75 hover:bg-brandYellow hover:text-brandDark border border-white/20 text-white flex items-center justify-center text-2xl font-bold transition shadow-2xl">
+        ‹
+      </button>
+
+      <!-- Scrollable / Zoomable Image Canvas Container -->
+      <div id="lightboxViewport" class="w-full h-full max-w-4xl max-h-[65vh] flex items-center justify-center overflow-hidden transition-transform duration-300">
+        <div id="lightboxStage" class="w-full h-full flex items-center justify-center">
+          <!-- Rendered Active High-Res Photo -->
+        </div>
+      </div>
+
+      <button onclick="lightboxNext()" class="absolute right-2 sm:right-4 z-30 w-11 h-11 rounded-full bg-black/75 hover:bg-brandYellow hover:text-brandDark border border-white/20 text-white flex items-center justify-center text-2xl font-bold transition shadow-2xl">
+        ›
+      </button>
+    </div>
+
+    <!-- Lightbox Bottom Bar: Caption, Thumbnails & Lead Trigger -->
+    <div class="border-t border-white/15 pt-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="text-left">
+        <strong id="lightboxCaptionTitle" class="font-benzin text-xs sm:text-sm text-white block mb-0.5">Назва ракурсу</strong>
+        <p id="lightboxCaptionDesc" class="text-[11px] text-white/70 max-w-md line-clamp-1">Опис деталей виробу та комплектації.</p>
+      </div>
+
+      <!-- 5 Mini-Thumbnails in Modal -->
+      <div id="lightboxThumbs" class="flex items-center gap-2">
+        <!-- Injected via JS -->
+      </div>
+
+      <button onclick="contactFromLightbox()" class="w-full sm:w-auto text-xs font-benzin font-bold bg-brandYellow text-brandDark px-4 py-2.5 rounded-xl border border-brandDark hover:brightness-95 transition whitespace-nowrap shadow-lg">
+        💬 Зв'язатися для замовлення
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Data store for 5 photos per product with rich visual rendering templates
+    const productPhotosData = {
+      rocca: {
+        title: "Вогнище кругле ROCCA",
+        price: "2 450 PLN • Повний комплект",
+        photos: [
+          {
+            title: "Фото 1: Загальний вигляд комплекту",
+            desc: "Змонтоване вогнище ROCCA діаметром 120 см із термостійкою металевою чашею та решіткою.",
+            tag: "Загальний вигляд",
+            badge: "Хіт",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-gradient-to-b from-[#2B2D2C] to-[#1C1E1D] flex flex-col items-center justify-center p-4 relative text-center">
+                <div class="w-24 h-24 ${isLarge ? 'sm:w-44 sm:h-44' : ''} rounded-full border-4 border-[#8E533E] bg-[#3B3836] shadow-2xl flex items-center justify-center relative mb-2">
+                  <div class="w-16 h-16 ${isLarge ? 'sm:w-28 sm:h-28' : ''} rounded-full border-2 border-dashed border-amber-400/50 bg-[#1F1E1D] flex items-center justify-center">
+                    <span class="${isLarge ? 'text-5xl' : 'text-3xl'} animate-pulse">🔥</span>
+                  </div>
+                  <span class="absolute -bottom-2 bg-brandYellow text-brandDark text-[9px] font-bold px-2 py-0.5 rounded font-mono">Ø 120 см</span>
+                </div>
+                <strong class="font-benzin ${isLarge ? 'text-base' : 'text-xs'} text-white">Вогнище кругле ROCCA</strong>
+                <span class="text-[10px] text-brandYellow mt-0.5 font-medium">Радіусні блоки + чаша + решітка</span>
+              </div>
+            `
+          },
+          {
+            title: "Фото 2: Макро-фактура колотого каменю",
+            desc: "Виразна природна текстура ручного розколу блоку Патіо. Висока щільність та чітка геометрія граней.",
+            tag: "Фактура крупно",
+            badge: "Фактура",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#4A4B49] flex flex-col items-center justify-center p-4 relative text-center overflow-hidden">
+                <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:8px_8px]"></div>
+                <div class="relative z-10 p-4 bg-black/40 rounded-xl border border-white/20 max-w-xs">
+                  <span class="${isLarge ? 'text-4xl' : 'text-2xl'} block mb-1">🧱</span>
+                  <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white block">Фактура колотого каменю</strong>
+                  <span class="text-[10px] text-brandYellow block mt-1">Рельєфна поверхня з об'ємним забарвленням пігментом</span>
+                </div>
+              </div>
+            `
+          },
+          {
+            title: "Фото 3: Атмосфера вечірнього відпочинку",
+            desc: "Безпечне горіння живого вогню в саду. Металева вставка захищає бетон від локального перегріву.",
+            tag: "Вечірній вогонь",
+            badge: "Вечір",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#1A1817] flex flex-col items-center justify-center p-4 relative text-center overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-t from-orange-950/60 via-amber-900/20 to-transparent"></div>
+                <div class="relative z-10">
+                  <span class="${isLarge ? 'text-6xl' : 'text-4xl'} block animate-bounce mb-1">🔥✨</span>
+                  <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white block">Вечірній відпочинок у саду</strong>
+                  <span class="text-[10px] text-amber-300 block mt-1">Затишні традиції навколо живого вогню</span>
+                </div>
+              </div>
+            `
+          },
+          {
+            title: "Фото 4: Схема та габаритні розміри",
+            desc: "Діаметр 120 см, висота 40 см, внутрішній діаметр 80 см. Точне поєднання блоків за доданою інструкцією.",
+            tag: "Креслення",
+            badge: "Схема",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#18232C] flex flex-col items-center justify-center p-4 relative text-center border border-cyan-500/20 font-mono">
+                <div class="border-2 border-cyan-400/50 p-4 rounded-xl bg-black/40 ${isLarge ? 'max-w-md text-xs' : 'text-[10px]'} text-cyan-300 space-y-1">
+                  <div class="font-benzin font-bold text-white mb-1">ТЕХНІЧНА СПЕЦИФІКАЦІЯ ROCCA</div>
+                  <div>• Зовнішній діаметр: 1200 мм</div>
+                  <div>• Внутрішній діаметр: 800 мм</div>
+                  <div>• Висота вогнища: 400 мм</div>
+                  <div>• Монтаж: на морозостійкий клей</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            title: "Фото 5: Монтаж на готову плитку",
+            desc: "Чисте встановлення на подвір'ї без цементного бруду та без пошкодження навколишнього газону.",
+            tag: "На ділянці",
+            badge: "Монтаж",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#2C2E2A] flex flex-col items-center justify-center p-4 relative text-center">
+                <span class="${isLarge ? 'text-4xl' : 'text-2xl'} block mb-1">🏡🌿</span>
+                <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white block">Готовий об'єкт на ділянці</strong>
+                <span class="text-[10px] text-emerald-400 block mt-1">Встановлено за 2 години на клей без розшивки</span>
+              </div>
+            `
+          }
+        ]
+      },
+      pasion: {
+        title: "Барбекю-комплекс Pasion",
+        price: "5 800 PLN • Комплект з димарем",
+        photos: [
+          {
+            title: "Фото 1: Фронтальний вигляд комплексу",
+            desc: "Габарити 290 × 90 × 250 см. Повноцінне садове барбекю з димарем, стільницями та шафами.",
+            tag: "Фасад",
+            badge: "Фасад",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-gradient-to-b from-[#2E3130] to-[#1E201F] flex flex-col items-center justify-center p-4 text-center">
+                <span class="${isLarge ? 'text-5xl' : 'text-3xl'} mb-1">🥩🏛️</span>
+                <strong class="font-benzin ${isLarge ? 'text-base' : 'text-xs'} text-white">Барбекю-комплекс Pasion</strong>
+                <span class="text-[10px] text-brandYellow mt-1">290 × 90 × 250 см • 4 піддони блоків</span>
+              </div>
+            `
+          },
+          {
+            title: "Фото 2: Стільниці та дерев'яні вставки",
+            desc: "8 міцних кришок-стільниць для готування та комплект дверцят із натурального дерева.",
+            tag: "Деталі стільниць",
+            badge: "Деталі",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#3F3A36] flex flex-col items-center justify-center p-4 text-center">
+                <span class="${isLarge ? 'text-4xl' : 'text-2xl'} mb-1">🚪🪵</span>
+                <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white">Кришки-стільниці та дверцята</strong>
+                <span class="text-[10px] text-brandYellow mt-1">Ергономічний кулінарний простір</span>
+              </div>
+            `
+          },
+          {
+            title: "Фото 3: Топка, відбивач та пічний ковпак",
+            desc: "Жаростійкі металеві елементи в комплекті: труба, відбивач, ковпак і камінний набір.",
+            tag: "Топка та димар",
+            badge: "Топка",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#2A2321] flex flex-col items-center justify-center p-4 text-center">
+                <span class="${isLarge ? 'text-4xl' : 'text-2xl'} mb-1">🔥🛠️</span>
+                <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white">Топка з відбивачем і трубою</strong>
+                <span class="text-[10px] text-amber-400 mt-1">Безпечний відвід диму та рівномірний жар</span>
+              </div>
+            `
+          },
+          {
+            title: "Фото 4: Розміри та порядова розкладка",
+            desc: "Детальні креслення 290 × 90 см та розташування модулів згідно з покроковою інструкцією.",
+            tag: "Креслення",
+            badge: "Розміри",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#1C2329] flex flex-col items-center justify-center p-4 text-center font-mono">
+                <div class="border border-white/20 p-3 rounded-lg bg-black/40 text-[10px] text-cyan-300">
+                  <div class="font-benzin font-bold text-white mb-1">РОЗМІРИ PASION</div>
+                  <div>Довжина: 2900 мм | Глибина: 900 мм | Висота: 2500 мм</div>
+                  <div>4 піддони каменю + 8 стільниць + димар</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            title: "Фото 5: Pasion в альтанці на об'єкті",
+            desc: "Приклад реалізації в заміському маєтку у поєднанні кольорів Латте та Терра.",
+            tag: "На об'єкті",
+            badge: "Об'єкт",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#2B2A28] flex flex-col items-center justify-center p-4 text-center">
+                <span class="${isLarge ? 'text-4xl' : 'text-2xl'} mb-1">🏡✨</span>
+                <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white">Реалізований об'єкт</strong>
+                <span class="text-[10px] text-emerald-400 mt-1">Комплексна альтанка з барною стійкою</span>
+              </div>
+            `
+          }
+        ]
+      },
+      familiya: {
+        title: "Мангал Familiya",
+        photos: [
+          {
+            title: "Фото 1: Загальний вигляд мангалу Familiya",
+            desc: "Компактний комплекс 280 × 95 × 110 см із місткими шафами для приладдя та дров.",
+            tag: "Загальний вигляд",
+            badge: "Мангал",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#282B29] flex flex-col items-center justify-center p-4 text-center">
+                <span class="${isLarge ? 'text-5xl' : 'text-3xl'} mb-1">🍢🧱</span>
+                <strong class="font-benzin ${isLarge ? 'text-base' : 'text-xs'} text-white">Мангал Familiya</strong>
+                <span class="text-[10px] text-brandYellow mt-1">280 × 95 × 110 см • 2 піддони блоків</span>
+              </div>
+            `
+          },
+          {
+            title: "Фото 2: Товстостінний металевий мангал",
+            desc: "Сталевий жаростійкий короб мангала високої міцності, розрахований на дрова та вугілля.",
+            tag: "Сталевий мангал",
+            badge: "Метал",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#242120] flex flex-col items-center justify-center p-4 text-center">
+                <span class="${isLarge ? 'text-4xl' : 'text-2xl'} mb-1">🔥🔲</span>
+                <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white">Сталевий мангал</strong>
+                <span class="text-[10px] text-brandYellow mt-1">Товщина сталі 4 мм • Не прогорає</span>
+              </div>
+            `
+          },
+          {
+            title: "Фото 3: Кришки-стільниці та дерев'яні фасади",
+            desc: "4 кришки-стільниці та комплект із 2 дерев'яних дверцят для зручності шеф-кухаря.",
+            tag: "Фасади",
+            badge: "Фасади",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#3D352F] flex flex-col items-center justify-center p-4 text-center">
+                <span class="${isLarge ? 'text-4xl' : 'text-2xl'} mb-1">🪵🗄️</span>
+                <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white">4 стільниці та шафи</strong>
+                <span class="text-[10px] text-brandYellow mt-1">Акуратне зберігання кулінарного інвентарю</span>
+              </div>
+            `
+          },
+          {
+            title: "Фото 4: Розміри та схематичне планування",
+            desc: "Довжина 280 см, глибина 95 см, комфортна висота стільниці 110 см для роботи стоячи.",
+            tag: "Схема",
+            badge: "Розміри",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#1A2228] flex flex-col items-center justify-center p-4 text-center font-mono">
+                <div class="border border-white/20 p-3 rounded-lg bg-black/40 text-[10px] text-cyan-300">
+                  <div class="font-benzin font-bold text-white mb-1">СПЕЦИФІКАЦІЯ FAMILIYA</div>
+                  <div>2800 × 950 × 1100 мм | Вага: ~480 кг</div>
+                  <div>Мангал + 4 стільниці + дверцята</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            title: "Фото 5: Фото з приватного подвір'я",
+            desc: "Приклад встановлення мангального комплексу у кольорі Сірий біля тераси будинку.",
+            tag: "На об'єкті",
+            badge: "Фото саду",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#272B26] flex flex-col items-center justify-center p-4 text-center">
+                <span class="${isLarge ? 'text-4xl' : 'text-2xl'} mb-1">🏡🍖</span>
+                <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white">Реальне подвір'я</strong>
+                <span class="text-[10px] text-emerald-400 mt-1">Компактний улюбленець для сімейних вікендів</span>
+              </div>
+            `
+          }
+        ]
+      },
+      circle: {
+        title: "Zestaw lounge Circle",
+        price: "8 900 PLN • Palenisko + meble ogrodowe",
+        photos: [
+          {
+            title: "Zdjęcie 1: Panorama strefy lounge",
+            desc: "Monumentalna średnica 570 cm: centralne palenisko otoczone monolitycznymi kamiennymi siedziskami.",
+            tag: "Panorama",
+            badge: "Lounge",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#272927] flex flex-col items-center justify-center p-4 text-center">
+                <span class="${isLarge ? 'text-5xl' : 'text-3xl'} mb-1">🛋️🔥</span>
+                <strong class="font-benzin ${isLarge ? 'text-base' : 'text-xs'} text-white">Zestaw lounge Circle</strong>
+                <span class="text-[10px] text-brandYellow mt-1">Średnica 570 cm • 5 palet bloków</span>
+              </div>
+            `
+          },
+          {
+            title: "Zdjęcie 2: Łukowe, monolityczne kamienne siedziska",
+            desc: "Płynna geometria bloków Patio tworzy trwałe kamienne siedziska odporne na opady i mróz.",
+            tag: "Siedziska",
+            badge: "Siedziska",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#353835] flex flex-col items-center justify-center p-4 text-center">
+                <span class="${isLarge ? 'text-4xl' : 'text-2xl'} mb-1">🏛️✨</span>
+                <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white">Łukowe kamienne meble</strong>
+                <span class="text-[10px] text-brandYellow mt-1">Całoroczna podstawa pod miękkie poduszki</span>
+              </div>
+            `
+          },
+          {
+            title: "Zdjęcie 3: Centralne palenisko z misą żaroodporną",
+            desc: "Bezpieczny, otwarty ogień w centrum koła. Równomierne ciepło dla grupy ponad 10 osób.",
+            tag: "Centrum koła",
+            badge: "Centrum",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#2B231D] flex flex-col items-center justify-center p-4 text-center">
+                <span class="${isLarge ? 'text-4xl' : 'text-2xl'} mb-1">🔥🌕</span>
+                <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white">Centralne palenisko</strong>
+                <span class="text-[10px] text-amber-400 mt-1">Ciepła przestrzeń dla dużej rodziny</span>
+              </div>
+            `
+          },
+          {
+            title: "Zdjęcie 4: Układ miejsc siedzących i średnica",
+            desc: "Plan ułożenia 5 palet betonowych bloków i 3 metalowych elementów do montażu w 1–2 dni.",
+            tag: "Plan strefy",
+            badge: "Plan",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#182129] flex flex-col items-center justify-center p-4 text-center font-mono">
+                <div class="border border-white/20 p-3 rounded-lg bg-black/40 text-[10px] text-cyan-300">
+                  <div class="font-benzin font-bold text-white mb-1">PLAN OGÓLNY CIRCLE</div>
+                  <div>Średnica strefy: 5,7 metra</div>
+                  <div>5 palet kamienia + metalowa misa</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            title: "Zdjęcie 5: Lounge Circle w kolorze Silver",
+            desc: "Zdjęcie z ukończonego osiedla domów z zagospodarowanym ogrodem i wieczornym oświetleniem.",
+            tag: "Realizacja",
+            badge: "Obiekt",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#292F2D] flex flex-col items-center justify-center p-4 text-center">
+                <span class="${isLarge ? 'text-4xl' : 'text-2xl'} mb-1">🏡🌟</span>
+                <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white">Duża skala ogrodu</strong>
+                <span class="text-[10px] text-emerald-400 mt-1">Zrealizowano w kolorze Silver</span>
+              </div>
+            `
+          }
+        ]
+      },
+      fence: {
+        title: "Огорожа та парапети Патіо",
+        price: "від 580 PLN / м.п. • Під ваш метраж",
+        photos: [
+          {
+            title: "Фото 1: Паркан із блоків Патіо з плитами",
+            desc: "Товщина 20 см. Двостороння колота фактура шляхетного каменю з фінішними захисними плитами.",
+            tag: "Паркан",
+            badge: "Паркан",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#33312E] flex flex-col items-center justify-center p-4 text-center">
+                <span class="${isLarge ? 'text-5xl' : 'text-3xl'} mb-1">🧱🛡️</span>
+                <strong class="font-benzin ${isLarge ? 'text-base' : 'text-xs'} text-white">Огорожа Патіо</strong>
+                <span class="text-[10px] text-brandYellow mt-1">Товщина 20 см • Двосторонній скол</span>
+              </div>
+            `
+          },
+          {
+            title: "Фото 2: Декоративні вставки та секції",
+            desc: "Можливість комбінування колотого каменю з металевими жалюзі, штахетником чи фірмовими вставками.",
+            tag: "З декором",
+            badge: "Декор",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#2B2925] flex flex-col items-center justify-center p-4 text-center">
+                <span class="${isLarge ? 'text-4xl' : 'text-2xl'} mb-1">🎨🧱</span>
+                <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white">Секції з декором</strong>
+                <span class="text-[10px] text-brandYellow mt-1">Індивідуальні рішення для парканів</span>
+              </div>
+            `
+          },
+          {
+            title: "Фото 3: Захисні парапети та обрамлення терас",
+            desc: "Акуратні невисокі кам'яні парапети для зонування ділянки та фінішного оформлення країв терас.",
+            tag: "Парапети",
+            badge: "Парапет",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#3B3A36] flex flex-col items-center justify-center p-4 text-center">
+                <span class="${isLarge ? 'text-4xl' : 'text-2xl'} mb-1">🌿🧱</span>
+                <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white">Садові парапети</strong>
+                <span class="text-[10px] text-brandYellow mt-1">Зонування клумб і перепадів висот</span>
+              </div>
+            `
+          },
+          {
+            title: "Фото 4: Рядові, кутові та радіусні блоки",
+            desc: "Елементи точної геометрії для зведення як прямих ліній, так і плавних радіусних вигинів огорожі.",
+            tag: "Типи блоків",
+            badge: "Блоки",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#1D252E] flex flex-col items-center justify-center p-4 text-center font-mono">
+                <div class="border border-white/20 p-3 rounded-lg bg-black/40 text-[10px] text-cyan-300">
+                  <div class="font-benzin font-bold text-white mb-1">МОДУЛЬНІ БЛОКИ ПАТІО</div>
+                  <div>• Рядові • Кутові • Радіусні</div>
+                  <div>Монтаж на клей без розшивки швів</div>
+                </div>
+              </div>
+            `
+          },
+          {
+            title: "Фото 5: Паркан у кольорі Бланко в екстер'єрі",
+            desc: "Завершений периметр заміського будинку зі світлою фактурою Бланко та накривними плитами.",
+            tag: "На об'єкті",
+            badge: "Бланко",
+            render: (isLarge) => `
+              <div class="w-full h-full bg-[#312F2C] flex flex-col items-center justify-center p-4 text-center">
+                <span class="${isLarge ? 'text-4xl' : 'text-2xl'} mb-1">🏡🤍</span>
+                <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white">Колір Бланко на садибі</strong>
+                <span class="text-[10px] text-emerald-400 mt-1">Гармонія зі світлим фасадом і бруківкою</span>
+              </div>
+            `
+          }
+        ]
+      }
+    };
+
+    // Current active photo indexes per product card
+    const currentPhoto = {
+      rocca: 0,
+      pasion: 0,
+      familiya: 0,
+      circle: 0,
+      fence: 0
+    };
+
+    // Lightbox state variables
+    let activeLightboxProduct = 'rocca';
+    let activeLightboxIndex = 0;
+    let isLightboxZoomed = false;
+
+    // Set card photo by direct index
+    function setCardPhoto(productId, index) {
+      currentPhoto[productId] = index;
+      const product = productPhotosData[productId];
+      const photo = product.photos[index];
+
+      // Update card visual display
+      const displayEl = document.getElementById(`${productId}-photo-display`);
+      if (displayEl) {
+        displayEl.innerHTML = photo.render(false);
+      }
+
+      // Update counter and caption text
+      const counterEl = document.getElementById(`${productId}-counter`);
+      if (counterEl) {
+        counterEl.textContent = `${index + 1} / 5`;
+      }
+      const captionEl = document.getElementById(`${productId}-caption`);
+      if (captionEl) {
+        captionEl.textContent = photo.title;
+      }
+
+      // Update thumbnail active states
+      for (let i = 0; i < 5; i++) {
+        const thumbBtn = document.getElementById(`thumb-${productId}-${i}`);
+        if (thumbBtn) {
+          if (i === index) {
+            thumbBtn.classList.remove('border-white/20', 'text-white/70');
+            thumbBtn.classList.add('border-2', 'border-brandYellow', 'text-white', 'bg-brandYellow/20');
+          } else {
+            thumbBtn.classList.remove('border-2', 'border-brandYellow', 'text-white', 'bg-brandYellow/20');
+            thumbBtn.classList.add('border', 'border-white/20', 'text-white/70');
+          }
+        }
+      }
+    }
+
+    // Cycle card photo with prev/next arrows
+    function changeCardPhoto(productId, delta) {
+      const newIndex = (currentPhoto[productId] + delta + 5) % 5;
+      setCardPhoto(productId, newIndex);
+    }
+
+    // Open Fullscreen Lightbox
+    function openLightbox(productId, index) {
+      activeLightboxProduct = productId;
+      activeLightboxIndex = index;
+      isLightboxZoomed = false;
+
+      const modal = document.getElementById('lightboxModal');
+      const product = productPhotosData[productId];
+
+      document.getElementById('lightboxProductTitle').textContent = product.title;
+      document.getElementById('lightboxProductPrice').textContent = product.price;
+
+      renderLightboxStage();
+      renderLightboxThumbnails();
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    // Render active photo in fullscreen lightbox
+    function renderLightboxStage() {
+      const product = productPhotosData[activeLightboxProduct];
+      const photo = product.photos[activeLightboxIndex];
+
+      document.getElementById('lightboxCounter').textContent = `${activeLightboxIndex + 1} / 5`;
+      document.getElementById('lightboxCaptionTitle').textContent = photo.title;
+      document.getElementById('lightboxCaptionDesc').textContent = photo.desc;
+
+      const stageEl = document.getElementById('lightboxStage');
+      stageEl.innerHTML = photo.render(true);
+
+      // Reset zoom
+      const viewport = document.getElementById('lightboxViewport');
+      viewport.style.transform = 'scale(1)';
+      document.getElementById('zoomText').textContent = 'Збільшити 150%';
+      document.getElementById('zoomIcon').textContent = '🔍';
+      isLightboxZoomed = false;
+
+      // Update thumbnail highlights in modal
+      for (let i = 0; i < 5; i++) {
+        const thumb = document.getElementById(`lb-thumb-${i}`);
+        if (thumb) {
+          if (i === activeLightboxIndex) {
+            thumb.classList.add('border-brandYellow', 'bg-brandYellow/20');
+            thumb.classList.remove('border-white/20');
+          } else {
+            thumb.classList.remove('border-brandYellow', 'bg-brandYellow/20');
+            thumb.classList.add('border-white/20');
+          }
+        }
+      }
+    }
+
+    // Render 5 mini thumbnails inside the modal
+    function renderLightboxThumbnails() {
+      const container = document.getElementById('lightboxThumbs');
+      let html = '';
+      for (let i = 0; i < 5; i++) {
+        const isActive = i === activeLightboxIndex;
+        html += `
+          <button type="button" id="lb-thumb-${i}" onclick="setLightboxIndex(${i})" class="w-9 h-9 rounded-lg border-2 ${isActive ? 'border-brandYellow bg-brandYellow/20' : 'border-white/20'} overflow-hidden flex items-center justify-center font-benzin font-bold text-xs text-white hover:border-white transition">
+            ${i + 1}
+          </button>
+        `;
+      }
+      container.innerHTML = html;
+    }
+
+    function setLightboxIndex(index) {
+      activeLightboxIndex = index;
+      renderLightboxStage();
+      // Keep card synced
+      setCardPhoto(activeLightboxProduct, index);
+    }
+
+    function lightboxNext() {
+      activeLightboxIndex = (activeLightboxIndex + 1) % 5;
+      renderLightboxStage();
+      setCardPhoto(activeLightboxProduct, activeLightboxIndex);
+    }
+
+    function lightboxPrev() {
+      activeLightboxIndex = (activeLightboxIndex - 1 + 5) % 5;
+      renderLightboxStage();
+      setCardPhoto(activeLightboxProduct, activeLightboxIndex);
+    }
+
+    function toggleLightboxZoom() {
+      const viewport = document.getElementById('lightboxViewport');
+      isLightboxZoomed = !isLightboxZoomed;
+      if (isLightboxZoomed) {
+        viewport.style.transform = 'scale(1.35)';
+        document.getElementById('zoomText').textContent = 'Скинути 100%';
+        document.getElementById('zoomIcon').textContent = '🔄';
+      } else {
+        viewport.style.transform = 'scale(1)';
+        document.getElementById('zoomText').textContent = 'Збільшити 150%';
+        document.getElementById('zoomIcon').textContent = '🔍';
+      }
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightboxModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function contactFromLightbox() {
+      const product = productPhotosData[activeLightboxProduct];
+      const photo = product.photos[activeLightboxIndex];
+      closeLightbox();
+      triggerLeadChat(`${product.title} (${photo.tag})`);
+    }
+
+    // Keyboard navigation (Arrow keys and Escape)
+    window.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('lightboxModal');
+      if (!modal.classList.contains('hidden')) {
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+          lightboxNext();
+        } else if (e.key === 'ArrowLeft') {
+          lightboxPrev();
+        } else if (e.key === 'Escape') {
+          closeLightbox();
+        }
+      }
+    });
+
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+      if (!mobileMenu || !mobileMenuToggle) return;
+      const isOpen = mobileMenu.classList.toggle('is-open');
+      mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
+    }
+
+    // Initialize all 5 product cards with photo 0 on load
+    window.addEventListener('DOMContentLoaded', () => {
+      ['rocca', 'pasion', 'familiya', 'circle', 'fence'].forEach(id => {
+        setCardPhoto(id, 0);
+      });
+
+      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (mobileMenuToggle && mobileMenu) {
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.remove('is-open');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+        window.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') {
+            mobileMenu.classList.remove('is-open');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+    });
+
+    // Tab switcher
+    function switchView(viewName) {
+      document.getElementById('viewWireframe').classList.add('hidden');
+      document.getElementById('viewArchitecture').classList.add('hidden');
+      document.getElementById('viewSpecs').classList.add('hidden');
+
+      document.getElementById('tabWireframe').classList.remove('active');
+      document.getElementById('tabArchitecture').classList.remove('active');
+      document.getElementById('tabDevSpecs').classList.remove('active');
+
+      const viewportControls = document.getElementById('viewportControls');
+
+      if (viewName === 'wireframe') {
+        document.getElementById('viewWireframe').classList.remove('hidden');
+        document.getElementById('tabWireframe').classList.add('active');
+        viewportControls.style.display = 'flex';
+      } else if (viewName === 'architecture') {
+        document.getElementById('viewArchitecture').classList.remove('hidden');
+        document.getElementById('tabArchitecture').classList.add('active');
+        viewportControls.style.display = 'none';
+      } else if (viewName === 'specs') {
+        document.getElementById('viewSpecs').classList.remove('hidden');
+        document.getElementById('tabDevSpecs').classList.add('active');
+        viewportControls.style.display = 'none';
+      }
+    }
+
+    // Viewport resizing simulation
+    function setViewport(size) {
+      const frame = document.getElementById('landingFrame');
+      const btnDesk = document.getElementById('btnDesk');
+      const btnMob = document.getElementById('btnMob');
+
+      if (size === 'desktop') {
+        frame.classList.remove('viewport-mobile');
+        frame.classList.add('viewport-desktop');
+        btnDesk.classList.add('bg-white/15', 'text-brandYellow');
+        btnDesk.classList.remove('bg-transparent', 'text-white/70');
+        btnMob.classList.remove('bg-white/15', 'text-brandYellow');
+        btnMob.classList.add('bg-transparent', 'text-white/70');
+      } else {
+        frame.classList.remove('viewport-desktop');
+        frame.classList.add('viewport-mobile');
+        btnMob.classList.add('bg-white/15', 'text-brandYellow');
+        btnMob.classList.remove('bg-transparent', 'text-white/70');
+        btnDesk.classList.remove('bg-white/15', 'text-brandYellow');
+        btnDesk.classList.add('bg-transparent', 'text-white/70');
+      }
+    }
+
+    // Gallery category filter function
+    function filterGallery(category) {
+      const buttons = document.querySelectorAll('.gallery-filter-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('active', 'bg-brandDark', 'text-brandYellow');
+        btn.classList.add('bg-white', 'text-brandDark');
+      });
+      event.target.classList.add('active', 'bg-brandDark', 'text-brandYellow');
+      event.target.classList.remove('bg-white', 'text-brandDark');
+
+      const items = document.querySelectorAll('.gallery-item');
+      items.forEach(item => {
+        if (category === 'all') {
+          item.classList.remove('hidden');
+        } else {
+          if (item.classList.contains(category)) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        }
+      });
+    }
+
+    // Modal helpers
+    function triggerLeadChat(productName) {
+      const modal = document.getElementById('leadModal');
+      document.getElementById('modalTitle').textContent = `Запит: ${productName}`;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('leadModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function openVideoModal(title, badge, link) {
+      const modal = document.getElementById('videoModal');
+      document.getElementById('videoModalTitle').textContent = title;
+      document.getElementById('videoBadge').textContent = badge;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeVideoModal() {
+      const modal = document.getElementById('videoModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function submitMockLead() {
+      alert('Дякуємо! Ваше звернення зафіксовано. Менеджер зв\'яжеться з вами у чаті або месенджері протягом 15 хвилин.');
+      closeModal();
+    }
+
+    function copySpecsSummary() {
+      const summaryText = `BERNSTONE.PL - ТЗ ЛЕНДІНГУ:
+- Домен: bernstone.pl (Окремий .pl)
+- Модель: Text-First LeadGen (онлайн-чат, WhatsApp, Instagram Direct)
+- Головний H1: "Створюйте теплі сімейні традиції навколо живого вогню у власній зоні патіо та барбекю."
+- H2: "Чистий монтаж на клей за вихідні без будівельного бруду. Оберіть готовий комплект на сайті або завітайте на нашу виставку у Варшаві, щоб оцінити якість наживо."
+- 5 Флагманів:
+  1. Вогнище ROCCA (2 450 PLN, діам. 120 см, чаша + решітка)
+  2. Барбекю Pasion (5 800 PLN, 290х90х250 см, 4 піддони блоків, стільниці, димар)
+  3. Мангал Familiya (4 200 PLN, 280х95х110 см, 2 піддони блоків, мангал, шафи)
+  4. Комплекс Circle (8 900 PLN, діам. 570 см, 5 піддонів блоків, металеві елементи)
+  5. Огорожа Патіо (від 580 PLN / м.п., товщина 20 см)
+- Галерея товарів: кожна картка містить 5 інтерактивних фотографій із перемиканням та повноекранним переглядом (Lightbox з зумом 150%)
+- Палітра (5 кольорів): Сірий, Ріо, Сільвер, Терра, Бланко (ціна не залежить від кольору)
+- Блок індивідуальних замовлень: прямий виробник Bernstone
+- Розділ "Реалізовані об'єкти": жива галерея 6 проєктів з відеооглядами (YouTube/Reels), фільтри категорій та посилання на Instagram @bernstone_polska
+- Виставка у Варшаві: адреса, години роботи, Google Maps, телефон для навігації
+- Доставка: самовивіз 0 PLN або місцеві перевізники за тарифами
+- CRM: Webhook в NetHunt із передачею gclid, fbclid та UTM.`;
+
+      const el = document.createElement('textarea');
+      el.value = summaryText;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+
+      alert('Підсумок технічного завдання скопійовано в буфер обміну!');
+    }
+  </script>
+</body>
+</html>
