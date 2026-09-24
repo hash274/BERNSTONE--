@@ -211,6 +211,14 @@
       flex: 0 0 24px;
       font-size: 18px;
     }
+    #landingFrame [class~="group-hover/photo:opacity-100"],
+    #landingFrame #rocca-caption,
+    #landingFrame #pasion-caption,
+    #landingFrame #familiya-caption,
+    #landingFrame #circle-caption,
+    #landingFrame #fence-caption {
+      display: none !important;
+    }
     .mobile-menu-toggle,
     .mobile-menu {
       display: none;
@@ -226,8 +234,8 @@
         gap: 10px;
       }
       #landingFrame > nav .brand-mark {
-        width: 32px;
-        height: 32px;
+        width: 31px;
+        height: 31px;
       }
       #landingFrame > nav .text-base {
         font-size: 16px !important;
@@ -345,7 +353,6 @@
       #lightboxModal #lightboxProductPrice {
         white-space: normal;
       }
-      #leadModal > div,
       #videoModal > div {
         max-width: calc(100vw - 24px);
         max-height: calc(100vh - 24px);
@@ -360,7 +367,7 @@
 <body class="flex flex-col">
 
   <!-- Main Content Stage Area -->
-  <main class="flex-1 w-full flex justify-center items-start">
+  <main id="top" class="flex-1 w-full flex justify-center items-start">
 
     <!-- ================================================================= -->
     <!-- VIEW 1: INTERACTIVE WIREFRAME (LIVE PROTOTYPE IN UKRAINIAN)       -->
@@ -370,14 +377,22 @@
       <!-- The Landing Page -->
       <div id="landingFrame" class="viewport-desktop w-full bg-brandBg shadow-2xl overflow-hidden text-brandDark relative transition-all duration-300">
         <!-- SECTION 1: LANDING TOP NAVBAR -->
-        <nav class="bg-white px-6 py-4 border-b border-brandSlate/15 flex items-center justify-between sticky top-0 z-30 shadow-sm">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 bg-brandDark rounded-md flex items-center justify-center font-benzin font-bold text-brandYellow text-base">B</div>
-            <div>
-              <span class="font-benzin font-extrabold text-base tracking-wider text-brandDark block leading-tight">BERNSTONE</span>
-              <span class="text-[9px] font-bold uppercase tracking-widest text-brandSlate block">Kolekcja Patio</span>
+        <nav class="bg-white/80 px-4 py-4 border-b border-white flex items-center justify-between sticky top-0 z-30 shadow-sm backdrop-blur-md">
+          <a href="#top" class="flex items-center gap-[2px] md:gap-[4px] transition-opacity hover:opacity-90 focus:outline-none">
+            <div class="w-[38px] h-[38px] rounded-[8px] flex items-center justify-center overflow-hidden shrink-0" style="background-color: rgb(241, 239, 158);">
+              <img
+                src="bernstone%20logo%20black.png"
+                alt="Bernstone"
+                class="w-[78%] h-[78%] object-contain"
+              >
             </div>
-          </div>
+            <img
+              src="BERNSTONE.png"
+              alt="BERNSTONE"
+              class="h-[24px] md:h-[28px] w-auto max-w-[180px] object-contain object-left"
+              style="margin-left: 6px;"
+            >
+          </a>
 
           <!-- Nav Anchors -->
           <div class="hidden lg:flex items-center gap-6 text-xs font-bold text-brandDark">
@@ -393,7 +408,10 @@
             <a href="#ekspozycja" class="hidden sm:inline-flex text-[11px] font-bold text-brandDark bg-brandBg px-3 py-1.5 rounded-lg border border-brandSlate/20 hover:bg-brandSlate/10 transition">
               📍 Adres wystawy
             </a>
-            <button onclick="window.open('https://www.facebook.com/', '_blank')" class="text-[11px] font-benzin font-bold bg-brandYellow text-brandDark px-3.5 py-1.5 rounded-lg border border-brandDark shadow-sm hover:brightness-95 transition">
+            <a href="#ekspozycja" class="sm:hidden inline-flex text-[11px] font-benzin font-bold bg-brandYellow text-brandDark px-3.5 py-1.5 rounded-lg border border-brandDark shadow-sm hover:brightness-95 transition">
+              Adres wystawy
+            </a>
+            <button onclick="window.open('https://www.facebook.com/', '_blank')" class="hidden sm:inline-flex text-[11px] font-benzin font-bold bg-brandYellow text-brandDark px-3.5 py-1.5 rounded-lg border border-brandDark shadow-sm hover:brightness-95 transition">
               Facebook
             </button>
           </div>
@@ -418,7 +436,7 @@
               <div class="hero-photo" role="img" aria-label="Kamienne patio z paleniskiem"></div>
               <div class="hero-copy">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandDark text-brandYellow font-benzin text-[10px] uppercase tracking-wider mb-4">
-              <span>★</span> Kolekcja Patio Bernstone • Warszawa
+              <span></span> KOLEKCJA PATIO • BERNSTONE • PRODUKCJA UKRAIŃSKA
             </div>
             
             <!-- Exact Agreed H1 -->
@@ -431,15 +449,6 @@
               Czysty montaż na klej w jeden weekend. Wybierzcie Państwo gotowy zestaw albo odwiedźcie naszą wystawę w Warszawie i zobaczcie jakość kamienia na żywo.
             </p>
 
-            <!-- Agreed Hero CTA Buttons -->
-            <div class="flex flex-wrap justify-center items-center gap-3">
-              <button onclick="triggerLeadChat('Konsultacja z pierwszego ekranu')" class="text-xs sm:text-sm font-benzin font-bold bg-brandYellow text-brandDark px-6 py-3 rounded-xl border border-brandDark shadow-md hover:brightness-95 transition flex items-center gap-2">
-                <span>💬</span> Skorzystajcie Państwo z konsultacji
-              </button>
-              <a href="#ekspozycja" class="text-xs sm:text-sm font-benzin font-bold bg-white text-brandDark px-6 py-3 rounded-xl border border-brandSlate/30 shadow-sm hover:bg-brandBg transition flex items-center gap-2">
-                <span>📍</span> Adres wystawy w Warszawie
-              </a>
-            </div>
               </div>
             </div>
           </div>
@@ -448,7 +457,7 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-5xl mx-auto mt-10 text-left">
             <div class="bg-white p-4 rounded-xl border border-brandSlate/15 shadow-sm flex flex-col justify-between">
               <div>
-                <span class="text-lg mb-1 block">✨</span>
+                <span class="text-lg mb-1 block"></span>
                 <strong class="font-benzin text-xs font-bold text-brandDark block mb-1">Czysty montaż</strong>
                 <p class="text-[11px] text-brandSlate leading-relaxed">System modułowy montuje się na mrozoodporny klej w 1–2 dni, bez cementowego bałaganu na trawniku.</p>
               </div>
@@ -456,7 +465,7 @@
 
             <div class="bg-white p-4 rounded-xl border border-brandSlate/15 shadow-sm flex flex-col justify-between">
               <div>
-                <span class="text-lg mb-1 block">🏛️</span>
+                <span class="text-lg mb-1 block"></span>
                 <strong class="font-benzin text-xs font-bold text-brandDark block mb-1">Trwałość na lata</strong>
                 <p class="text-[11px] text-brandSlate leading-relaxed">Beton wysokiej wytrzymałości znosi mróz, wilgoć i bezpośredni ogień bez corocznej konserwacji ani malowania.</p>
               </div>
@@ -464,7 +473,7 @@
 
             <div class="bg-white p-4 rounded-xl border border-brandSlate/15 shadow-sm flex flex-col justify-between">
               <div>
-                <span class="text-lg mb-1 block">🎨</span>
+                <span class="text-lg mb-1 block"></span>
                 <strong class="font-benzin text-xs font-bold text-brandDark block mb-1">Autorski design</strong>
                 <p class="text-[11px] text-brandSlate leading-relaxed">Reliefowa faktura łupanego kamienia i paleta szlachetnych odcieni tworzą przytulny ogród.</p>
               </div>
@@ -472,7 +481,7 @@
 
             <div class="bg-white p-4 rounded-xl border border-brandSlate/15 shadow-sm flex flex-col justify-between">
               <div>
-                <span class="text-lg mb-1 block">🇺🇦</span>
+                <span class="text-lg mb-1 block"></span>
                 <strong class="font-benzin text-xs font-bold text-brandDark block mb-1">Ukraiński producent</strong>
                 <p class="text-[11px] text-brandSlate leading-relaxed">Własna produkcja Bernstone i precyzyjna kontrola geometrii każdego elementu.</p>
               </div>
@@ -554,7 +563,6 @@
                   </div>
                 </div>
                 <div class="pt-2.5 border-t border-brandSlate/10 flex items-center justify-between">
-                  <span class="text-[10px] text-brandSlate">Cena stała dla kolorów</span>
                   <button onclick="triggerLeadChat('Wogniście okrągłe ROCCA')" class="text-[11px] font-bold bg-brandDark text-brandYellow px-3 py-1.5 rounded-md hover:bg-black transition">
                     Połącz się do zamówienia →
                   </button>
@@ -605,7 +613,6 @@
                   </div>
                 </div>
                 <div class="pt-2.5 border-t border-brandSlate/10 flex items-center justify-between">
-                  <span class="text-[10px] text-brandSlate">Cena stała dla kolorów</span>
                   <button onclick="triggerLeadChat('Barbecue-komplex Pasion')" class="text-[11px] font-bold bg-brandDark text-brandYellow px-3 py-1.5 rounded-md hover:bg-black transition">
                     Połącz się do zamówienia →
                   </button>
@@ -656,7 +663,6 @@
                   </div>
                 </div>
                 <div class="pt-2.5 border-t border-brandSlate/10 flex items-center justify-between">
-                  <span class="text-[10px] text-brandSlate">Stała cena niezależnie od koloru</span>
                   <button onclick="triggerLeadChat('Grill Familiya')" class="text-[11px] font-bold bg-brandDark text-brandYellow px-3 py-1.5 rounded-md hover:bg-black transition">
                     Skontaktujcie się Państwo i zamówcie →
                   </button>
@@ -707,7 +713,6 @@
                   </div>
                 </div>
                 <div class="pt-2.5 border-t border-brandSlate/10 flex items-center justify-between">
-                  <span class="text-[10px] text-brandSlate">Stała cena niezależnie od koloru</span>
                   <button onclick="triggerLeadChat('Zestaw lounge Circle')" class="text-[11px] font-bold bg-brandDark text-brandYellow px-3 py-1.5 rounded-md hover:bg-black transition">
                     Skontaktujcie się Państwo i zamówcie →
                   </button>
@@ -759,7 +764,6 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
                   </div>
                 </div>
                 <div class="pt-2.5 border-t border-brandSlate/10 flex items-center justify-between">
-                  <span class="text-[10px] text-brandSlate">Indywidualny metraż</span>
                   <button onclick="triggerLeadChat('Ogrodzenia i parapety Patio')" class="text-[11px] font-bold bg-brandDark text-brandYellow px-3 py-1.5 rounded-md hover:bg-black transition">
                     Połącz się do zamówienia →
                   </button>
@@ -805,45 +809,35 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
               
               <!-- Color 1: Szary -->
               <div class="p-3 rounded-xl bg-brandBg border border-brandSlate/20 text-center flex flex-col items-center">
-                <div class="w-14 h-14 rounded-full bg-[#6C6D6F] border-2 border-white shadow-inner mb-2 relative">
-                  <span class="absolute inset-0 rounded-full bg-gradient-to-tr from-black/40 to-transparent"></span>
-                </div>
+                <img src="Szary%20Patio.jpg" alt="Szary Patio" class="w-14 h-14 rounded-full object-cover border-2 border-white shadow-inner mb-2">
                 <strong class="font-benzin text-xs font-bold text-brandDark block">Szary</strong>
                 <span class="text-[10px] text-brandSlate mt-0.5">Klasyczny kamień w stonowanym wydaniu</span>
               </div>
 
               <!-- Color 2: Rio -->
               <div class="p-3 rounded-xl bg-brandBg border border-brandSlate/20 text-center flex flex-col items-center">
-                <div class="w-14 h-14 rounded-full bg-[#98684A] border-2 border-white shadow-inner mb-2 relative">
-                  <span class="absolute inset-0 rounded-full bg-gradient-to-tr from-black/30 to-transparent"></span>
-                </div>
+                <img src="Rio%20Patio.jpg" alt="Rio Patio" class="w-14 h-14 rounded-full object-cover border-2 border-white shadow-inner mb-2">
                 <strong class="font-benzin text-xs font-bold text-brandDark block">Rio</strong>
                 <span class="text-[10px] text-brandSlate mt-0.5">Mieszanka kolorów wypalanych w ciepłym odcieniu</span>
               </div>
 
               <!-- Color 3: Srebrny -->
               <div class="p-3 rounded-xl bg-brandBg border border-brandSlate/20 text-center flex flex-col items-center">
-                <div class="w-14 h-14 rounded-full bg-[#B8BABE] border-2 border-white shadow-inner mb-2 relative">
-                  <span class="absolute inset-0 rounded-full bg-gradient-to-tr from-black/20 to-transparent"></span>
-                </div>
+                <img src="Srebrny%20Patio.jpg" alt="Srebrny Patio" class="w-14 h-14 rounded-full object-cover border-2 border-white shadow-inner mb-2">
                 <strong class="font-benzin text-xs font-bold text-brandDark block">Srebrny</strong>
                 <span class="text-[10px] text-brandSlate mt-0.5">Szlachetny ton z srebrnym akcentem</span>
               </div>
 
               <!-- Color 4: Terra -->
               <div class="p-3 rounded-xl bg-brandBg border border-brandSlate/20 text-center flex flex-col items-center">
-                <div class="w-14 h-14 rounded-full bg-[#8E533E] border-2 border-white shadow-inner mb-2 relative">
-                  <span class="absolute inset-0 rounded-full bg-gradient-to-tr from-black/25 to-transparent"></span>
-                </div>
-                <strong class="font-benzin text-xs font-bold text-brandDark block">Tera</strong>
-                <span class="text-[10px] text-brandSlate mt-0.5">Głęboki odcień terakoty ceramiki</span>
+                <img src="Terra%20Patio.jpg" alt="Terra Patio" class="w-14 h-14 rounded-full object-cover border-2 border-white shadow-inner mb-2">
+                <strong class="font-benzin text-xs font-bold text-brandDark block">Terra</strong>
+                <span class="text-[10px] text-brandSlate mt-0.5">Głęboki odcień terra cotta ceramiki</span>
               </div>
 
               <!-- Color 5: Blanco -->
               <div class="p-3 rounded-xl bg-brandBg border border-brandSlate/20 text-center flex flex-col items-center col-span-2 sm:col-span-1">
-                <div class="w-14 h-14 rounded-full bg-[#E5E2D9] border-2 border-white shadow-inner mb-2 relative">
-                  <span class="absolute inset-0 rounded-full bg-gradient-to-tr from-black/10 to-transparent"></span>
-                </div>
+                <img src="Blanco%20Patio.jpg" alt="Blanco Patio" class="w-14 h-14 rounded-full object-cover border-2 border-white shadow-inner mb-2">
                 <strong class="font-benzin text-xs font-bold text-brandDark block">Blanco</strong>
                 <span class="text-[10px] text-brandSlate mt-0.5">Jasny kremowy piaskowy</span>
               </div>
@@ -863,7 +857,7 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
             
             <div class="text-center max-w-3xl mx-auto mb-7">
               <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandDark text-brandYellow font-benzin text-[10px] uppercase tracking-wider mb-2">
-                <span>📸</span> Prawdziwe gospodarstwa i dziedzińce
+                <span></span> Prawdziwe gospodarstwa i dziedzińce
               </div>
               <h2 class="font-benzin text-xl sm:text-3xl font-extrabold text-brandDark">
                 ZDJĘCIA I FILMY Z UKOŃCZONYCH PROJEKTÓW
@@ -1135,7 +1129,7 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
             <div class="min-h-[242px] p-5 bg-white rounded-2xl border border-brandSlate/20 flex flex-col items-stretch gap-4 shadow-sm">
               <div class="flex items-center gap-3.5">
                 <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-purple-600 via-pink-600 to-amber-400 text-white text-2xl flex items-center justify-center shrink-0 shadow-md">
-                  📸
+                  
                 </div>
                 <div>
                   <strong class="font-benzin text-xs font-bold text-brandDark block">Więcej cotygodniowych zdjęć i filmów na Instagramie</strong>
@@ -1220,11 +1214,11 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
                 </div>
 
                 <!-- Navigation Map Buttons -->
-                <div class="flex flex-wrap gap-2.5">
-                  <button onclick="window.open('https://maps.google.com', '_blank')" class="flex-1 text-xs font-benzin font-bold bg-brandDark text-brandYellow py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 hover:bg-black transition">
-                    🗺️ Wyznacz trasę w Google Maps
+                <div class="flex flex-col items-start gap-2.5">
+                  <button onclick="window.open('https://maps.google.com', '_blank')" class="w-full text-base font-benzin font-bold bg-brandDark text-brandYellow py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 hover:bg-black transition">
+                     Wyznacz trasę w Google Maps
                   </button>
-                  <button onclick="triggerLeadChat('Poinformować o wizycie na wystawie')" class="text-xs font-bold bg-brandYellow text-brandDark py-2.5 px-4 rounded-lg border border-brandDark hover:brightness-95 transition">
+                  <button onclick="triggerLeadChat('Poinformować o wizycie na wystawie')" class="w-full text-base font-bold bg-brandYellow text-brandDark py-2.5 px-4 rounded-lg border border-brandDark hover:brightness-95 transition">
                     Poinformujcie Państwo o wizycie na czacie
                   </button>
                 </div>
@@ -1275,9 +1269,6 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
               <!-- Option 1: Self Pickup -->
               <div class="delivery-card bg-white p-4.5 rounded-xl border border-brandSlate/15 shadow-sm flex flex-col justify-between">
                 <div>
-                  <div class="w-9 h-9 rounded-lg bg-brandDark text-brandYellow flex items-center justify-center font-bold text-base mb-3">
-                    🏭
-                  </div>
                   <h4 class="font-benzin text-xs font-bold text-brandDark mb-1">Odbiór własny z placu</h4>
                   <span class="text-xs font-bold text-emerald-600 mb-2 block">0 PLN (Bezpłatnie)</span>
                   <p class="text-xs text-brandSlate leading-relaxed">
@@ -1292,9 +1283,6 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
               <!-- Option 2: Local Delivery -->
               <div class="delivery-card bg-white p-4.5 rounded-xl border border-brandSlate/15 shadow-sm flex flex-col justify-between">
                 <div>
-                  <div class="w-9 h-9 rounded-lg bg-brandYellow text-brandDark flex items-center justify-center font-bold text-base mb-3">
-                    🚛
-                  </div>
                   <h4 class="font-benzin text-xs font-bold text-brandDark mb-1">Dostawa w Warszawie i województwie</h4>
                   <span class="text-xs font-bold text-brandDark mb-2 block">Termin: 1–3 dni</span>
                   <p class="text-xs text-brandSlate leading-relaxed">
@@ -1309,9 +1297,6 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
               <!-- Option 3: Factory Order -->
               <div class="delivery-card bg-white p-4.5 rounded-xl border border-brandSlate/15 shadow-sm flex flex-col justify-between">
                 <div>
-                  <div class="w-9 h-9 rounded-lg bg-brandDark text-brandYellow flex items-center justify-center font-bold text-base mb-3">
-                    📦
-                  </div>
                   <h4 class="font-benzin text-xs font-bold text-brandDark mb-1">Dostawa na zamówienie z fabryki</h4>
                   <span class="text-xs font-bold text-brandDark mb-2 block">Transport bezpośredni</span>
                   <p class="text-xs text-brandSlate leading-relaxed">
@@ -1355,24 +1340,26 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
                 <button onclick="window.open('https://www.facebook.com/', '_blank')" class="footer-social-button bg-[#1877F2] text-white hover:brightness-110 transition">
                   <span>f</span> Facebook Bernstone
                 </button>
-                <button onclick="window.open('https://wa.me/380990070774', '_blank')" class="footer-social-button bg-[#25D366] text-white hover:brightness-110 transition">
-                  <span>📱</span> Napiszcie Państwo na WhatsApp
+                <button onclick="window.open('https://wa.me/380990070774', '_blank')" class="footer-social-button text-center bg-[#25D366] text-white hover:brightness-110 transition">
+                  Napiszcie Państwo na WhatsApp
                 </button>
-                <button onclick="window.open('https://instagram.com/bernstone_polska', '_blank')" class="footer-social-button bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:brightness-110 transition">
-                  <span>📸</span> Instagram (@bernstone_polska)
+                <button onclick="window.open('https://instagram.com/bernstone_polska', '_blank')" class="footer-social-button text-center bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:brightness-110 transition">
+                  Instagram (@bernstone_polska)
                 </button>
               </div>
             </div>
 
             <!-- Footer Bottom Row -->
             <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-white/50 gap-4">
-              <div class="flex items-center gap-2">
-                <div class="w-6 h-6 bg-brandYellow text-brandDark rounded font-benzin font-bold text-xs flex items-center justify-center">B</div>
-                <div class="flex flex-col">
-                  <strong class="font-benzin text-white leading-tight">BERNSTONE</strong>
-                  <span>© 2026 Bernstone. Wszelkie prawa zastrzeżone.</span>
-                  <a href="https://www.instagram.com/bog.fastovets?stkn=N3BvZGk4ZnJ2eTN3&utm_source=qr" target="_blank" rel="noreferrer" class="text-white/50 hover:text-white hover:underline leading-tight">Bohdan Fastovets</a>
+              <div class="flex flex-col items-start gap-1.5">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 bg-brandYellow rounded flex items-center justify-center overflow-hidden">
+                    <img src="bernstone%20logo%20black.png" alt="Bernstone" class="w-[90%] h-[90%] object-contain">
+                  </div>
+                  <img src="BERNSTONE%20White.png" alt="BERNSTONE" class="h-[24px] md:h-[28px] w-auto max-w-[180px] object-contain object-left">
                 </div>
+                <span>© 2026 Bernstone. Wszelkie prawa zastrzeżone.</span>
+                <a href="https://www.instagram.com/bog.fastovets?stkn=N3BvZGk4ZnJ2eTN3&utm_source=qr" target="_blank" rel="noreferrer" class="text-white/50 hover:text-white hover:underline leading-tight">Bohdan Fastovets</a>
               </div>
               <div class="flex items-center gap-4 text-[11px]">
                 <button onclick="triggerLeadChat('Pobierz katalog PDF')" class="hover:underline text-brandYellow">Pobierz katalog PDF Patio</button>
@@ -1385,17 +1372,6 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
 
           </div>
         </footer>
-
-        <!-- FLOATING TEXT-FIRST CHAT LAUNCHER WIDGET -->
-        <div class="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2.5">
-          <div class="bg-brandDark text-white text-[11px] font-semibold py-1.5 px-3 rounded-xl shadow-2xl border border-brandYellow/40 flex items-center gap-2 animate-bounce">
-            <span class="pulse-dot"></span>
-            <span>Konsultujemy online na czacie</span>
-          </div>
-          <button onclick="window.open('https://wa.me/380990070774', '_blank')" aria-label="Otwórz WhatsApp" class="w-14 h-14 rounded-2xl bg-brandYellow text-brandDark border-2 border-brandDark shadow-2xl flex items-center justify-center text-2xl hover:scale-105 active:scale-95 transition-all">
-            💬
-          </button>
-        </div>
 
       </div>
     </div>
@@ -1479,7 +1455,7 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
                 <span class="text-white/60 text-[10px] block mt-0.5">Konsultacja pisemna po polsku przez wbudowany tłumacz w czasie rzeczywistym.</span>
               </div>
               <div class="p-3 bg-white/5 rounded-lg border border-white/10">
-                <strong class="text-white block font-benzin text-[11px]">📱 WhatsApp & Instagram Direct</strong>
+                <strong class="text-white block font-benzin text-[11px]"> WhatsApp & Instagram Direct</strong>
                 <span class="text-white/60 text-[10px] block mt-0.5">Wysyłka szczegółowych schematów, rysunków i zdjęć z zrealizowanych obiektów.</span>
               </div>
               <div class="p-3 bg-white/5 rounded-lg border border-white/10">
@@ -1582,41 +1558,6 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
 
   </main>
 
-  <!-- Interactive Modal for Lead & Chat Simulation -->
-  <div id="leadModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-brandSlate/20 text-brandDark relative">
-      <button onclick="closeModal()" class="absolute top-4 right-4 text-brandSlate hover:text-black font-bold text-lg">✕</button>
-      
-      <div class="flex items-center gap-2.5 mb-3">
-        <div class="w-8 h-8 rounded-lg bg-brandDark text-brandYellow font-benzin font-bold flex items-center justify-center text-sm">B</div>
-        <div>
-          <strong class="font-benzin text-xs block text-brandDark">BERNSTONE KONSULTACJA ONLINE</strong>
-          <span class="text-[10px] text-emerald-600 font-bold flex items-center gap-1"><span class="pulse-dot"></span> Konsultant jest dostępny online</span>
-        </div>
-      </div>
-
-      <h3 id="modalTitle" class="font-benzin text-base font-bold text-brandDark mb-2">Skontaktuj się w sprawie zamówienia</h3>
-      <p class="text-xs text-brandSlate mb-4 leading-relaxed">
-        Zostaw swoje dane lub przejdź do wybranego komunikatora, aby szybko uzyskać konsultację. Odpowiadamy pisemnie w ciągu 15 minut.
-      </p>
-
-      <div class="space-y-3">
-        <input type="text" placeholder="Twoje imię" class="w-full text-xs p-2.5 rounded-lg bg-brandBg border border-brandSlate/20 focus:outline-none focus:border-brandDark">
-        <input type="text" placeholder="Telefon lub e-mail (do wyceny)" class="w-full text-xs p-2.5 rounded-lg bg-brandBg border border-brandSlate/20 focus:outline-none focus:border-brandDark">
-        <button onclick="submitMockLead()" class="w-full text-xs font-benzin font-bold bg-brandYellow text-brandDark py-2.5 rounded-lg border border-brandDark hover:brightness-95 transition">
-          Wyślij zapytanie do konsultanta →
-        </button>
-      </div>
-
-      <div class="mt-4 pt-3 border-t border-brandSlate/10 flex items-center justify-between text-[11px] text-brandSlate">
-        <span>Wolisz napisać bezpośrednio?</span>
-        <button onclick="window.open('https://wa.me/380990070774', '_blank')" class="font-bold text-emerald-600 hover:underline">
-          Otwórz WhatsApp 📱
-        </button>
-      </div>
-    </div>
-  </div>
-
   <!-- Interactive Video Demonstration Modal -->
   <div id="videoModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="bg-brandDark rounded-2xl max-w-xl w-full p-6 shadow-2xl border border-white/10 text-white relative">
@@ -1718,13 +1659,7 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
             tag: "Ogólny widok",
             badge: "Hit",
             render: (isLarge) => `
-              <div class="w-full h-full bg-gradient-to-b from-[#2B2D2C] to-[#1C1E1D] flex flex-col items-center justify-center p-4 relative text-center">
-                <div class="w-24 h-24 ${isLarge ? 'sm:w-44 sm:h-44' : ''} rounded-full border-4 border-[#8E533E] bg-[#3B3836] shadow-2xl flex items-center justify-center relative mb-2">
-                  <div class="w-16 h-16 ${isLarge ? 'sm:w-28 sm:h-28' : ''} rounded-full border-2 border-dashed border-amber-400/50 bg-[#1F1E1D] flex items-center justify-center">
-                    <span class="${isLarge ? 'text-5xl' : 'text-3xl'} animate-pulse">🔥</span>
-                  </div>
-                  <span class="absolute -bottom-2 bg-brandYellow text-brandDark text-[9px] font-bold px-2 py-0.5 rounded font-mono">Ø 120 cm</span>
-                </div>
+              <div class="w-full h-full bg-[#232524] flex flex-col items-center justify-center p-4 relative text-center">
                 <strong class="font-benzin ${isLarge ? 'text-base' : 'text-xs'} text-white">Okrągłe palenisko ROCCA</strong>
                 <span class="text-[10px] text-brandYellow mt-0.5 font-medium">Bloki promieniowe + misa + ruszt</span>
               </div>
@@ -2111,6 +2046,13 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
       const displayEl = document.getElementById(`${productId}-photo-display`);
       if (displayEl) {
         displayEl.innerHTML = photo.render(false);
+        const textWalker = document.createTreeWalker(displayEl, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        let textNode;
+        while ((textNode = textWalker.nextNode())) {
+          textNodes.push(textNode);
+        }
+        textNodes.forEach(node => node.remove());
       }
 
       // Update counter and caption text
@@ -2378,18 +2320,9 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
       });
     }
 
-    // Modal helpers
+    // Direct consultation action
     function triggerLeadChat(productName) {
-      const modal = document.getElementById('leadModal');
-      document.getElementById('modalTitle').textContent = `Zapytanie: ${productName}`;
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function closeModal() {
-      const modal = document.getElementById('leadModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
+      window.open('https://wa.me/380990070774', '_blank');
     }
 
     function openVideoModal(title, badge, link) {
@@ -2404,11 +2337,6 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
       const modal = document.getElementById('videoModal');
       modal.classList.add('hidden');
       modal.classList.remove('flex');
-    }
-
-    function submitMockLead() {
-      alert('Dziękujemy! Twoje zgłoszenie zostało zapisane. Konsultant skontaktuje się z Tobą na czacie lub w komunikatorze w ciągu 15 minut.');
-      closeModal();
     }
 
     function copySpecsSummary() {
