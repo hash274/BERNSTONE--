@@ -196,9 +196,52 @@
       border-radius: 16px;
     }
     .hero-layout .hero-photo {
+      position: relative;
       min-height: 620px;
+      overflow: hidden;
       border-radius: 16px;
-      background: #303332 url('https://images.unsplash.com/photo-1598902108854-10e335adac99?auto=format&fit=crop&w=1400&q=85') center / cover;
+      background: #303332;
+    }
+    .hero-slide-image {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 490ms ease;
+    }
+    .hero-slide-image.is-active {
+      opacity: 1;
+    }
+    .hero-slide-dots {
+      position: absolute;
+      z-index: 1;
+      bottom: 16px;
+      left: 50%;
+      display: flex;
+      gap: 8px;
+      padding: 8px 10px;
+      transform: translateX(-50%);
+      border-radius: 20px;
+      background: rgba(24, 26, 25, 0.72);
+    }
+    .hero-slide-dot {
+      width: 10px;
+      height: 10px;
+      padding: 0;
+      border: 1px solid white;
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+    }
+    .hero-slide-dot[aria-current="true"] {
+      border-color: #F1EF9E;
+      background: #F1EF9E;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-slide-image { transition: none; }
     }
     .hero-layout .hero-copy {
       position: static;
@@ -467,7 +510,17 @@
         <section class="p-6 sm:p-10 lg:p-12 bg-gradient-to-b from-white to-brandBg border-b border-brandSlate/15">
           <div class="max-w-5xl mx-auto mb-8">
             <div class="hero-layout">
-              <div class="hero-photo" role="img" aria-label="Kamienne patio z paleniskiem"></div>
+              <div class="hero-photo" role="region" aria-roledescription="carousel" aria-label="Galeria Bernstone">
+                <img id="heroSlideImage" class="hero-slide-image is-active" src="барбекю-4.jpg" alt="Zestaw barbecue Bernstone">
+                <img id="heroSlideImageNext" class="hero-slide-image" src="комплекс-2.jpg" alt="" aria-hidden="true">
+                <div class="hero-slide-dots" aria-label="Wybierz zdjęcie">
+                  <button type="button" class="hero-slide-dot" aria-label="Zdjęcie 1" aria-current="true" onclick="showHeroSlide(0)"></button>
+                  <button type="button" class="hero-slide-dot" aria-label="Zdjęcie 2" aria-current="false" onclick="showHeroSlide(1)"></button>
+                  <button type="button" class="hero-slide-dot" aria-label="Zdjęcie 3" aria-current="false" onclick="showHeroSlide(2)"></button>
+                  <button type="button" class="hero-slide-dot" aria-label="Zdjęcie 4" aria-current="false" onclick="showHeroSlide(3)"></button>
+                  <button type="button" class="hero-slide-dot" aria-label="Zdjęcie 5" aria-current="false" onclick="showHeroSlide(4)"></button>
+                </div>
+              </div>
               <div class="hero-copy">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandDark text-brandYellow font-benzin text-[10px] uppercase tracking-wider mb-4">
               <span></span> KOLEKCJA PATIO • BERNSTONE • PRODUKCJA UKRAIŃSKA
@@ -1917,6 +1970,50 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
     let activeLightboxIndex = 0;
     let isLightboxZoomed = false;
 
+    const heroSlidePhotos = [
+      { src: 'барбекю-4.jpg', alt: 'Zestaw barbecue Bernstone' },
+      { src: 'комплекс-2.jpg', alt: 'Kompleks Bernstone w ogrodzie' },
+      { src: 'комплекс-4.jpg', alt: 'Kompleks Bernstone z innej strony' },
+      { src: 'вогнище-4.jpg', alt: 'Palenisko Bernstone w ogrodzie' },
+      { src: 'мангал-3.jpg', alt: 'Grill Bernstone w ogrodzie' }
+    ];
+    let activeHeroSlide = 0;
+    let heroSlideTimer;
+
+    function showHeroSlide(index) {
+      activeHeroSlide = (index + heroSlidePhotos.length) % heroSlidePhotos.length;
+      const images = [...document.querySelectorAll('.hero-slide-image')];
+      const outgoing = images.find(image => image.classList.contains('is-active'));
+      const incoming = images.find(image => image !== outgoing);
+      if (!outgoing || !incoming) return;
+
+      incoming.alt = heroSlidePhotos[activeHeroSlide].alt;
+      incoming.onload = () => {
+        incoming.classList.add('is-active');
+        outgoing.classList.remove('is-active');
+        incoming.onload = null;
+      };
+      incoming.src = heroSlidePhotos[activeHeroSlide].src;
+      if (incoming.complete && incoming.naturalWidth) incoming.onload();
+
+      document.querySelectorAll('.hero-slide-dot').forEach((dot, dotIndex) => {
+        dot.setAttribute('aria-current', String(dotIndex === activeHeroSlide));
+      });
+    }
+
+    function changeHeroSlide(delta) {
+      showHeroSlide(activeHeroSlide + delta);
+    }
+
+    function startHeroAutoplay() {
+      window.clearInterval(heroSlideTimer);
+      heroSlideTimer = window.setInterval(() => changeHeroSlide(1), 2500);
+    }
+
+    function pauseHeroAutoplay() {
+      window.clearInterval(heroSlideTimer);
+    }
+
     // Set card photo by direct index
     function setCardPhoto(productId, index) {
       currentPhoto[productId] = index;
@@ -2109,6 +2206,16 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
 
     // Initialize all 5 product cards with photo 0 on load
     window.addEventListener('DOMContentLoaded', () => {
+      const heroCarousel = document.querySelector('.hero-photo');
+      if (heroCarousel) {
+        heroCarousel.addEventListener('mouseenter', pauseHeroAutoplay);
+        heroCarousel.addEventListener('mouseleave', startHeroAutoplay);
+        heroCarousel.addEventListener('focusin', pauseHeroAutoplay);
+        heroCarousel.addEventListener('focusout', event => {
+          if (!heroCarousel.contains(event.relatedTarget)) startHeroAutoplay();
+        });
+        startHeroAutoplay();
+      }
       ['rocca', 'pasion', 'familiya', 'circle', 'fence'].forEach(id => {
         setCardPhoto(id, 0);
       });
