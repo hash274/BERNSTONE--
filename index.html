@@ -174,8 +174,18 @@
     #landingFrame > nav + section {
       margin-top: 74px;
     }
+    #lightboxModal,
+    #videoModal {
+      z-index: 1500;
+      height: 100vh;
+      height: 100dvh;
+    }
     #lightboxModal {
-      padding-top: 90px !important;
+      padding-top: max(12px, env(safe-area-inset-top)) !important;
+      padding-bottom: max(12px, env(safe-area-inset-bottom)) !important;
+    }
+    #lightboxStage img {
+      object-fit: contain !important;
     }
     #landingFrame .text-\[9px\],
     #landingFrame .text-\[10px\],
@@ -298,30 +308,7 @@
       display: none;
     }
 
-    @media (max-width: 639px) {
-      body {
-        overflow-x: hidden;
-      }
-      #landingFrame > nav {
-        min-height: 68px;
-        padding: 10px 14px !important;
-        gap: 10px;
-      }
-      #landingFrame > nav .brand-mark {
-        width: 31px;
-        height: 31px;
-      }
-      #landingFrame > nav .text-base {
-        font-size: 16px !important;
-      }
-      #landingFrame > nav .button,
-      #landingFrame > nav > div:last-child button {
-        padding: 9px 12px !important;
-        font-size: 16px !important;
-      }
-      #landingFrame > nav > div:last-of-type {
-        display: none;
-      }
+    @media (max-width: 1399.98px) {
       #landingFrame > nav > div:nth-child(2) {
         display: none !important;
       }
@@ -371,6 +358,32 @@
       .mobile-menu a:last-child {
         border-bottom: 0;
       }
+    }
+
+    @media (max-width: 639px) {
+      body {
+        overflow-x: hidden;
+      }
+      #landingFrame > nav {
+        min-height: 68px;
+        padding: 10px 14px !important;
+        gap: 10px;
+      }
+      #landingFrame > nav .brand-mark {
+        width: 31px;
+        height: 31px;
+      }
+      #landingFrame > nav .text-base {
+        font-size: 16px !important;
+      }
+      #landingFrame > nav .button,
+      #landingFrame > nav > div:last-child button {
+        padding: 9px 12px !important;
+        font-size: 16px !important;
+      }
+      #landingFrame > nav > div:last-of-type {
+        display: none;
+      }
       #landingFrame > nav + section {
         margin-top: 68px;
       }
@@ -419,7 +432,8 @@
         min-height: 300px;
       }
       #lightboxModal {
-        padding: 78px 10px 10px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
       }
       #lightboxModal > div:first-child {
         gap: 8px;
@@ -428,8 +442,6 @@
         white-space: normal;
       }
       #videoModal > div {
-        max-width: calc(100vw - 24px);
-        max-height: calc(100vh - 24px);
         overflow-y: auto;
       }
       .footer-social-button {
@@ -511,8 +523,8 @@
           <div class="max-w-5xl mx-auto mb-8">
             <div class="hero-layout">
               <div class="hero-photo" role="region" aria-roledescription="carousel" aria-label="Galeria Bernstone">
-                <img id="heroSlideImage" class="hero-slide-image is-active" src="барбекю-4.jpg" alt="Zestaw barbecue Bernstone">
-                <img id="heroSlideImageNext" class="hero-slide-image" src="комплекс-2.jpg" alt="" aria-hidden="true">
+                <img id="heroSlideImage" class="hero-slide-image is-active" src="слайдер-1.jpg" alt="Bernstone w ogrodzie">
+                <img id="heroSlideImageNext" class="hero-slide-image" src="слайдер-2.jpg" alt="" aria-hidden="true">
                 <div class="hero-slide-dots" aria-label="Wybierz zdjęcie">
                   <button type="button" class="hero-slide-dot" aria-label="Zdjęcie 1" aria-current="true" onclick="showHeroSlide(0)"></button>
                   <button type="button" class="hero-slide-dot" aria-label="Zdjęcie 2" aria-current="false" onclick="showHeroSlide(1)"></button>
@@ -826,11 +838,11 @@
                       </div>
                     </div>
                     <div class="grid grid-cols-5 gap-1 p-1.5 bg-[#171918] border-t border-white/10">
-                      <button type="button" onclick="setCardPhoto('fence', 0)" id="thumb-fence-0" class="aspect-square rounded border-2 border-brandYellow text-[9px] font-bold text-white flex items-center justify-center transition">1</button>
-                      <button type="button" onclick="setCardPhoto('fence', 1)" id="thumb-fence-1" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">2</button>
-                      <button type="button" onclick="setCardPhoto('fence', 2)" id="thumb-fence-2" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">3</button>
-                      <button type="button" onclick="setCardPhoto('fence', 3)" id="thumb-fence-3" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">4</button>
-                      <button type="button" onclick="setCardPhoto('fence', 4)" id="thumb-fence-4" class="aspect-square rounded border border-white/20 text-[9px] font-bold text-white/70 hover:text-white flex items-center justify-center transition">5</button>
+                      <button type="button" onclick="setCardPhoto('fence', 0)" id="thumb-fence-0" aria-label="Zdjęcie 1" class="aspect-square rounded border-2 border-brandYellow overflow-hidden transition"><img src="паркан-1.jpg" alt="" class="w-full h-full object-cover"></button>
+                      <button type="button" onclick="setCardPhoto('fence', 1)" id="thumb-fence-1" aria-label="Zdjęcie 2" class="aspect-square rounded border border-white/20 overflow-hidden transition"><img src="паркан-2.jpg" alt="" class="w-full h-full object-cover"></button>
+                      <button type="button" onclick="setCardPhoto('fence', 2)" id="thumb-fence-2" aria-label="Zdjęcie 3" class="aspect-square rounded border border-white/20 overflow-hidden transition"><img src="паркан-3.jpg" alt="" class="w-full h-full object-cover"></button>
+                      <button type="button" onclick="setCardPhoto('fence', 3)" id="thumb-fence-3" aria-label="Zdjęcie 4" class="aspect-square rounded border border-white/20 overflow-hidden transition"><img src="паркан-4.jpg" alt="" class="w-full h-full object-cover"></button>
+                      <button type="button" onclick="setCardPhoto('fence', 4)" id="thumb-fence-4" aria-label="Zdjęcie 5" class="aspect-square rounded border border-white/20 overflow-hidden transition"><img src="паркан-5.jpg" alt="" class="w-full h-full object-cover"></button>
                     </div>
                   </div>
 
@@ -1449,7 +1461,7 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
                   <img src="BERNSTONE%20White.png" alt="BERNSTONE" class="h-[24px] md:h-[28px] w-auto max-w-[180px] object-contain object-left">
                 </div>
                 <span>© 2026 Bernstone. Wszelkie prawa zastrzeżone.</span>
-                <a href="https://www.instagram.com/bog.fastovets?stkn=N3BvZGk4ZnJ2eTN3&utm_source=qr" target="_blank" rel="noreferrer" class="text-white/50 hover:text-white hover:underline leading-tight">Bohdan Fastovets</a>
+                <a href="https://www.asdfasdfd.xyz/" target="_blank" rel="noreferrer" class="text-white/50 hover:text-white hover:underline leading-tight">Bohdan Fastovets</a>
               </div>
               <div class="flex items-center gap-4 text-[11px]">
                 <button onclick="triggerLeadChat('Pobierz katalog PDF')" class="hover:underline text-brandYellow">Pobierz katalog PDF Patio</button>
@@ -1649,19 +1661,19 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
   </main>
 
   <!-- Interactive Video Demonstration Modal -->
-  <div id="videoModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="bg-brandDark rounded-2xl max-w-xl w-full p-6 shadow-2xl border border-white/10 text-white relative">
-      <button onclick="closeVideoModal()" class="absolute top-4 right-4 text-white/60 hover:text-white font-bold text-xl">✕</button>
+  <div id="videoModal" class="fixed inset-0 z-50 bg-black hidden items-stretch justify-center">
+    <div class="bg-brandDark w-full h-full flex flex-col p-3 sm:p-6 text-white relative">
+      <button onclick="closeVideoModal()" class="absolute top-3 right-3 sm:top-5 sm:right-5 z-10 w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 text-white/80 hover:text-white font-bold text-xl">✕</button>
       
-      <div class="flex items-center gap-2 mb-3">
+      <div class="flex items-center gap-2 mb-3 pr-12">
         <span id="videoBadge" class="bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded font-benzin">WIDEO</span>
         <span class="text-xs text-brandYellow font-mono">Bernstone Polska Portfolio</span>
       </div>
 
-      <h3 id="videoModalTitle" class="font-benzin text-base font-bold text-white mb-3">Przegląd realizacji</h3>
+      <h3 id="videoModalTitle" class="font-benzin text-base font-bold text-white mb-3 pr-12">Przegląd realizacji</h3>
 
       <!-- Video Player Frame Simulation -->
-      <div class="aspect-video bg-black rounded-xl border border-white/20 flex flex-col items-center justify-center relative overflow-hidden mb-4">
+      <div class="flex-1 min-h-0 bg-black rounded-xl border border-white/20 flex flex-col items-center justify-center relative overflow-hidden mb-4">
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20"></div>
         <div class="relative z-10 w-16 h-16 rounded-full bg-brandYellow text-brandDark flex items-center justify-center text-2xl font-bold shadow-2xl animate-pulse cursor-pointer">
           ▶
@@ -1701,13 +1713,13 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
     </div>
 
     <!-- Lightbox Central Stage Viewport with Large Nav Buttons -->
-    <div class="relative flex-1 flex items-center justify-center overflow-hidden my-3">
+    <div class="relative flex-1 min-h-0 flex items-center justify-center overflow-hidden my-3">
       <button onclick="lightboxPrev()" class="absolute left-2 sm:left-4 z-30 w-11 h-11 rounded-full bg-black/75 hover:bg-brandYellow hover:text-brandDark border border-white/20 text-white flex items-center justify-center text-2xl font-bold transition shadow-2xl">
         ‹
       </button>
 
       <!-- Scrollable / Zoomable Image Canvas Container -->
-      <div id="lightboxViewport" class="w-full h-full max-w-4xl max-h-[65vh] flex items-center justify-center overflow-hidden transition-transform duration-300">
+      <div id="lightboxViewport" class="w-full h-full flex items-center justify-center overflow-hidden transition-transform duration-300">
         <div id="lightboxStage" class="w-full h-full flex items-center justify-center">
           <!-- Rendered Active High-Res Photo -->
         </div>
@@ -1890,67 +1902,35 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
             desc: "Grubość 20 cm. Dwustronna faktura łupanego kamienia z wykończeniowymi płytami ochronnymi.",
             tag: "Ogrodzenie",
             badge: "Ogrodzenie",
-            render: (isLarge) => `
-              <div class="w-full h-full bg-[#33312E] flex flex-col items-center justify-center p-4 text-center">
-                <span class="${isLarge ? 'text-5xl' : 'text-3xl'} mb-1">🧱🛡️</span>
-                <strong class="font-benzin ${isLarge ? 'text-base' : 'text-xs'} text-white">Ogrodzenie Patio</strong>
-                <span class="text-[10px] text-brandYellow mt-1">Grubość 20 cm • Dwustronna faktura łupana</span>
-              </div>
-            `
+            render: () => `<img src="паркан-1.jpg" alt="Ogrodzenie Patio" class="w-full h-full object-cover">`
           },
           {
             title: "Zdjęcie 2: Dekoracyjne wstawki i sekcje",
             desc: "Możliwość łączenia łupanego kamienia z metalowymi żaluzjami, sztachetami lub firmowymi wstawkami.",
             tag: "Z dekoracją",
             badge: "Dekoracja",
-            render: (isLarge) => `
-              <div class="w-full h-full bg-[#2B2925] flex flex-col items-center justify-center p-4 text-center">
-                <span class="${isLarge ? 'text-4xl' : 'text-2xl'} mb-1">🎨🧱</span>
-                <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white">Sekcje z dekoracją</strong>
-                <span class="text-[10px] text-brandYellow mt-1">Indywidualne rozwiązania dla ogrodzeń</span>
-              </div>
-            `
+            render: () => `<img src="паркан-2.jpg" alt="Ogrodzenie Patio z dekoracją" class="w-full h-full object-cover">`
           },
           {
             title: "Zdjęcie 3: Ochronne parapety i obramowania tarasów",
             desc: "Estetyczne, niskie kamienne parapety do wydzielania stref i wykończenia krawędzi tarasów.",
             tag: "Parapety",
             badge: "Parapet",
-            render: (isLarge) => `
-              <div class="w-full h-full bg-[#3B3A36] flex flex-col items-center justify-center p-4 text-center">
-                <span class="${isLarge ? 'text-4xl' : 'text-2xl'} mb-1">🌿🧱</span>
-                <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white">Ogrodowe parapety</strong>
-                <span class="text-[10px] text-brandYellow mt-1">Wydzielanie rabat i różnic poziomów</span>
-              </div>
-            `
+            render: () => `<img src="паркан-3.jpg" alt="Kamienne parapety Patio" class="w-full h-full object-cover">`
           },
           {
             title: "Zdjęcie 4: Bloki proste, narożne i promieniowe",
             desc: "Elementy o precyzyjnej geometrii do budowy prostych linii oraz łagodnych łuków ogrodzenia.",
             tag: "Typy bloków",
             badge: "Bloki",
-            render: (isLarge) => `
-              <div class="w-full h-full bg-[#1D252E] flex flex-col items-center justify-center p-4 text-center font-mono">
-                <div class="border border-white/20 p-3 rounded-lg bg-black/40 text-[10px] text-cyan-300">
-                  <div class="font-benzin font-bold text-white mb-1">MODUŁOWE BLOKI PATIO</div>
-                  <div>• Proste • Narożne • Promieniowe</div>
-                  <div>Montaż na klej bez fugowania</div>
-                </div>
-              </div>
-            `
+            render: () => `<img src="паркан-4.jpg" alt="Ogrodzenie z bloków Patio" class="w-full h-full object-cover">`
           },
           {
             title: "Zdjęcie 5: Ogrodzenie Blanco w aranżacji zewnętrznej",
             desc: "Gotowy perymetr domu pod miastem z jasną fakturą Blanco i płytami nakrywającymi.",
             tag: "Na realizacji",
             badge: "Blanco",
-            render: (isLarge) => `
-              <div class="w-full h-full bg-[#312F2C] flex flex-col items-center justify-center p-4 text-center">
-                <span class="${isLarge ? 'text-4xl' : 'text-2xl'} mb-1">🏡🤍</span>
-                <strong class="font-benzin ${isLarge ? 'text-sm' : 'text-xs'} text-white">Kolor Blanco na posesji</strong>
-                <span class="text-[10px] text-emerald-400 mt-1">Harmonia z jasną elewacją i kostką brukową</span>
-              </div>
-            `
+            render: () => `<img src="паркан-5.jpg" alt="Ogrodzenie Patio na realizacji" class="w-full h-full object-cover">`
           }
         ]
       }
@@ -1971,11 +1951,11 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
     let isLightboxZoomed = false;
 
     const heroSlidePhotos = [
-      { src: 'барбекю-4.jpg', alt: 'Zestaw barbecue Bernstone' },
-      { src: 'комплекс-2.jpg', alt: 'Kompleks Bernstone w ogrodzie' },
-      { src: 'комплекс-4.jpg', alt: 'Kompleks Bernstone z innej strony' },
-      { src: 'вогнище-4.jpg', alt: 'Palenisko Bernstone w ogrodzie' },
-      { src: 'мангал-3.jpg', alt: 'Grill Bernstone w ogrodzie' }
+      { src: 'слайдер-1.jpg', alt: 'Bernstone w ogrodzie' },
+      { src: 'слайдер-2.jpg', alt: 'Bernstone w ogrodzie, widok 2' },
+      { src: 'слайдер-3.jpg', alt: 'Bernstone w ogrodzie, widok 3' },
+      { src: 'слайдер-4.jpg', alt: 'Bernstone w ogrodzie, widok 4' },
+      { src: 'слайдер-5.jpg', alt: 'Bernstone w ogrodzie, widok 5' }
     ];
     let activeHeroSlide = 0;
     let heroSlideTimer;
