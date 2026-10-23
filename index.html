@@ -980,13 +980,13 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
                 ▶ Recenzja wideo (2)
               </button>
               <button onclick="filterGallery('bbq')" class="gallery-filter-btn px-3.5 py-1.5 rounded-lg border border-brandSlate/30 text-xs font-bold bg-white text-brandDark transition hover:border-brandDark">
-                🥩 Grille
+                Grille
               </button>
               <button onclick="filterGallery('firepit')" class="gallery-filter-btn px-3.5 py-1.5 rounded-lg border border-brandSlate/30 text-xs font-bold bg-white text-brandDark transition hover:border-brandDark">
-                🔥 Kominki i strefa wypoczynkowa
+                Kominki i strefa wypoczynkowa
               </button>
               <button onclick="filterGallery('fence')" class="gallery-filter-btn px-3.5 py-1.5 rounded-lg border border-brandSlate/30 text-xs font-bold bg-white text-brandDark transition hover:border-brandDark">
-                🧱 Ogrodzenia Patio
+                Ogrodzenia Patio
               </button>
             </div>
 
@@ -996,7 +996,7 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
               <!-- Project 1: Video BBQ Complex Pasion in Modern Gazebo -->
               <div class="gallery-item video bbq bg-white rounded-xl border border-brandSlate/20 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition group">
                 <div>
-                  <div class="relative aspect-video bg-neutral-800 flex items-center justify-center overflow-hidden cursor-pointer" onclick="openVideoModal('Duża altana z kompleksem grillowym Pasion', 'Przegląd YouTube 4K', 'https://www.youtube.com')">
+                  <div class="relative aspect-video bg-neutral-800 flex items-center justify-center overflow-hidden cursor-pointer" onclick="openVideoModal('Duża altana z kompleksem grillowym Pasion', 'Przegląd YouTube 4K', 'https://youtu.be/AT16a5RNjvQ')">
                     <!-- Stylized video thumbnail background -->
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10"></div>
                     <div class="absolute top-2.5 left-2.5 bg-red-600 text-white font-benzin font-bold text-[9px] px-2 py-0.5 rounded shadow">
@@ -1040,7 +1040,6 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
                   <div class="relative aspect-video bg-[#3D3A37] flex items-center justify-center overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                     <div class="text-center relative z-10 p-4">
-                      <span class="text-3xl block mb-1">🔥</span>
                       <span class="font-benzin text-xs text-white font-bold block">Palenisko ROCCA • Wieczorny ogród</span>
                       <span class="text-[10px] text-brandYellow block mt-0.5">Otwarty ogień i ruszt grillowy</span>
                     </div>
@@ -1078,7 +1077,6 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
                   <div class="relative aspect-video bg-[#4E504F] flex items-center justify-center overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                     <div class="text-center relative z-10 p-4">
-                      <span class="text-3xl block mb-1">🛋️</span>
                       <span class="font-benzin text-xs text-white font-bold block">Zestaw lounge Circle</span>
                       <span class="text-[10px] text-brandYellow block mt-0.5">Średnica 5,7 m dla ponad 10 gości</span>
                     </div>
@@ -1155,7 +1153,6 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
                   <div class="relative aspect-video bg-[#575654] flex items-center justify-center overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                     <div class="text-center relative z-10 p-4">
-                      <span class="text-3xl block mb-1">🧱</span>
                       <span class="font-benzin text-xs text-white font-bold block">Ogrodzenie Patio z dekoracją</span>
                       <span class="text-[10px] text-brandYellow block mt-0.5">Grubość 20 cm • Łupany kamień</span>
                     </div>
@@ -1193,7 +1190,6 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
                   <div class="relative aspect-video bg-[#383A39] flex items-center justify-center overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                     <div class="text-center relative z-10 p-4">
-                      <span class="text-3xl block mb-1">🏡</span>
                       <span class="font-benzin text-xs text-white font-bold block">Kompleksowa rezydencja Patio</span>
                       <span class="text-[10px] text-brandYellow block mt-0.5">Spójna paleta całej działki</span>
                     </div>
@@ -1681,7 +1677,7 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
       <h3 id="videoModalTitle" class="font-benzin text-base font-bold text-white mb-3 pr-12">Przegląd realizacji</h3>
 
       <!-- Video Player Frame Simulation -->
-      <div class="flex-1 min-h-0 bg-black rounded-xl border border-white/20 flex flex-col items-center justify-center relative overflow-hidden mb-4">
+      <div id="videoFrame" class="flex-1 min-h-0 bg-black rounded-xl border border-white/20 flex flex-col items-center justify-center relative overflow-hidden mb-4">
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20"></div>
         <div class="relative z-10 w-16 h-16 rounded-full bg-brandYellow text-brandDark flex items-center justify-center text-2xl font-bold shadow-2xl animate-pulse cursor-pointer">
           ▶
@@ -1690,7 +1686,10 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
       </div>
 
       <div class="flex items-center justify-between gap-3 pt-2 border-t border-white/10">
-        <p class="text-[11px] text-white/70">Chcesz poznać cenę takiej strefy dla własnego ogrodu?</p>
+        <div class="flex flex-col gap-1">
+          <p class="text-[11px] text-white/70">Chcesz poznać cenę takiej strefy dla własnego ogrodu?</p>
+          <a id="videoFallbackLink" href="#" target="_blank" rel="noopener" class="hidden text-[11px] text-brandYellow underline hover:no-underline">Wideo się nie wyświetla? Otwórz na YouTube</a>
+        </div>
         <button onclick="closeVideoModal(); triggerLeadChat('Konsultacja po obejrzeniu wideo')" class="text-xs font-benzin font-bold bg-brandYellow text-brandDark px-4 py-2 rounded-lg hover:brightness-95 transition whitespace-nowrap">
           Zapytaj na czacie 💬
         </button>
@@ -2326,19 +2325,59 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
       window.open('https://wa.me/380990070774', '_blank');
     }
 
+    let videoPlaceholderHtml = null;
+
+    function getYouTubeId(link) {
+      const match = (link || '').match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);
+      return match ? match[1] : null;
+    }
+
     function openVideoModal(title, badge, link) {
       const modal = document.getElementById('videoModal');
+      const frame = document.getElementById('videoFrame');
       document.getElementById('videoModalTitle').textContent = title;
       document.getElementById('videoBadge').textContent = badge;
+
+      if (videoPlaceholderHtml === null) videoPlaceholderHtml = frame.innerHTML;
+      const videoId = getYouTubeId(link);
+      const fallbackLink = document.getElementById('videoFallbackLink');
+      if (fallbackLink) {
+        fallbackLink.href = videoId ? `https://www.youtube.com/watch?v=${videoId}` : (link || '#');
+        fallbackLink.classList.toggle('hidden', !link);
+      }
+
+      // YouTube refuses to play embeds on pages opened as a local file (file://), Error 153.
+      // In that case open the video on YouTube directly.
+      if (videoId && location.protocol === 'file:') {
+        window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank', 'noopener');
+        return;
+      }
+
+      if (videoId) {
+        frame.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&playsinline=1" title="${title}" class="absolute inset-0 w-full h-full" style="border:0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen></iframe>`;
+      } else {
+        frame.innerHTML = videoPlaceholderHtml;
+      }
+
       modal.classList.remove('hidden');
       modal.classList.add('flex');
     }
 
     function closeVideoModal() {
       const modal = document.getElementById('videoModal');
+      const frame = document.getElementById('videoFrame');
+      // Remove the iframe so the video stops playing after closing
+      if (videoPlaceholderHtml !== null) frame.innerHTML = videoPlaceholderHtml;
       modal.classList.add('hidden');
       modal.classList.remove('flex');
     }
+
+    window.addEventListener('keydown', (event) => {
+      const videoModal = document.getElementById('videoModal');
+      if (event.key === 'Escape' && videoModal && !videoModal.classList.contains('hidden')) {
+        closeVideoModal();
+      }
+    });
 
     function copySpecsSummary() {
       const summaryText = `BERNSTONE.PL - TZ LANDING PAGE:
