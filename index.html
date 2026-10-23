@@ -998,16 +998,13 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
                 <div>
                   <div class="relative aspect-video bg-neutral-800 flex items-center justify-center overflow-hidden cursor-pointer" onclick="openVideoModal('Duża altana z kompleksem grillowym Pasion', 'Przegląd YouTube 4K', 'https://youtu.be/AT16a5RNjvQ')">
                     <!-- Stylized video thumbnail background -->
+                    <img src="відео-1.jpg" alt="Altana z grillem Pasion – wideo" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10"></div>
                     <div class="absolute top-2.5 left-2.5 bg-red-600 text-white font-benzin font-bold text-[9px] px-2 py-0.5 rounded shadow">
                       ▶ RECENZJA WIDEO 4K
                     </div>
                     <div class="absolute top-2.5 right-2.5 bg-black/60 backdrop-blur-sm text-white font-mono text-[10px] px-2 py-0.5 rounded">
-                      02:40 min
-                    </div>
-                    <!-- Play Button Icon -->
-                    <div class="relative z-10 w-13 h-13 rounded-full bg-brandYellow text-brandDark flex items-center justify-center text-xl font-bold shadow-2xl group-hover:scale-110 transition">
-                      ▶
+                      01:01 min
                     </div>
                     <div class="absolute bottom-2.5 left-3 right-3 text-white text-[11px] font-semibold leading-tight drop-shadow">
                       Altana z kompletną kuchnią i barem
@@ -1111,7 +1108,7 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
               <!-- Project 4: Video Shorts / Reels Mangal Familiya -->
               <div class="gallery-item video bbq bg-white rounded-xl border border-brandSlate/20 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition group">
                 <div>
-                  <div class="relative aspect-video bg-neutral-900 flex items-center justify-center overflow-hidden cursor-pointer" onclick="openVideoModal('Kompleks grillowy Familiya: przegląd blatów i półek', 'Instagram Reels / Shorts', 'https://instagram.com')">
+                  <div class="relative aspect-video bg-neutral-900 flex items-center justify-center overflow-hidden cursor-pointer" onclick="openVideoModal('Kompleks grillowy Familiya: przegląd blatów i półek', 'Instagram Reels', 'https://www.instagram.com/reel/DCY7e_htEiZ/')">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
                     <div class="absolute top-2.5 left-2.5 bg-purple-600 text-white font-benzin font-bold text-[9px] px-2 py-0.5 rounded shadow">
                       ▶ INSTAGRAM REELS
@@ -2332,6 +2329,11 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
       return match ? match[1] : null;
     }
 
+    function getInstagramId(link) {
+      const match = (link || '').match(/instagram\.com\/(?:reel|reels|p|tv)\/([\w-]+)/);
+      return match ? match[1] : null;
+    }
+
     function openVideoModal(title, badge, link) {
       const modal = document.getElementById('videoModal');
       const frame = document.getElementById('videoFrame');
@@ -2340,10 +2342,28 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
 
       if (videoPlaceholderHtml === null) videoPlaceholderHtml = frame.innerHTML;
       const videoId = getYouTubeId(link);
+      const instagramId = getInstagramId(link);
       const fallbackLink = document.getElementById('videoFallbackLink');
       if (fallbackLink) {
-        fallbackLink.href = videoId ? `https://www.youtube.com/watch?v=${videoId}` : (link || '#');
+        if (videoId) {
+          fallbackLink.href = `https://www.youtube.com/watch?v=${videoId}`;
+          fallbackLink.textContent = 'Wideo się nie wyświetla? Otwórz na YouTube';
+        } else if (instagramId) {
+          fallbackLink.href = `https://www.instagram.com/reel/${instagramId}/`;
+          fallbackLink.textContent = 'Wideo się nie wyświetla? Otwórz na Instagramie';
+        } else {
+          fallbackLink.href = link || '#';
+        }
         fallbackLink.classList.toggle('hidden', !link);
+      }
+
+      if (instagramId) {
+        if (videoPlaceholderHtml === null) videoPlaceholderHtml = frame.innerHTML;
+        // Reels are vertical: keep the player narrow and centered inside the modal
+        frame.innerHTML = `<iframe src="https://www.instagram.com/reel/${instagramId}/embed/" title="${title}" class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 h-full bg-white" style="border:0; width:min(420px, 100%);" scrolling="no" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        return;
       }
 
       // YouTube refuses to play embeds on pages opened as a local file (file://), Error 153.
