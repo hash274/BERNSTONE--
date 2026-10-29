@@ -1023,7 +1023,7 @@
                   <div class="flex items-baseline justify-between mb-1.5">
                     <div class="price-select" id="fencePriceSelect">
                       <button type="button" class="price-select__trigger" aria-haspopup="dialog" aria-expanded="false" aria-controls="fencePriceMenu" aria-label="Pokaż ceny ogrodzenia Patio według koloru">
-                        <span class="price-select__value font-benzin text-base font-extrabold">od 523,21 PLN / mb</span>
+                        <span class="price-select__value font-benzin text-base font-extrabold">od 1&nbsp;427 PLN / mb</span>
                         <span class="price-select__chevron" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
                       </button>
                       <div class="price-select__menu" id="fencePriceMenu" role="dialog" aria-label="Ceny ogrodzenia Patio według koloru" data-state="closed" hidden>
@@ -1107,61 +1107,64 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
         </section>
 
         <!-- SECTION 4: COLOR PALETTE (5 EXACT COLORS: Szary, Rio, Srebrny, Terra, Blanco) -->
-        <section id="kolory" class="p-6 sm:p-8 bg-white border-b border-brandSlate/15">
+        <section id="kolory" class="p-6 sm:p-10 bg-brandBg border-b border-brandSlate/15">
           <div class="max-w-5xl mx-auto">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
-              <div>
-                <span class="text-xs font-benzin font-bold text-brandSlate uppercase tracking-wider block">Paleta faktur kolekcji Patio</span>
-                <h3 class="font-benzin text-lg sm:text-xl font-extrabold text-brandDark">Jednolita kolorystyka palenisk, grilli i ogrodzeń.</h3>
-              </div>
-              <div class="bg-brandYellow/50 text-brandDark border border-brandYellow px-3 py-1 rounded-lg text-xs font-bold font-benzin">
-                ✓ Obierany kolor nie zmienia kosztu kompletów
+            <div class="mb-7">
+              <span class="text-xs font-benzin font-bold text-brandSlate uppercase tracking-wider block">Paleta kolekcji Patio</span>
+              <h3 class="font-benzin text-2xl sm:text-4xl font-extrabold text-brandDark mt-1 leading-tight">Jedna paleta dla palenisk, grilli i ogrodzeń</h3>
+              <div class="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-full bg-brandYellow/50 border border-brandYellow text-brandDark text-xs sm:text-sm font-bold">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>
+                Kolor nie zmienia ceny gotowych zestawów
               </div>
             </div>
 
-            <!-- Static Color Sample Cards Grid (5 Colors) -->
-            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3.5">
-              
+            <!-- Color sample cards (5 colors) -->
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4">
               <!-- Color 1: Szary -->
-              <div class="p-3 rounded-xl bg-brandBg border border-brandSlate/20 text-center flex flex-col items-center">
-                <img src="Szary%20Patio.jpg" alt="Szary Patio" class="w-14 h-14 rounded-full object-cover border-2 border-white shadow-inner mb-2">
-                <strong class="font-benzin text-xs font-bold text-brandDark block">Szary</strong>
-                <span class="text-[10px] text-brandSlate mt-0.5">Klasyczny kamień w stonowanym wydaniu</span>
+              <div class="palette-card group p-3 sm:p-3.5 rounded-2xl bg-white border border-brandSlate/15 text-center flex flex-col">
+                <div class="palette-swatch w-full aspect-square rounded-xl overflow-hidden mb-3">
+                  <img src="Szary%20Patio.jpg" alt="Kolor Szary – kolekcja Patio" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                </div>
+                <strong class="font-benzin text-sm sm:text-base font-bold text-brandDark block">Szary</strong>
+                <span class="text-xs sm:text-sm text-brandSlate mt-1 leading-snug">Klasyczny kamień w stonowanym wydaniu</span>
               </div>
-
               <!-- Color 2: Rio -->
-              <div class="p-3 rounded-xl bg-brandBg border border-brandSlate/20 text-center flex flex-col items-center">
-                <img src="Rio%20Patio.jpg" alt="Rio Patio" class="w-14 h-14 rounded-full object-cover border-2 border-white shadow-inner mb-2">
-                <strong class="font-benzin text-xs font-bold text-brandDark block">Rio</strong>
-                <span class="text-[10px] text-brandSlate mt-0.5">Mieszanka kolorów wypalanych w ciepłym odcieniu</span>
+              <div class="palette-card group p-3 sm:p-3.5 rounded-2xl bg-white border border-brandSlate/15 text-center flex flex-col">
+                <div class="palette-swatch w-full aspect-square rounded-xl overflow-hidden mb-3">
+                  <img src="Rio%20Patio.jpg" alt="Kolor Rio – kolekcja Patio" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                </div>
+                <strong class="font-benzin text-sm sm:text-base font-bold text-brandDark block">Rio</strong>
+                <span class="text-xs sm:text-sm text-brandSlate mt-1 leading-snug">Ciepła mieszanka wypalanych odcieni</span>
               </div>
-
               <!-- Color 3: Srebrny -->
-              <div class="p-3 rounded-xl bg-brandBg border border-brandSlate/20 text-center flex flex-col items-center">
-                <img src="Srebrny%20Patio.jpg" alt="Srebrny Patio" class="w-14 h-14 rounded-full object-cover border-2 border-white shadow-inner mb-2">
-                <strong class="font-benzin text-xs font-bold text-brandDark block">Srebrny</strong>
-                <span class="text-[10px] text-brandSlate mt-0.5">Szlachetny ton z srebrnym akcentem</span>
+              <div class="palette-card group p-3 sm:p-3.5 rounded-2xl bg-white border border-brandSlate/15 text-center flex flex-col">
+                <div class="palette-swatch w-full aspect-square rounded-xl overflow-hidden mb-3">
+                  <img src="Srebrny%20Patio.jpg" alt="Kolor Srebrny – kolekcja Patio" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                </div>
+                <strong class="font-benzin text-sm sm:text-base font-bold text-brandDark block">Srebrny</strong>
+                <span class="text-xs sm:text-sm text-brandSlate mt-1 leading-snug">Szlachetny ton ze srebrnym akcentem</span>
               </div>
-
               <!-- Color 4: Terra -->
-              <div class="p-3 rounded-xl bg-brandBg border border-brandSlate/20 text-center flex flex-col items-center">
-                <img src="Terra%20Patio.jpg" alt="Terra Patio" class="w-14 h-14 rounded-full object-cover border-2 border-white shadow-inner mb-2">
-                <strong class="font-benzin text-xs font-bold text-brandDark block">Terra</strong>
-                <span class="text-[10px] text-brandSlate mt-0.5">Głęboki odcień terra cotta ceramiki</span>
+              <div class="palette-card group p-3 sm:p-3.5 rounded-2xl bg-white border border-brandSlate/15 text-center flex flex-col">
+                <div class="palette-swatch w-full aspect-square rounded-xl overflow-hidden mb-3">
+                  <img src="Terra%20Patio.jpg" alt="Kolor Terra – kolekcja Patio" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                </div>
+                <strong class="font-benzin text-sm sm:text-base font-bold text-brandDark block">Terra</strong>
+                <span class="text-xs sm:text-sm text-brandSlate mt-1 leading-snug">Głęboki odcień ceramiki terakotowej</span>
               </div>
-
               <!-- Color 5: Blanco -->
-              <div class="p-3 rounded-xl bg-brandBg border border-brandSlate/20 text-center flex flex-col items-center col-span-2 sm:col-span-1">
-                <img src="Blanco%20Patio.jpg" alt="Blanco Patio" class="w-14 h-14 rounded-full object-cover border-2 border-white shadow-inner mb-2">
-                <strong class="font-benzin text-xs font-bold text-brandDark block">Blanco</strong>
-                <span class="text-[10px] text-brandSlate mt-0.5">Jasny kremowy piaskowy</span>
+              <div class="palette-card group p-3 sm:p-3.5 rounded-2xl bg-white border border-brandSlate/15 text-center flex flex-col col-span-2 sm:col-span-1">
+                <div class="palette-swatch w-full aspect-square rounded-xl overflow-hidden mb-3">
+                  <img src="Blanco%20Patio.jpg" alt="Kolor Blanco – kolekcja Patio" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                </div>
+                <strong class="font-benzin text-sm sm:text-base font-bold text-brandDark block">Blanco</strong>
+                <span class="text-xs sm:text-sm text-brandSlate mt-1 leading-snug">Jasny, kremowo-piaskowy</span>
               </div>
-
             </div>
 
-            <div class="mt-4 p-3 bg-brandBg rounded-xl border border-dashed border-brandSlate/30 text-xs text-brandSlate flex flex-col sm:flex-row items-center justify-between gap-2">
-              <span>💡 Wszystkie produkty kolekcji Patio są wytwarzane w jednej gamie dla harmonijnego połączenia na działce.</span>
-              <a href="#ekspozycja" class="font-bold text-brandDark hover:underline whitespace-nowrap">Przeglądanie próbek na wystawie w Warszawie →</a>
+            <div class="mt-5 px-4 py-3.5 rounded-xl border border-dashed border-brandSlate/30 text-xs sm:text-sm text-brandSlate flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <span>Wszystkie produkty Patio powstają w jednej gamie, więc grill, palenisko i ogrodzenie tworzą spójną całość.</span>
+              <a href="#ekspozycja" class="font-bold text-brandDark hover:underline whitespace-nowrap">Zobacz próbki na wystawie →</a>
             </div>
           </div>
         </section>
@@ -1310,11 +1313,11 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
                 </div>
               </div>
 
-              <!-- Project 4: Video Shorts / Reels Mangal Familiya -->
+              <!-- Project 4: Instagram Reels – Altana Patio z grillem -->
               <div class="gallery-item video bbq bg-white rounded-xl border border-brandSlate/20 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition group">
                 <div>
-                  <div class="relative aspect-video bg-neutral-900 flex items-center justify-center overflow-hidden cursor-pointer" onclick="openVideoModal('Kompleks grillowy Familiya: przegląd blatów i półek', 'Instagram Reels', 'https://www.instagram.com/reel/DCY7e_htEiZ/')">
-                    <img src="image.jpg" alt="Kompleks grillowy Familiya – wideo" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+                  <div class="relative aspect-video bg-neutral-900 flex items-center justify-center overflow-hidden cursor-pointer" onclick="openVideoModal('Altana Patio z zestawem do grillowania', 'Instagram Reels', 'https://www.instagram.com/reel/DCY7e_htEiZ/')">
+                    <img src="image.jpg" alt="Altana Patio z zestawem do grillowania – wideo" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
                     <div class="absolute top-2.5 left-2.5 bg-purple-600 text-white font-benzin font-bold text-[9px] px-2 py-0.5 rounded shadow">
                       ▶ INSTAGRAM REELS
@@ -1323,25 +1326,25 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
                       00:10 min
                     </div>
                     <div class="absolute bottom-2.5 left-3 right-3 text-white text-[11px] font-semibold leading-tight drop-shadow">
-                      Szybki przegląd: grill Familiya z blatami i szafkami
+                      Altana Patio z zestawem do grillowania
                     </div>
                   </div>
                   <div class="p-4">
                     <div class="flex items-center justify-between text-[10px] text-brandSlate font-semibold mb-1">
-                      <span>Prywatne podwórko • Kolor Szary</span>
-                      <span class="text-emerald-700 font-bold">Kompaktowy bestseller</span>
+                      <span>Prywatne podwórko</span>
+                      <span class="text-emerald-700 font-bold text-right">Bestseller roku 2026</span>
                     </div>
                     <h4 class="font-benzin text-xs font-bold text-brandDark mb-1.5 leading-snug">
-                      Grill Familiya z pokrywami-blatami
+                      Altana Patio z zestawem do grillowania
                     </h4>
                     <p class="text-[11px] text-brandSlate leading-relaxed">
-                      Pokaz wygodnego gotowania: stalowy grill z grubymi ściankami, zamykane schowki na akcesoria kuchenne i półka na drewno.
+                      Altana wykonana z bloków architektonicznych z kolekcji Patio łączy w sobie w pełni funkcjonalną strefę grillową, wygodny blat barowy oraz ochronne balustrady, tworząc spójną, stylową całość o fakturze łupanego kamienia.
                     </p>
                   </div>
                 </div>
                 <div class="px-4 pb-3.5 pt-1 border-t border-brandSlate/10 flex items-center justify-between">
-                  <span class="text-[10px] text-brandSlate">Długość 280 cm</span>
-                  <button onclick="triggerLeadChat('Grill Familiya z przeglądu wideo')" class="text-[11px] font-bold text-brandDark hover:text-black flex items-center gap-1">
+                  <span class="text-[10px] text-brandSlate">Powierzchnia 33 m²</span>
+                  <button onclick="triggerLeadChat('Altana Patio z zestawem do grillowania')" class="text-[11px] font-bold text-brandDark hover:text-black flex items-center gap-1">
                     Zapytaj o cenę →
                   </button>
                 </div>
@@ -1374,7 +1377,7 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
                   </div>
                 </div>
                 <div class="px-4 pb-3.5 pt-1 border-t border-brandSlate/10 flex items-center justify-between">
-                  <span class="text-[10px] text-brandSlate">od 523,21 PLN / mb</span>
+                  <span class="text-[10px] text-brandSlate">od 1&nbsp;427 PLN / mb</span>
                   <button onclick="triggerLeadChat('Ogrodzenie Patio - wycena metrażu')" class="text-[11px] font-bold text-brandDark hover:text-black flex items-center gap-1">
                     Wyceńcie Państwo metraż →
                   </button>
@@ -1638,7 +1641,7 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
                 <button onclick="window.open('https://www.facebook.com/bernstonepl/', '_blank')" class="footer-social-button bg-[#1877F2] text-white hover:brightness-110 transition">
                   <span>f</span> Facebook Bernstone
                 </button>
-                <button onclick="window.open('https://wa.me/380990070774', '_blank')" class="footer-social-button text-center bg-[#25D366] text-white hover:brightness-110 transition">
+                <button onclick="window.open('https://wa.me/380633182625', '_blank')" class="footer-social-button text-center bg-[#25D366] text-white hover:brightness-110 transition">
                   <span aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span>
                   Napiszcie Państwo na WhatsApp
                 </button>
@@ -2117,7 +2120,7 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
       },
       fence: {
         title: "Ogrodzenie i parapety Patio",
-        price: "od 580 PLN / mb • Według wymiarów",
+        price: "od 1\u00a0427 PLN / mb • Według wymiarów",
         photos: [
           {
             title: "Zdjęcie 1: Ogrodzenie z bloków Patio z płytami",
@@ -2599,7 +2602,7 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
 
     // Direct consultation action
     function triggerLeadChat(productName) {
-      window.open('https://wa.me/380990070774', '_blank');
+      window.open('https://wa.me/380633182625', '_blank');
     }
 
     let videoPlaceholderHtml = null;
@@ -2690,7 +2693,7 @@ Ogrodzenia, ozdobne obudowy i balustrady ochronne o fakturze łupanego kamienia.
   2. Grill Pasion (20 500 PLN, 290x90x250 cm, 4 palety bloków, blaty, komin)
   3. Mangal Familiya (14 000 PLN, 280x95x110 cm, 2 palety bloków, grill, szafki)
   4. Komplet Circle (31 500 PLN, średnica 570 cm, 5 palet bloków, elementy metalowe)
-  5. Ogrodzenie Patio (od 580 PLN / mb, grubość 20 cm)
+  5. Ogrodzenie Patio (od 1 427 PLN / mb, grubość 20 cm)
 - Galeria produktów: każda karta zawiera 5 interaktywnych zdjęć z przełączaniem i podglądem pełnoekranowym (Lightbox z zoomem 150%)
 - Paleta (5 kolorów): Szary, Rio, Srebrny, Terra, Blanco (cena nie zależy od koloru)
 - Blok zamówień indywidualnych: bezpośredni producent Bernstone
